@@ -125,5 +125,6 @@ export default {
     //................new colors.............//
     darkGrey:'#2E2E2E',
     matterhorn:'#4C4C4C',
+    lightgrey:'#AFAFAF'
   };
   

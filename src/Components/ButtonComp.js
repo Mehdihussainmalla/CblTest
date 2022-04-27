@@ -1,45 +1,59 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import React from 'react'
-import { moderateScale, scale } from 'react-native-size-matters'
+import * as React from 'react';
+import { useState } from 'react';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
 import fontFamily from '../styles/fontFamily';
+import { moderateScale, textScale } from '../styles/responsiveSize';
 
-
-const ButtonComp = ({ title, onPress, disable }) => {
+export default function ButtonComp({
+    ButtonText = '',
+    btnStyle = {},
+    buttonTxt = {},
+    btnIcon,
+    onPress = () => { },
+}) {
     return (
-        <View>
-            <TouchableOpacity
-                //    activeOpacity={0.8}
-                onPress={onPress}
-                style={styles.btnStyle} disabled={disable}>
-                <Text style={styles.btnText} >{title}</Text>
-            </TouchableOpacity>
-        </View>
-    )
+
+        <TouchableOpacity
+            style={{
+                ...styles.btnStyle,
+                ...btnStyle,
+            }}
+            onPress={onPress}>
+            {!!btnIcon ? <Image source={btnIcon} style={styles.imgIcon} /> : <View />}
+
+
+            <Text style={{
+                ...styles.buttonTxt,
+                ...buttonTxt
+            }}>{ButtonText}</Text>
+
+            <View />
+
+        </TouchableOpacity>
+
+    );
 }
 
 const styles = StyleSheet.create({
     btnStyle: {
         height: moderateScale(48),
-        marginLeft: moderateScale(24),
-        marginRight: moderateScale(24),
-        backgroundColor: 'red',
-        marginTop: moderateScale(50),
+        width: moderateScale(328),
+        backgroundColor: '#F43738',
         borderRadius: moderateScale(8),
-        // width: moderateScale(328),
-        justifyContent: 'center',
-        fontFamily: fontFamily.BarlowBold
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
     },
-    btnText: {
-        fontSize: scale(14),
-        alignContent: 'center',
-        //textAlign:'center',
-        alignSelf: 'center',
+    buttonTxt: {
+        fontSize: textScale(14),
+        fontWeight: '600',
+        textAlign: 'center',
         color: colors.white,
-        fontFamily: fontFamily.BarlowBold,
-        lineHeight: moderateScale(20),
-
+    },
+    imgIcon: {
+        
+        marginLeft: moderateScale(19)
     }
-})
-
-export default ButtonComp
+});

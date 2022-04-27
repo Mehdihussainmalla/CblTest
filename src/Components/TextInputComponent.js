@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TextInput, SafeAreaView } from 'react-native';
 import { moderateScale, moderateVerticalScale, scale, } from 'react-native-size-matters';
 import colors from '../styles/colors';
+import fontFamily from '../styles/fontFamily';
 import { textScale } from '../styles/responsiveSize';
 
 
@@ -31,17 +32,20 @@ export default TextInputComponent
 
 const styles = StyleSheet.create({
     input: {
-        backgroundColor: colors.matterhorn,
-       height: moderateScale(43),
-         marginRight: moderateScale(24),
-  
+    //     backgroundColor: colors.matterhorn,
+    // //    height: moderateScale(43),
+    //      marginRight: moderateScale(24),
+    //      fontFamily:fontFamily.BarlowBold,
+         
         //marginVertical: 5,
-        justifyContent: 'center',
-        marginLeft: moderateScale(24),
-        padding: moderateVerticalScale(5),
+        // justifyContent: 'center',
+        // marginLeft: moderateScale(24),
+        // padding: moderateVerticalScale(5),
     },
     text: {
-        fontSize: textScale(14),
-        marginRight:moderateScale(16),
+        // fontSize: textScale(16),
+        // marginRight:moderateScale(16),
+        
+        
     }
 })

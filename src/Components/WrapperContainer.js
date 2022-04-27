@@ -2,9 +2,6 @@ import React from 'react';
 import {SafeAreaView, StatusBar, View} from 'react-native';
 import colors from '../styles/colors';
 
-import {moderateScale, moderateScaleVertical} from '../styles/responsiveSize';
-
-// import strings from '../constants/lang';
 
 const WrapperContainer = ({
   children,

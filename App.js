@@ -1,16 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { PhoneLogin, Slider } from './src/Screens';
-import { Login , } from './src/Screens';
+import Routes from './src/navigation/Routes';
+import colors from './src/styles/colors';
 
 const MyComponent = () => {
   return (
     
-    <View style={styles.container}>
-      {/* <Login/> */}
-      {/* <Slider/> */}
-      <PhoneLogin/>
-    </View>
+    
+      <Routes/>
+    
   );
 };
 
@@ -19,7 +17,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-   // backgroundColor: '#2c3e50',
+   backgroundColor:colors.darkGrey
   },
 });
 

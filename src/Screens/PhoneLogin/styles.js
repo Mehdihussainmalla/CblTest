@@ -5,16 +5,18 @@ import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'reac
 import fontFamily from '../../styles/fontFamily';
 import { textScale } from '../../styles/responsiveSize';
 export const styles = StyleSheet.create({
-    container: {
-        backgroundColor: colors.darkGrey
-    },
+    // container: {
+    //     backgroundColor: colors.darkGrey
+    // },
 
     headerview: {
+        // flex:1,
         marginTop: moderateScale(10),
         paddingRight: moderateScale(15),
         paddingHorizontal: moderateVerticalScale(10)
     },
     view1: {
+    
         height: moderateScale(64),
         width: moderateScale(375),
         //backgroundColor:'red',
@@ -45,7 +47,7 @@ export const styles = StyleSheet.create({
     },
     passview: {
         marginTop: moderateScale(10),
-        backgroundColor: 'red',
+       // backgroundColor: 'red',
         marginLeft: moderateScale(23),
         marginRight: moderateScale(24),
         flexDirection: 'row',
@@ -54,16 +56,19 @@ export const styles = StyleSheet.create({
         height: moderateScale(48),
         borderRadius: moderateScale(5),
         backgroundColor: colors.matterhorn,
+      
     },
     show: {
         paddingRight: moderateScale(20),
         marginTop: moderateScale(9),
-        paddingLeft: moderateScale(16)
+        paddingLeft: moderateScale(16),
+        paddingVertical:moderateScale(5)
 
 
 
     },
     mainview: {
+        flex:0.9,
         marginLeft: moderateScale(24),
         marginRight: moderateScale(23),
         // backgroundColor:'red',
@@ -74,16 +79,18 @@ export const styles = StyleSheet.create({
 
     },
     otp: {
-        // marginTop:verticalScale(2),
+        marginTop:verticalScale(2),
         fontSize: textScale(13),
-        fontFamily: fontFamily.BarlowRegular
+        fontFamily: fontFamily.BarlowRegular,
+        color:colors.white
     },
     password: {
-        paddingRight: 30,
+        paddingLeft: moderateScale(38),
         color:colors.redB,
         alignSelf: 'center',
         fontSize: textScale(13),
-        fontFamily: fontFamily.BarlowRegular,
+        fontFamily: fontFamily.BarlowBold,
+       color:colors.blue
 
 
 
@@ -97,10 +104,10 @@ export const styles = StyleSheet.create({
 
     },
     passwordview: {
-        // marginRight:moderateScale(23)
+        // marginRight:moderateScale(23),
         paddingRight: moderateScale(25),
         marginTop: verticalScale(5),
-        // backgroundColor: 'green'
+        
 
     },
     phoneview:{
@@ -110,6 +117,15 @@ export const styles = StyleSheet.create({
     },
     numberview:{
         marginHorizontal:10,
+   },
+   container:{
+       backgroundColor:colors.darkGrey,
+       
+   },
+   alignstyle:{
+       
+       alignItems:'center',
+       marginTop:12
    }
 
 

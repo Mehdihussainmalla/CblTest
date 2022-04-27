@@ -1,57 +1,68 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/ButtonComp';
 import WrapperContainer from '../../Components/WrapperContainer';
 import imagePath from '../../constants/imagePath';
-import strings from '../../constants/lang'
+import strings from '../../constants/lang';
+import navigationStrings from '../../navigation/navigationStrings';
+import colors from '../../styles/colors';
+
+
+
 import { styles } from './styles';
 
 
-const Login = () => {
+const Login = ({ navigation }) => {
     return (
         <WrapperContainer style={styles.container}>
+           
             <View style={styles.phoneview}>
                 <Image style={styles.logoview} source={imagePath.AWARD} />
                 <View style={styles.text}>
                     <Text style={styles.texttt}>{strings.TEXT}</Text>
                     <Text style={styles.texttt}>{strings.text2}</Text>
-                
-                    <ButtonComp title={strings.LOGIN_WITH_PHONE_NUMBER} />
                 </View>
             </View>
-            <View style={styles.socialview} >
-                <View style={styles.orview}>
-                    <Text style={styles.ortext}>{strings.OR}</Text>
-                </View>
+            <ButtonComp ButtonText={strings.LOGIN_WITH_PHONE_NUMBER} />
+            <View style={styles.orview}>
+                <Text style={styles.ortext}>or</Text>
+            </View>
 
+            <ButtonComp
+                ButtonText={strings.LOGIN_IN_WITH_GOOGLE}
+                btnStyle={{ marginVertical: moderateScale(12), backgroundColor: colors.white }}
+                buttonTxt={{ color: colors.loginWith }}
+                btnIcon={imagePath.GOOGLE_ICON}
+            // onPress={() => alert('button onpress')}
+            />
 
-                <TouchableOpacity style={styles.goolgeview}>
-                    <Image style={styles.imagestyle} source={imagePath.GOOGLE_ICON} />
-                    <Text style={styles.googletext}>{strings.LOGIN_IN_WITH_GOOGLE}</Text>
+            <ButtonComp
+                ButtonText={strings. LOGIN_IN_WITH_FACEBOOK}
+                btnStyle={{ marginVertical: moderateScale(12), backgroundColor: colors.white }}
+                buttonTxt={{ color: colors.loginWith }}
+                btnIcon={imagePath.FACEBOOK_ICON}
+            // onPress={() => alert('button onpress')}
+            />
+            <ButtonComp
+                ButtonText={strings.LOGIN_WITH_APPLE}
+                btnStyle={{ marginVertical: moderateScale(12), backgroundColor: colors.white }}
+                buttonTxt={{ color: colors.loginWith }}
+                btnIcon={imagePath.APPLE_ICON}
+            // onPress={() => alert('button onpress')}
+            />
+            <View style={styles.stringsview}>
+
+                <TouchableOpacity>
+                    <Text style={styles.newhere}>{strings.NEW_HERE}</Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity style={styles.facebookview}>
-                    <Image style={styles.imagestyle1} source={imagePath.FACEBOOK_ICON} />
-                    <Text style={styles.facebooktext}>{strings.LOGIN_IN_WITH_FACEBOOK}</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.appleview}>
-                    <Image style={styles.imagestyle2} source={imagePath.APPLE_ICON} />
-                    <Text style={styles.appletext}>{strings.LOGIN_WITH_APPLE}</Text>
-                </TouchableOpacity>
-
-                <View style={styles.stringsview}>
-
-                    <TouchableOpacity>
-                        <Text style={styles.newhere}>{strings.NEW_HERE}</Text>
-                    </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.PHONE_LOGIN)} >
                     <Text style={styles.signuptext}>{strings.SIGN_UP}</Text>
-
-                </View>
+                </TouchableOpacity>
 
             </View>
 
-
+         
         </WrapperContainer>
 
     );

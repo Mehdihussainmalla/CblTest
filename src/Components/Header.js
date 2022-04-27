@@ -6,7 +6,7 @@ import imagePath from '../constants/imagePath'
 
 
 const Header = ({onPressBack}) => {
-    // const navigation=useNavigation();
+    const navigation=useNavigation();
     const goBack =()=>{
         navigation.goBack();
     }

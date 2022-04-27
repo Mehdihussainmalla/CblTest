@@ -1,23 +1,23 @@
 
 import { StyleSheet } from 'react-native'
-import { moderateScale, moderateVerticalScale, scale } from 'react-native-size-matters';
+import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters';
 import colors from '../../styles/colors';
 import fontFamily from '../../styles/fontFamily';
 
 export const styles = StyleSheet.create({
     phoneview: {
-        flex: 2,
-        backgroundColor: 'lightgrey',
-        width: '100%',
+    
+      
+        // width: '100%',
         alignItems: 'center',
-        backgroundColor: '#2E2E2E'
+        backgroundColor:colors.darkGrey
     },
     container: {
-        flex: 1,
+        
         justifyContent: 'center',
         alignItems: "center",
         width: '100%',
-        backgroundColor: '#2E2E2E'
+        backgroundColor:colors.darkGrey
     },
     logoview: {
 
@@ -39,9 +39,10 @@ export const styles = StyleSheet.create({
         //paddingLeft:moderateScale(10)
     },
     texttt: {
-        fontFamily: fontFamily.BarlowBold,
+        fontFamily: fontFamily.BarlowMedium,
         fontSize: scale(13),
-        color: colors.greyA
+        color: colors.greyA,
+        textAlign:'center'
 
     },
     loginbtn: {
@@ -54,7 +55,8 @@ export const styles = StyleSheet.create({
         fontFamily: fontFamily.BarlowRegular
     },
     orview:
-    {
+    { 
+        marginTop:moderateScale(20),
         height: moderateScale(32),
         width: moderateScale(328),
 
@@ -66,7 +68,7 @@ export const styles = StyleSheet.create({
         color:colors.white
     },
     socialview: {
-        flex: 2,
+        flex: 0.5,
         //  width: '100%', 
     },
     goolgeview: {
@@ -156,7 +158,7 @@ export const styles = StyleSheet.create({
 
     newhere: {
         color: colors.white,
-        fontSize: scale(15),
+        fontSize: scale(13),
         fontFamily: fontFamily.BarlowRegular,
         paddingLeft: moderateScale(60),
         marginLeft:moderateScale(40)
@@ -164,7 +166,7 @@ export const styles = StyleSheet.create({
     },
     signuptext: {
         color: colors.lightSkyB,
-        fontSize: scale(15),
+        fontSize: scale(13),
         fontFamily: fontFamily.BarlowRegular,
         paddingRight: moderateScale(60),
        marginRight:moderateScale(40)
