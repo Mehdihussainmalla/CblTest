@@ -16,7 +16,7 @@ import { styles } from './styles';
 const Login = ({ navigation }) => {
     return (
         <WrapperContainer style={styles.container}>
-           
+           {/* <ScrollView> */}
             <View style={styles.phoneview}>
                 <Image style={styles.logoview} source={imagePath.AWARD} />
                 <View style={styles.text}>
@@ -24,7 +24,9 @@ const Login = ({ navigation }) => {
                     <Text style={styles.texttt}>{strings.text2}</Text>
                 </View>
             </View>
+            <View style={styles.loginphonenumber}>
             <ButtonComp ButtonText={strings.LOGIN_WITH_PHONE_NUMBER} />
+            </View>
             <View style={styles.orview}>
                 <Text style={styles.ortext}>or</Text>
             </View>
@@ -62,7 +64,7 @@ const Login = ({ navigation }) => {
 
             </View>
 
-         
+         {/* </ScrollView> */}
         </WrapperContainer>
 
     );

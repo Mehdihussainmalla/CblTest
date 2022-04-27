@@ -32,18 +32,13 @@ export default TextInputComponent
 
 const styles = StyleSheet.create({
     input: {
-    //     backgroundColor: colors.matterhorn,
-    // //    height: moderateScale(43),
-    //      marginRight: moderateScale(24),
-    //      fontFamily:fontFamily.BarlowBold,
-         
-        //marginVertical: 5,
-        // justifyContent: 'center',
-        // marginLeft: moderateScale(24),
-        // padding: moderateVerticalScale(5),
+        backgroundColor: colors.matterhorn,
+         marginRight: moderateScale(24),
+         marginLeft:moderateScale(23),
+        
     },
     text: {
-        // fontSize: textScale(16),
+        //  fontSize: textScale(16),
         // marginRight:moderateScale(16),
         
         

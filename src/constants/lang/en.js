@@ -17,7 +17,11 @@ export default {
  OTP:'Use Otp',
  LOGIN:'Login',
  CREATE_AN_ACCOUNT:"Create new account",
- CONTINUE_ACCOUNT:"Create an account so you can continue."
+ CONTINUE_ACCOUNT:"Create an account so you can continue.",
+ EMAIL:'Email',
+ LAST_NAME:'Last Name',
+ FIRST_NAME:'Last_Name',
+ NEXT:'Next',
 
 
 

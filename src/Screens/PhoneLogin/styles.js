@@ -48,8 +48,8 @@ export const styles = StyleSheet.create({
     passview: {
         marginTop: moderateScale(10),
        // backgroundColor: 'red',
-        marginLeft: moderateScale(23),
-        marginRight: moderateScale(24),
+        marginLeft: moderateScale(20),
+        marginRight: moderateScale(18),
         flexDirection: 'row',
         justifyContent: 'space-between',
         borderWidth: 0.7,

@@ -17,7 +17,7 @@ const WrapperContainer = ({
         backgroundColor: statusBarColor,
       }}>
       <StatusBar backgroundColor={statusBarColor} barStyle={barStyle} />
-      <View style={[{backgroundColor: bgColor, flex: 1},style]}>{children}</View>
+      <View style={[{backgroundColor: bgColor,flex:1 },style]}>{children}</View>
     </SafeAreaView>
   );
 };

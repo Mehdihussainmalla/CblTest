@@ -11,6 +11,7 @@ export default function ButtonComp({
     btnStyle = {},
     buttonTxt = {},
     btnIcon,
+    
     onPress = () => { },
 }) {
     return (

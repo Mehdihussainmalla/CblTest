@@ -1,5 +1,5 @@
 import React from "react";
-import { Login, NewAccount, PhoneLogin } from "../Screens";
+import { Login, NewAccount, PhoneLogin, SetPassword } from "../Screens";
 import navigationStrings from "./navigationStrings";
 
 
@@ -13,6 +13,8 @@ const AuthStack = (Stack) => {
                     component={PhoneLogin} />
                     <Stack.Screen options={{ headerShown: false }} name={navigationStrings.NEW_ACCOUNT}
                     component={NewAccount} />
+                     <Stack.Screen options={{ headerShown: false }} name={navigationStrings.SET_PASSWORD}
+                    component={SetPassword} />
                     </>
     )
 
