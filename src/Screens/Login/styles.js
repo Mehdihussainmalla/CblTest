@@ -112,7 +112,7 @@ export const styles = StyleSheet.create({
         letterSpacing: 0,
         textAlign: 'center',
         alignSelf: 'center',
-        paddingLeft: moderateScale(70)
+        paddingLeft: moderateScale(77)
     },
     imagestyle1: {
         height: moderateScale(19),
@@ -169,5 +169,6 @@ export const styles = StyleSheet.create({
         paddingRight: moderateScale(60),
        marginRight:moderateScale(40)
 
-    }
+    },
+    
 })

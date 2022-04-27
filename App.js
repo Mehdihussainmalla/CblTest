@@ -1,12 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Login from './src/Screens/Login/Login';
+import { PhoneLogin, Slider } from './src/Screens';
+import { Login , } from './src/Screens';
 
 const MyComponent = () => {
   return (
     
     <View style={styles.container}>
-      <Login/>
+      {/* <Login/> */}
+      {/* <Slider/> */}
+      <PhoneLogin/>
     </View>
   );
 };
@@ -16,7 +19,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
+   // backgroundColor: '#2c3e50',
   },
 });
 

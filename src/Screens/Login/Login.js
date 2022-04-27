@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import ButtonComp from '../../Components/ButtonComp';
-import SocialComp from '../../Components/SocialComp';
 import WrapperContainer from '../../Components/WrapperContainer';
 import imagePath from '../../constants/imagePath';
 import strings from '../../constants/lang'
@@ -16,9 +15,8 @@ const Login = () => {
                 <View style={styles.text}>
                     <Text style={styles.texttt}>{strings.TEXT}</Text>
                     <Text style={styles.texttt}>{strings.text2}</Text>
-
+                
                     <ButtonComp title={strings.LOGIN_WITH_PHONE_NUMBER} />
-
                 </View>
             </View>
             <View style={styles.socialview} >
@@ -34,7 +32,7 @@ const Login = () => {
 
                 <TouchableOpacity style={styles.facebookview}>
                     <Image style={styles.imagestyle1} source={imagePath.FACEBOOK_ICON} />
-                    <Text style={styles.facebooktext}>{strings.LOGIN_IN_WITH_GOOGLE}</Text>
+                    <Text style={styles.facebooktext}>{strings.LOGIN_IN_WITH_FACEBOOK}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.appleview}>

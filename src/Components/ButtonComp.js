@@ -21,12 +21,14 @@ const ButtonComp = ({ title, onPress, disable }) => {
 const styles = StyleSheet.create({
     btnStyle: {
         height: moderateScale(48),
+        marginLeft: moderateScale(24),
+        marginRight: moderateScale(24),
         backgroundColor: 'red',
         marginTop: moderateScale(50),
         borderRadius: moderateScale(8),
-        width: moderateScale(328),
+        // width: moderateScale(328),
         justifyContent: 'center',
-        fontFamily: fontFamily.BarlowRegular
+        fontFamily: fontFamily.BarlowBold
     },
     btnText: {
         fontSize: scale(14),
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
         //textAlign:'center',
         alignSelf: 'center',
         color: colors.white,
-      fontFamily:fontFamily.BarlowBold,
+        fontFamily: fontFamily.BarlowBold,
         lineHeight: moderateScale(20),
 
     }

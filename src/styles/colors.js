@@ -122,5 +122,8 @@ export default {
     greyD: '#9898A0',
     greyColor4: '#B0B0B0',
     lightGreen: 'rgba(68,215,182,0.17)',
+    //................new colors.............//
+    darkGrey:'#2E2E2E',
+    matterhorn:'#4C4C4C',
   };
   

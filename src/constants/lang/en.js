@@ -7,7 +7,15 @@ export default {
   LOGIN_WITH_APPLE:'Log In with Apple',
   LOGIN_IN_WITH_GOOGLE:'Log In with Google',
   NEW_HERE:'New here?',
- SIGN_UP :"Sign Up"
+ SIGN_UP :"Sign Up",
+ WELCOME_BACK:'Welcome back!',
+ HAPPY_TEXT:'We are happy to see. You can login to continue.',
+ PASSWORD:'Password',
+ NUMERIC:'Numeric',
+ SHOW:'Show',
+ FORGOT_PASSWORD:"Forgot Password?",
+ OTP:'Use Otp',
+ LOGIN:'Login'
 
 
 

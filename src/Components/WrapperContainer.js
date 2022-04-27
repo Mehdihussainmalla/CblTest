@@ -8,9 +8,9 @@ import {moderateScale, moderateScaleVertical} from '../styles/responsiveSize';
 
 const WrapperContainer = ({
   children,
-  bgColor = colors.white,
-  statusBarColor = colors.white,
-  barStyle = 'dark-content',
+  bgColor = colors.darkGrey,
+  statusBarColor = colors.darkGrey,
+  barStyle = 'white',
   style={},
 }) => {
   return (
