@@ -15,6 +15,32 @@ import { moderateScale, moderateScaleVertical } from '../../styles/responsiveSiz
 
 
 const PhoneLogin = ({ navigation }) => {
+    
+
+    const onSignup = async() => {
+
+        let apiData = {
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            phone: phone,
+            phone_code: phoneCode,
+            country_code: countryCode,
+            device_token: deviceToken,
+            device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
+            password: password
+        }
+         console.log(apiData)
+        try {
+            const res = await actions.signUp(apiData)
+            console.log("signup api is......", res)
+            navigation.navigate(navigationStrings.LOGINSCREEN)
+            alert("User signup sucessfully !")
+        } catch (error) {
+            console.log("error raised", error)
+            alert(error?.message)
+        }
+    }
     return (
         <WrapperContainer>
             <View style={styles.container}>
