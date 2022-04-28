@@ -46,27 +46,30 @@ export const styles = StyleSheet.create({
         fontFamily: fontFamily.BarlowRegular
     },
     passview: {
+        
         marginTop: moderateScale(10),
-       // backgroundColor: 'red',
-        marginLeft: moderateScale(23),
-        marginRight: moderateScale(24),
+        marginLeft: moderateScale(24),
+        marginRight: moderateScale(23),
         flexDirection: 'row',
         justifyContent: 'space-between',
         borderWidth: 0.7,
-        height: moderateScale(48),
+        // height: moderateScale(48),
         borderRadius: moderateScale(5),
         backgroundColor: colors.matterhorn,
       
     },
     show: {
-        paddingRight: moderateScale(20),
-        marginTop: moderateScale(9),
+        // flex:0.2,
+        alignItems:'center',
+       paddingRight: moderateScale(20),
+        // marginTop: moderateScale(9),
         paddingLeft: moderateScale(16),
-        paddingVertical:moderateScale(5)
+        paddingVertical:moderateScale(15)
 
 
 
     },
+    
     mainview: {
         flex:0.9,
         marginLeft: moderateScale(24),
@@ -119,14 +122,35 @@ export const styles = StyleSheet.create({
         marginHorizontal:10,
    },
    container:{
+       flex:1,
        backgroundColor:colors.darkGrey,
        
    },
    alignstyle:{
+     marginHorizontal:moderateScale(8),
+    //    alignItems:'center',
+    // //    marginTop:12,
+       bottom:0,
+       position:'absolute',
+    position:'absolute', 
+    //    marginHorizontal:moderateScale(20),
+       bottom:0,
+   },
+   btncomp:{ 
+       flex:0.9,
+      // marginLeft:20,
+    
        
-       alignItems:'center',
-       marginTop:12
+       
+   },
+   codeview:{
+      
+    flexDirection:'row',justifyContent:'space-between', 
+    marginVertical:moderateScale(24), 
+    marginLeft: moderateScale(10),
+    marginRight: moderateScale(23),
+    height: moderateScale(48),
+    marginTop: verticalScale(20),
    }
-
 
 }); 

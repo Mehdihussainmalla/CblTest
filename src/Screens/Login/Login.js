@@ -16,7 +16,8 @@ import { styles } from './styles';
 const Login = ({ navigation }) => {
     return (
         <WrapperContainer style={styles.container}>
-           
+            <View style={{flex:0.9}}>
+           {/* <ScrollView> */}
             <View style={styles.phoneview}>
                 <Image style={styles.logoview} source={imagePath.AWARD} />
                 <View style={styles.text}>
@@ -24,11 +25,14 @@ const Login = ({ navigation }) => {
                     <Text style={styles.texttt}>{strings.text2}</Text>
                 </View>
             </View>
+          
+            <View style={styles.loginphonenumber}>
             <ButtonComp ButtonText={strings.LOGIN_WITH_PHONE_NUMBER} />
+            </View>
             <View style={styles.orview}>
                 <Text style={styles.ortext}>or</Text>
             </View>
-
+  <View style={{flex:0.1}}>
             <ButtonComp
                 ButtonText={strings.LOGIN_IN_WITH_GOOGLE}
                 btnStyle={{ marginVertical: moderateScale(12), backgroundColor: colors.white }}
@@ -36,7 +40,10 @@ const Login = ({ navigation }) => {
                 btnIcon={imagePath.GOOGLE_ICON}
             // onPress={() => alert('button onpress')}
             />
+</View>
 
+
+<View style={{flex:0.1}}>
             <ButtonComp
                 ButtonText={strings. LOGIN_IN_WITH_FACEBOOK}
                 btnStyle={{ marginVertical: moderateScale(12), backgroundColor: colors.white }}
@@ -44,6 +51,8 @@ const Login = ({ navigation }) => {
                 btnIcon={imagePath.FACEBOOK_ICON}
             // onPress={() => alert('button onpress')}
             />
+            </View>
+            <View style={{flex:0.1}}>
             <ButtonComp
                 ButtonText={strings.LOGIN_WITH_APPLE}
                 btnStyle={{ marginVertical: moderateScale(12), backgroundColor: colors.white }}
@@ -51,6 +60,7 @@ const Login = ({ navigation }) => {
                 btnIcon={imagePath.APPLE_ICON}
             // onPress={() => alert('button onpress')}
             />
+            </View>
             <View style={styles.stringsview}>
 
                 <TouchableOpacity>
@@ -61,8 +71,9 @@ const Login = ({ navigation }) => {
                 </TouchableOpacity>
 
             </View>
-
-         
+          
+            </View>
+         {/* </ScrollView> */}
         </WrapperContainer>
 
     );

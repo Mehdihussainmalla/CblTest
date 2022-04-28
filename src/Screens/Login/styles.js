@@ -7,7 +7,7 @@ import fontFamily from '../../styles/fontFamily';
 export const styles = StyleSheet.create({
     phoneview: {
     
-      
+      flex:0.5,
         // width: '100%',
         alignItems: 'center',
         backgroundColor:colors.darkGrey
@@ -20,22 +20,26 @@ export const styles = StyleSheet.create({
         backgroundColor:colors.darkGrey
     },
     logoview: {
+        marginLeft:moderateScale(24),
+        marginRight:moderateScale(23),
 
-        marginTop: moderateScale(40),
+        marginTop: moderateScale(10),
         height: moderateScale(178),
+        marginVertical:25,
         width: moderateScale(121),
         marginHorizontal: moderateVerticalScale(127)
 
     },
     logoimage: {
 
-        width: moderateScale(121),
+        // width: moderateScale(121),
         height: moderateScale(178)
 
     },
 
     text: {
-        padding: moderateScale(10),
+        
+       // padding: moderateScale(10),
         //paddingLeft:moderateScale(10)
     },
     texttt: {
@@ -45,10 +49,14 @@ export const styles = StyleSheet.create({
         textAlign:'center'
 
     },
+    loginphonenumber:{
+        flex:0.1,
+        marginTop:25
+    },
     loginbtn: {
         backgroundColor: 'red',
         // height:moderateScale(40),
-        marginTop: moderateScale(50),
+       // marginTop: moderateScale(50),
         borderRadius: moderateScale(8),
         width: moderateScale(328),
         letterSpacing: 0,

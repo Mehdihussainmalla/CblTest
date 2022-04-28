@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import Routes from './src/navigation/Routes';
 import colors from './src/styles/colors';
 
-const MyComponent = () => {
+const App = () => {
   return (
     
     
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyComponent;
+export default App;

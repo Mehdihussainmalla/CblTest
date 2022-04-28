@@ -11,6 +11,7 @@ export default function ButtonComp({
     btnStyle = {},
     buttonTxt = {},
     btnIcon,
+    
     onPress = () => { },
 }) {
     return (
@@ -19,6 +20,7 @@ export default function ButtonComp({
             style={{
                 ...styles.btnStyle,
                 ...btnStyle,
+                
             }}
             onPress={onPress}>
             {!!btnIcon ? <Image source={btnIcon} style={styles.imgIcon} /> : <View />}
@@ -38,13 +40,19 @@ export default function ButtonComp({
 
 const styles = StyleSheet.create({
     btnStyle: {
+        
+        marginLeft:moderateScale(15),
         height: moderateScale(48),
-        width: moderateScale(328),
+        marginRight:moderateScale(23),
+        width: moderateScale(325),
+        marginLeft:moderateScale(24),
         backgroundColor: '#F43738',
         borderRadius: moderateScale(8),
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+         justifyContent: 'space-between',
+        position:'absolute',
+        bottom:0
     },
     buttonTxt: {
         fontSize: textScale(14),
