@@ -26,7 +26,7 @@ export default function ButtonComp({
 
             <Text style={{
                 ...styles.buttonTxt,
-                ...buttonTxt
+                ...buttonTxt,
             }}>{ButtonText}</Text>
 
             <View />

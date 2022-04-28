@@ -43,7 +43,7 @@ const PhoneLogin = ({navigation}) => {
 
             </View>
             <View style={styles.alignstyle}>
-                <ButtonComp onPress={()=>navigation.navigate(navigationStrings.NEW_ACCOUNT)} 
+                <ButtonComp  onPress={()=>navigation.navigate(navigationStrings.NEW_ACCOUNT)} 
                 ButtonText={strings.LOGIN} />
             </View>
 
