@@ -27,7 +27,7 @@ const styles=StyleSheet.create({
         flexDirection:'row',
       // justifyContent:'flex-start',
         height:moderateScale(42),
-        marginTop:moderateScale(10),
+        marginTop:moderateScale(26),
         paddingLeft:moderateScale(18)
        
     }

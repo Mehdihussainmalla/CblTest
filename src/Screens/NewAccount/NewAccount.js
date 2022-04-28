@@ -16,44 +16,44 @@ const NewAccount = ({ navigation }) => {
     return (
         <WrapperContainer>
             {/* <View style={{ flex: 1 }}> */}
-                <View style={styles.headerview}>
-                    <Header />
+            {/* <View style={styles.headerview}> */}
+                <Header />
+            {/* </View> */}
+            <View style={{ flex: 0.9 }} >
+                <View style={styles.textview}>
+                    <View style={styles.createview}>
+                        <Text style={styles.createtext}>{strings.CREATE_AN_ACCOUNT}</Text>
+                    </View>
+                    <View style={styles.accountview}>
+                        <Text style={styles.bottomtext}>{strings.CONTINUE_ACCOUNT}</Text>
+                    </View>
                 </View>
-                <View style={{ flex: 0.9 }} >
-                    <View style={styles.textview}>
-                        <View style={styles.createview}>
-                            <Text style={styles.createtext}>{strings.CREATE_AN_ACCOUNT}</Text>
-                        </View>
-                        <View style={styles.accountview}>
-                            <Text style={styles.bottomtext}>{strings.CONTINUE_ACCOUNT}</Text>
-                        </View>
+                <View style={styles.namesview}>
+                    <View style={styles.firstname}>
+                        <TextInputComponent placeholder={strings.FIRST_NAME} />
                     </View>
-                    <View style={styles.namesview}>
-                        <View style={styles.firstname}>
-                            <TextInputComponent placeholder={strings.FIRST_NAME} />
-                        </View>
-                        <View style={styles.lastname}>
-                            <TextInputComponent placeholder={strings.LAST_NAME} />
-                        </View>
+                    <View style={styles.lastname}>
+                        <TextInputComponent placeholder={strings.LAST_NAME} />
                     </View>
-                    <View style={styles.emailview}>
-                        <TextInputComponent 
+                </View>
+                <View style={styles.emailview}>
+                    <TextInputComponent
                         // keyboardType='email-address' 
                         placeholder={strings.EMAIL} />
+                </View>
+                <View style={styles.codeview}>
+                    <View style={{ flex: 0.4 }}>
+                        <CountryCodePicker />
                     </View>
-                    <View style={styles.codeview}>
-                <View style={{flex:0.5}}>
-            <CountryCodePicker/>
-            </View>
-            <View style={{flex:0.5}}>
-            <TextInputComponent placeholder={strings.PHONE_NUMBER}/>
-            </View>
-            </View>
+                    <View style={{ flex: 0.6 }}>
+                        <TextInputComponent placeholder={strings.PHONE_NUMBER} />
+                    </View>
                 </View>
-                <View style={styles.nextbtn}>
-                    <ButtonComp onPress={() => navigation.navigate(navigationStrings.SET_PASSWORD)}
-                        ButtonText={strings.NEXT} />
-                </View>
+            </View>
+            <View style={styles.nextbtn}>
+                <ButtonComp onPress={() => navigation.navigate(navigationStrings.SET_PASSWORD)}
+                    ButtonText={strings.NEXT} />
+            </View>
             {/* </View> */}
 
 

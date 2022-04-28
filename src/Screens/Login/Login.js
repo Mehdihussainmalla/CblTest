@@ -66,7 +66,7 @@ const Login = ({ navigation }) => {
                 <TouchableOpacity>
                     <Text style={styles.newhere}>{strings.NEW_HERE}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.PHONE_LOGIN)} >
+                <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.NEW_ACCOUNT)} >
                     <Text style={styles.signuptext}>{strings.SIGN_UP}</Text>
                 </TouchableOpacity>
 

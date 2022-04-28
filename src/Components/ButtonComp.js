@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity ,KeyboardAvoidingView,Platform} from 'react-native';
 import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
 import fontFamily from '../styles/fontFamily';
-import { moderateScale, textScale } from '../styles/responsiveSize';
+import { moderateScale, moderateScaleVertical, textScale } from '../styles/responsiveSize';
 
 export default function ButtonComp({
     ButtonText = '',
@@ -25,11 +25,14 @@ export default function ButtonComp({
             onPress={onPress}>
             {!!btnIcon ? <Image source={btnIcon} style={styles.imgIcon} /> : <View />}
 
-
+  {/* <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}> */}
+  {/* <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}> */}
             <Text style={{
                 ...styles.buttonTxt,
                 ...buttonTxt,
             }}>{ButtonText}</Text>
+            {/* </View> */}
+            {/* </KeyboardAvoidingView> */}
 
             <View />
 

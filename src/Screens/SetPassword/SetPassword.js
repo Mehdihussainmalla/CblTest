@@ -6,13 +6,17 @@ import Header from '../../Components/Header'
 import TextInputComponent from '../../Components/TextInputComponent'
 import strings from '../../constants/lang'
 import ButtonComp from '../../Components/ButtonComp'
+import navigationStrings from '../../navigation/navigationStrings'
+import { useNavigation } from '@react-navigation/native'
 const SetPassword = () => {
+  const navigation=useNavigation()
   return (
+   
       <WrapperContainer>
         <View style={{flex:1}}>
-    <View style={styles.headerview}>
+    {/* <View style={styles.headerview}> */}
     <Header />
-</View>
+{/* </View> */}
 <View style={styles.setpasswordstyle}>
     <View style={styles.passwordview}>
 <Text style={styles.passwordtext}>Set Password</Text>
@@ -32,7 +36,8 @@ const SetPassword = () => {
 </View>
 </View>
 <View style={styles.startedbtn}>
-  <ButtonComp ButtonText='get started'/>
+  <ButtonComp  onPress={() => navigation.navigate(navigationStrings.OTP_SCREEN)} 
+  ButtonText='get started'/>
 </View>
 </View>
 </WrapperContainer>

@@ -126,6 +126,7 @@ export default {
     darkGrey:'#2E2E2E',
     matterhorn:'#4C4C4C',
     lightgrey:'#AFAFAF',
-    smalltextcolor:'#B8B8B8'
+    smalltextcolor:'#B8B8B8',
+    bluelightclr:'#32C5FF'
   };
   
