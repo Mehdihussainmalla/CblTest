@@ -1,5 +1,5 @@
 import React from "react";
-import { Login, NewAccount, OtpScreen, PhoneLogin, SetPassword } from "../Screens";
+import { Login, NewAccount, OtpScreen, PhoneLogin, SetPassword, Slider } from "../Screens";
 import navigationStrings from "./navigationStrings";
 
 
@@ -8,6 +8,8 @@ const AuthStack = (Stack) => {
     return(
         <>
         <Stack.Navigator>
+        <Stack.Screen options={{ headerShown: false }} name={navigationStrings.SLIDER}
+                    component={Slider} />
         <Stack.Screen options={{ headerShown: false }} name={navigationStrings.LOGIN}
                     component={Login} />
                 <Stack.Screen options={{ headerShown: false }} name={navigationStrings.PHONE_LOGIN}

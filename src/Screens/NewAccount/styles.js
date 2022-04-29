@@ -3,17 +3,18 @@ import { StyleSheet } from 'react-native'
 import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters';
 import colors from '../../styles/colors';
 import fontFamily from '../../styles/fontFamily';
-import { textScale } from '../../styles/responsiveSize';
+import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 
 export const styles = StyleSheet.create({
     headerview: {
 
-        marginTop: moderateScale(10),
+        // marginTop: moderateScale(10),
         paddingRight: moderateScale(15),
         paddingHorizontal: moderateVerticalScale(10)
     },
 
     textview: {
+        // backgroundColor:'green',
         // flex:0.4,
 
         marginRight: moderateScale(23),
@@ -21,7 +22,7 @@ export const styles = StyleSheet.create({
 
     },
     createview: {
-        height: moderateScale(40),
+        // height: moderateScale(40),
     },
     createtext: {
         fontSize: textScale(24),
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
         color: colors.white,
         letterSpacing: 0,
         lineHeight: moderateScale(32),
-        letterSpacing: 0
+    
     },
 
 
@@ -45,33 +46,35 @@ export const styles = StyleSheet.create({
         letterSpacing: 0
     },
     namesview: {
-
+flex:0.2,
       
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginLeft: moderateScale(10),
         marginRight: moderateScale(23),
-        height: moderateScale(48),
-        marginTop: verticalScale(20),
+        // height: moderateScale(48),
+        // marginTop: verticalScale(20),
 
         alignItems: 'center'
     },
     codeview:{
+
+        // backgroundColor:'white',
         
-      
+      flex:0.1,
             flexDirection:'row',justifyContent:'space-between', 
             marginVertical:moderateScale(24), 
             marginLeft: moderateScale(10),
             marginRight: moderateScale(23),
-            height: moderateScale(48),
-            marginTop: verticalScale(20),
+            // height: moderateScale(48),
+            // marginTop: verticalScale(8),
 
     },
     firstname: {
        
         borderRadius: verticalScale(5),
         // textAlign:'center',
-        height:moderateScale(48),
+        // height:moderateScale(48),
         flex: 0.5,
         marginRight: moderateScale(24),
         backgroundColor: colors.matterhorn,
@@ -91,23 +94,35 @@ export const styles = StyleSheet.create({
      
     },
     emailview: {
-        height:moderateScale(48),
-        marginTop: moderateScale(17),
+        flex:0.07,
+        backgroundColor:'blue',
+        // height:moderateScale(48),
+        // marginTop: moderateScale(8),
         marginLeft: moderateScale(24),
         marginRight: moderateScale(20),
         backgroundColor: colors.matterhorn,
         borderRadius: verticalScale(5)
     },
-    nextbtn: {
-        // marginHorizontal:moderateScale(20),
-        alignItems: 'center',
-        marginTop: moderateScale(29),
-        paddingLeft:moderateScale(8),
-        // bottom:0,
-        // position:'absolute'
-        // marginLeft:moderateScale(24),
-        // marginRight:moderateScale(23),
-    },
+  btnstyle:{
+      flex:0.1,
+      marginTop:15,
+      marginLeft:moderateScaleVertical(24),
+      marginRight:moderateScaleVertical(23),
+  },
+  passwordview:{
+      marginBottom:30,
+    marginLeft:moderateScaleVertical(24),
+    marginRight:moderateScaleVertical(23),
+
+    flex:0.2, 
+  },
+ confirmpasswordview:{
+    marginTop:10,
+    marginLeft:moderateScaleVertical(24),
+    marginRight:moderateScaleVertical(23),
+
+    flex:0.1
+  }
     
 
 

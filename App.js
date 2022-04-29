@@ -10,20 +10,20 @@ import { getLogin } from './src/utils/utils';
 
 const App = () => {
 
-  useEffect(()=>{
-    getLogin().then((res)=>{
-      console.log('get login', res)
-      actions.saveUserData(res)
-    })
+  // useEffect(()=>{
+  //   getLogin().then((res)=>{
+  //     console.log('get login', res)
+  //     actions.saveUserData(res)
+  //   })
 
 
 
-  }), []
+  // }), []
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
     
       <Routes/>
-      </Provider>
+      // </Provider>
   );
 };
 

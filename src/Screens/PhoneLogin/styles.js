@@ -126,18 +126,15 @@ export const styles = StyleSheet.create({
        backgroundColor:colors.darkGrey,
        
    },
-//    alignstyle:{
-//      marginHorizontal:moderateScale(8),
-//     //    alignItems:'center',
-//     // //    marginTop:12,
-//        bottom:0,
-//        position:'absolute',
-//     position:'absolute', 
-//     //    marginHorizontal:moderateScale(20),
-//        bottom:0,
-//    },
+   alignstyle:{
+     marginHorizontal:moderateScale(20),
+    //    bottom:0,
+    //    position:'absolute',
+    // position:'absolute', 
+    //    bottom:0,
+   },
    btncomp:{ 
-       flex:0.9,
+    //    flex:0.9,
       // marginLeft:20,
     
        
@@ -151,6 +148,14 @@ export const styles = StyleSheet.create({
     marginRight: moderateScale(23),
     height: moderateScale(48),
     marginTop: verticalScale(20),
-   }
+   },
+   startedbtn: {
+    marginLeft:moderateScale(15),
+    // marginRight:moderateScale(20),
+    //    position:'absolute', 
+    //    bottom:0,
+
+       
+    }
 
 }); 

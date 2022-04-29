@@ -1,6 +1,6 @@
 import React from "react";
 import { Home } from "../Screens";
-import HomeStack from "./HomeStack";
+import HomeStack from './homeStack'
 import navigationStrings from "./navigationStrings";
 
 

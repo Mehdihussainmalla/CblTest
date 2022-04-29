@@ -23,7 +23,8 @@ export default {
  FIRST_NAME:'First Name',
  NEXT:'Next',
  CONFIRM_PASSWORD:'Confirm Password',
- PHONE_NUMBER:'Phone Number'
+ PHONE_NUMBER:'Phone Number',
+ SET_PASSWORD:'Set Password'
 
 
 
