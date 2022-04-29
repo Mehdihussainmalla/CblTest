@@ -20,10 +20,10 @@ const App = () => {
 
   // }), []
   return (
-    // <Provider store={store}>
+    <Provider store={store}>
     
       <Routes/>
-      // </Provider>
+      </Provider>
   );
 };
 

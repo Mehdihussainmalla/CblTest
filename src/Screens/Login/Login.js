@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/ButtonComp';
@@ -6,14 +6,14 @@ import WrapperContainer from '../../Components/WrapperContainer';
 import imagePath from '../../constants/imagePath';
 import strings from '../../constants/lang';
 import navigationStrings from '../../navigation/navigationStrings';
+import actions from '../../redux/actions';
 import colors from '../../styles/colors';
-
-
-
 import { styles } from './styles';
 
 
 const Login = ({ navigation }) => {
+
+   
     return (
         <WrapperContainer style={styles.container}>
             <View style={{flex:0.9}}>
@@ -27,7 +27,8 @@ const Login = ({ navigation }) => {
             </View>
           
             <View style={styles.loginphonenumber}>
-            <ButtonComp ButtonText={strings.LOGIN_WITH_PHONE_NUMBER} />
+            <ButtonComp onPress={()=>navigation.navigate(navigationStrings.PHONE_LOGIN)}
+             ButtonText={strings.LOGIN_WITH_PHONE_NUMBER} />
             </View>
             <View style={styles.orview}>
                 <Text style={styles.ortext}>or</Text>
@@ -38,7 +39,7 @@ const Login = ({ navigation }) => {
                 btnStyle={{ marginVertical: moderateScale(12), backgroundColor: colors.white }}
                 buttonTxt={{ color: colors.loginWith }}
                 btnIcon={imagePath.GOOGLE_ICON}
-            // onPress={() => alert('button onpress')}
+           
             />
 </View>
 
@@ -66,7 +67,7 @@ const Login = ({ navigation }) => {
                 <TouchableOpacity>
                     <Text style={styles.newhere}>{strings.NEW_HERE}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.NEW_ACCOUNT)} >
+                <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.NEW_ACCOUNT)} >
                     <Text style={styles.signuptext}>{strings.SIGN_UP}</Text>
                 </TouchableOpacity>
 

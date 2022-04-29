@@ -1,8 +1,9 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { LOGIN, SIGNUP } from "../../config/urls";
 import types from '../types'
-// const { dispatch } = store;
+import store from "../store";
+import { apiPost, setUserData } from "../../utils/utils";
+const { dispatch } = store;
 
 export const saveUserData = (data) => {
     console.log('loginData in actions', data)
@@ -37,6 +38,7 @@ export const login = (data, headers = {}) => {
 };
 
 export function signUp(data) {
+
     console.log("signUp", data)
     return apiPost(SIGNUP, data)
 }

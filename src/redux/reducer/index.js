@@ -1,10 +1,13 @@
 import { combineReducers } from "redux";
 import types from "../types";
-
-import * as auth from './auth'
-
-
+import auth from './auth'
 const appReducer = combineReducers({
     auth,
 })
-export default appReducer;
+ const rootReducer = (state,action)=>{
+     if(action.type==types.CLEAR_REDUX_STATE){
+         state = undefined
+     }
+     return appReducer (state,action)
+ }
+ export default rootReducer
