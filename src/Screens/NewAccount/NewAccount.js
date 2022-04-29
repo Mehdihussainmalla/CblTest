@@ -15,11 +15,10 @@ import { styles } from './styles';
 const NewAccount = ({ navigation }) => {
     return (
         <WrapperContainer>
-            {/* <View style={{ flex: 1 }}> */}
-            {/* <View style={styles.headerview}> */}
+            <View style={{ flex: 1,}}>
+           
                 <Header />
-            {/* </View> */}
-            <View style={{ flex: 0.9 }} >
+            <View style={{ flex: 0.95, }} >
                 <View style={styles.textview}>
                     <View style={styles.createview}>
                         <Text style={styles.createtext}>{strings.CREATE_AN_ACCOUNT}</Text>
@@ -49,12 +48,21 @@ const NewAccount = ({ navigation }) => {
                         <TextInputComponent placeholder={strings.PHONE_NUMBER} />
                     </View>
                 </View>
+                <View style={{flex:0.2,}}>
+                <View style={styles.passwordview}>
+                <TextInputComponent placeholder={strings.PASSWORD}/>
             </View>
-            <View style={styles.nextbtn}>
+
+            <View style={styles. confirmpasswordview}>
+                <TextInputComponent placeholder={strings.SET_PASSWORD}/>
+            </View>
+            </View>
+            </View>
+           <View style={styles.btnstyle}>
                 <ButtonComp onPress={() => navigation.navigate(navigationStrings.SET_PASSWORD)}
                     ButtonText={strings.NEXT} />
+          </View>
             </View>
-            {/* </View> */}
 
 
         </WrapperContainer>

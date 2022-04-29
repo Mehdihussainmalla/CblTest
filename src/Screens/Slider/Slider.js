@@ -1,95 +1,81 @@
-import { View, Text, ImageBackground } from 'react-native'
-import React,{useState} from 'react'
+import React, { useState } from 'react';
+import { View, Text, Image, SafeAreaView, TouchableOpacity } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import { styles } from './styles';
-import imagePath from '../../constants/imagePath'
+import imagePath from '../../constants/imagePath';
+import strings from '../../constants/lang';
+import navigationStrings from '../../navigation/navigationStrings';
+import colors from '../../styles/colors';
+import { moderateScale } from '../../styles/responsiveSize';
+import { introStyles } from './styles';
 
-const PreBoarding = () => {
-
-    const [showReelApp, setShowReelApp] = useState(false)
-
+const Slider = ({ navigation }) => {
+    const [showSlider, setShowSlider] = useState(true)
     const slides = [
-      {
-        key: 1,
-        title: 'Title 1',
-        text: 'Description.\nSay something cool',
-        image:
-          'https://d1vwxdpzbgdqj.cloudfront.net/assets/mba-courses/bachelor-banner-m-8b1aae8cc51ff11a8e605a9974f883a3b4357363e72b3a5e32b9ee553f217e80.jpg',
+        {
+            key: '1',
+            image: imagePath.tutorialpic,
+            title: 'Hendrerit vulputate sem',
+            description: 'Aenean et convallis nulla. Donec in efficitur nisi, et vestibulum quam aenean.'
+        },
+        {
+            key: '2',
+            image: imagePath.tutorialpic,
+            title: 'Hendrerit vulputate sem',
+            description: 'Aenean et convallis nulla. Donec in efficitur nisi, et vestibulum quam aenean.'
 
-        backgroundColor: '#59b2ab',
-      },
-      {
-        key: 2,
-        title: 'Title 2',
-        text: 'Other cool stuff',
-        image:
-          'https://d1vwxdpzbgdqj.cloudfront.net/assets/mba-courses/bachelor-banner-m-8b1aae8cc51ff11a8e605a9974f883a3b4357363e72b3a5e32b9ee553f217e80.jpg',
-        backgroundColor: '#febe29',
-      },
-      {
-        key: 3,
-        title: 'Rocket guy',
-        text: "I'm already out of descriptions\n\nLorem ipsum bla bla bla",
-        image:
-          'https://d1vwxdpzbgdqj.cloudfront.net/assets/mba-courses/bachelor-banner-m-8b1aae8cc51ff11a8e605a9974f883a3b4357363e72b3a5e32b9ee553f217e80.jpg',
+        },
+        {
+            key: '3',
+            image: imagePath.tutorialpic,
+            title: 'Hendrerit vulputate sem',
+            description: 'Aenean et convallis nulla. Donec in efficitur nisi, et vestibulum quam aenean.'
 
-        backgroundColor: '#22bcb5',
-      },
+        }
     ];
 
-    const _renderItem = ({ item }) => {
+    const renderItem = ({ item }) => {
+        // console.log(item.description);
         return (
-          <View
-          //   style={styles.slide}
-          >
-            <Text
-            // style={styles.title}
-            >
-              {item.title}
-            </Text>
-            <ImageBackground
-              style={styles.imagebgc}
-              source={{uri: item.image}}
-            />
-            <Text
-            // style={styles.text}
-            >
-              {item.text}
-            </Text>
-          </View>
+            <View style={introStyles.tutMainStyle}>
+               
+                    <View style={{ justifyContent: 'center' }}>
+                        <Image source={item.image} style={introStyles.tutImage} />
+                    </View>
+                    <View style={introStyles.titleDesContainer}>
+                        <View style={introStyles.tittleTextView} >
+                            <Text style={introStyles.tittleText}>{item.tittle} </Text>
+                        </View>
+                        <View style={{ marginHorizontal: moderateScale(25) }}>
+                            <Text style={introStyles.desText}>{item.description}</Text>
+                        </View>
+                    </View>
+
+            </View>
+        )
+    }
+
+    const renderDoneButton = () => {
+        return (
+            <TouchableOpacity onPress={() => { navigation.navigate(navigationStrings.LOGIN) }}>
+                <Text style={introStyles.getStartStyle}>DONE</Text>
+            </TouchableOpacity>
         );
-  }
+    };
 
- const _onDone = () => {
-    // User finished the introduction. Show real app through
-    // navigation or simply by controlling state
-    setShowReelApp(true)
-    // setState({showRealApp: true});
-  };
+    return (
+        <View style={introStyles.mainDiv}>
+             <SafeAreaView style={{flex:1}}>
 
-   return (
-     <>
-       <AppIntroSlider
-         renderItem={_renderItem}
-         data={slides}
-         onDone={_onDone}
-       />
-     </>
-   );
+            <AppIntroSlider
+                data={slides}
+                renderItem={renderItem}
+                renderDoneButton={renderDoneButton}
+                activeDotStyle={{ height: moderateScale(4), width: moderateScale(32), backgroundColor: colors.themeredColor, }}
+                dotStyle={{ height: moderateScale(4), width: moderateScale(16), backgroundColor: 'grey' }}
+            />
+            </SafeAreaView>
+        </View>
+    );
+};
 
-    // if (false) {
-    //   return <PreBoarding />;
-    // } else {
-    //   return  (
-    // //   <AppIntroSlider renderItem={_renderItem} data={slides} onDone={_onDone}/>
-    //   <View>
-    //       <Text>Hello</Text>
-    //   </View>
-    //   )
-    // }
-   
-}
-
-
-
-export default PreBoarding
+export default Slider;

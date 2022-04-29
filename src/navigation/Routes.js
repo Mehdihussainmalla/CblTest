@@ -11,14 +11,14 @@ import { useSelector } from 'react-redux';
 
 
 const Stack = createNativeStackNavigator();
-const userData = useSelector((state)=>state.auth?.userData);
+// const userData = useSelector((state)=>state.auth?.userData);
 
 const Routes = () => {
     return (
         <NavigationContainer>
 
 
-            {userData !=null ? MainStack(Stack) : AuthStack(Stack)}
+            {false ? MainStack(Stack) : AuthStack(Stack)}
 
         </NavigationContainer>
     );

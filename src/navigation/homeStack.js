@@ -1,6 +1,6 @@
-//import liraries
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Home } from '../Screens';
 import navigationStrings from './navigationStrings';

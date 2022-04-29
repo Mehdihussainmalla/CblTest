@@ -1,17 +1,19 @@
-//import liraries
+
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import ButtonComp from '../../Components/ButtonComp';
 
 
 const Home = () => {
     return (
         <View style={styles.container}>
+            <ButtonComp ButtonText='hiii'/>
             <Text>Home</Text>
         </View>
     );
 };
 
-// define your styles
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
