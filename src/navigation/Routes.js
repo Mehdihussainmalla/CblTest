@@ -20,7 +20,7 @@ console.log('user data from redux ', userData)
         <NavigationContainer>
 
 
-            {false ? MainStack(Stack) : AuthStack(Stack)}
+            { userData != null ? MainStack(Stack) : AuthStack(Stack)}
 
         </NavigationContainer>
     );

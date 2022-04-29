@@ -6,24 +6,27 @@ import actions from './src/redux/actions';
 import store from './src/redux/store';
 import colors from './src/styles/colors';
 import { getLogin } from './src/utils/utils';
- 
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 const App = () => {
 
-  // useEffect(()=>{
-  //   getLogin().then((res)=>{
-  //     console.log('get login', res)
-  //     actions.saveUserData(res)
-  //   })
+
+  useEffect(() => {
+GoogleSignin.configure();
+    getLogin().then((res) => {
+      console.log("get login", res)
+      actions.saveUserData(res)
+    })
 
 
 
-  // }), []
+
+  }), []
   return (
     <Provider store={store}>
-    
-      <Routes/>
-      </Provider>
+
+      <Routes />
+    </Provider>
   );
 };
 
@@ -32,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-   backgroundColor:colors.darkGrey
+    backgroundColor: colors.darkGrey
   },
 });
 

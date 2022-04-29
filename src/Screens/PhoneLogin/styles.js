@@ -142,7 +142,8 @@ export const styles = StyleSheet.create({
    },
    codeview:{
       
-    flexDirection:'row',justifyContent:'space-between', 
+    flexDirection:'row',
+    justifyContent:'space-between', 
     marginVertical:moderateScale(24), 
     marginLeft: moderateScale(10),
     marginRight: moderateScale(23),

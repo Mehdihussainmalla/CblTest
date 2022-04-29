@@ -1,5 +1,5 @@
 //import liraries
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { View, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import Header from '../../Components/Header';
 import WrapperContainer from '../../Components/WrapperContainer';
@@ -9,37 +9,55 @@ import TextInputComponent from '../../Components/TextInputComponent';
 import ButtonComp from '../../Components/ButtonComp';
 import navigationStrings from '../../navigation/navigationStrings';
 import CountryCodePicker from '../../Components/CountryCodePicker';
-import { moderateScale, moderateScaleVertical } from '../../styles/responsiveSize';
+import actions from '../../redux/actions';
+
 
 
 
 const PhoneLogin = ({ navigation }) => {
+        const [state, setState] = useState({
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            password: '',
+            confirmPassword: '',
+            countryCode: '',
+            deviceToken: '',
+            deviceType: '',
+            logintype:'',
+        })
+    
+    
+        const {  phone, password, deviceToken, deviceType ,logintype} = state;
+        const updateState = (data) => setState(() => ({ ...state, ...data }))
     
 
-    // const onSignup = async() => {
+    const onLogin = async() => {
+    
 
-    //     let apiData = {
-    //         first_name: firstName,
-    //         last_name: lastName,
-    //         email: email,
-    //         phone: phone,
-    //         phone_code: phoneCode,
-    //         country_code: countryCode,
-    //         device_token: deviceToken,
-    //         device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
-    //         password: password
-    //     }
-    //      console.log(apiData)
-    //     try {
-    //         const res = await actions.signUp(apiData)
-    //         console.log("signup api is......", res)
-    //         navigation.navigate(navigationStrings.LOGINSCREEN)
-    //         alert("User signup sucessfully !")
-    //     } catch (error) {
-    //         console.log("error raised", error)
-    //         alert(error?.message)
-    //     }
-    // }
+        let apiData = {
+
+            phone: phone,
+            phone_code: '91',
+            country_code: '91',
+            device_token: 'aaaa',
+            device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
+            password: password,
+            logintype:'abc'
+        
+        }
+         console.log(apiData)
+        try {
+            const res = await actions.login(apiData)
+            console.log("signup api is......", res)
+            navigation.navigate(navigationStrings.LOGINSCREEN)
+            alert("User signup sucessfully !")
+        } catch (error) {
+            console.log("error raised", error)
+            alert(error?.message)
+        }
+    }
     return (
         <WrapperContainer>
             <View style={styles.container}>
@@ -60,7 +78,9 @@ const PhoneLogin = ({ navigation }) => {
                         <CountryCodePicker />
                     </View>
                     <View style={{ flex: 0.6 }}>
-                        <TextInputComponent placeholder={strings.PHONE_NUMBER} />
+                        <TextInputComponent placeholder={strings.PHONE_NUMBER} 
+                        onChangeText={(phone) => updateState({ phone })}
+                        />
                     </View>
                 </View>
 
@@ -69,6 +89,8 @@ const PhoneLogin = ({ navigation }) => {
                 <View style={styles.passview}>
                     <View style={styles.btncomp}>
                         <TextInputComponent placeholder={strings.PASSWORD}
+                        onChangeText={(password) => updateState({ password })}
+                
                             // keyboardType={strings.NUMERIC}
                         />
                     </View>
@@ -88,7 +110,7 @@ const PhoneLogin = ({ navigation }) => {
                 {/* <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}> */}
                     {/* <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}> */}
                         <View style={styles.alignstyle}>
-                            <ButtonComp onPress={() => navigation.navigate(navigationStrings.NEW_ACCOUNT)}
+                            <ButtonComp onPress={onLogin}
                                 ButtonText={strings.LOGIN} />
                         </View>
                     {/* </View> */}

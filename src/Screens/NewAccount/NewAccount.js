@@ -1,6 +1,6 @@
 //import liraries
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet ,ScrollView} from 'react-native';
 import ButtonComp from '../../Components/ButtonComp';
 import CountryCodePicker from '../../Components/CountryCodePicker';
 import Header from '../../Components/Header';
@@ -38,7 +38,7 @@ const NewAccount = ({ navigation }) => {
             phone: phone,
             phone_code: '91',
             country_code: 'IN',
-            device_token: 'dtLFa9OM6UEbsHD1Cv_S-O:APA91bEO2rU_o3T5DkrZ32zzQwpbATBOf4kw0ASjzVmiKRDaDcOfrtv_fQVmF24Z7OLILBehOJob9V43i4og7LgPwrWE0TuECQaiDHRT3GBp9rMwbfya51vgbn8BovWFo4wiuY0KB6Cw',
+            device_token: 'aaaa',
             device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
             password: password,
             confirmPassword: confirmPassword
@@ -57,10 +57,11 @@ const NewAccount = ({ navigation }) => {
 
     return (
         <WrapperContainer>
-            <View style={{ flex: 1, }}>
+            <ScrollView>
+            <View style={{}}>
 
                 <Header />
-                <View style={{ flex: 0.95, }} >
+                <View style={{ }} >
                     <View style={styles.textview}>
                         <View style={styles.createview}>
                             <Text style={styles.createtext}>{strings.CREATE_AN_ACCOUNT}</Text>
@@ -94,7 +95,7 @@ const NewAccount = ({ navigation }) => {
                                 placeholder={strings.PHONE_NUMBER} />
                         </View>
                     </View>
-                    <View style={{ flex: 0.2, }}>
+                    <View style={{ }}>
                         <View style={styles.passwordview}>
                             <TextInputComponent placeholder={strings.PASSWORD}
                                 onChangeText={(password) => updateState(password)} />
@@ -111,7 +112,7 @@ const NewAccount = ({ navigation }) => {
                         ButtonText={strings.NEXT} />
                 </View>
             </View>
-
+            </ScrollView>
 
         </WrapperContainer>
     );
