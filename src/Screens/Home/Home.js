@@ -1,13 +1,24 @@
 
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ButtonComp from '../../Components/ButtonComp';
+import { Logout } from '../../redux/actions/auth';
 
 
 const Home = () => {
+    const signOut = async () => {
+        try {
+            await GoogleSignin.signOut();
+            Logout();
+        } catch (error) {
+            console.log(error)
+
+        }
+    }
     return (
         <View style={styles.container}>
-            <ButtonComp ButtonText='hiii'/>
+            <ButtonComp onPress={signOut} ButtonText='hiii'/>
             <Text>Home</Text>
         </View>
     );
