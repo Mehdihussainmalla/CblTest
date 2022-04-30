@@ -104,6 +104,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.SECONDARY_COLOR,
     borderRadius: moderateScale(8),
     paddingHorizontal: moderateScale(8),
+    marginRight:moderateScaleVertical(20),
+    marginLeft:moderateScaleVertical(20)
   },
 
   postHeaderContainer: {
@@ -119,8 +121,8 @@ const styles = StyleSheet.create({
     height: 35,
     borderRadius: 50,
     marginLeft: 6,
-    borderWidth: 1.6,
-    borderColor: '#ff8501',
+    // borderWidth: 1.6,
+    // borderColor: '#ff8501',
   },
   posterName: {
     flexDirection: 'row',

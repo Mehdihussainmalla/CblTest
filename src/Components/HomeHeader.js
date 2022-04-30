@@ -5,14 +5,14 @@ import {moderateScaleVertical} from '../styles/responsiveSize';
 
 const HomeHeader = () => {
   return (
-    <View style={Styles.container}>
-      <Image style={Styles.icon} source={imagePath.icAPP} />
-      <Image source={imagePath.icLOC} />
+    <View style={styles.container}>
+      <Image style={styles.icon} source={imagePath.icAPP} />
+      <Image style={styles.icon2} source={imagePath.icLOC} />
     </View>
   );
 };
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container:{
         flexDirection: 'row',
         alignItems: 'center',
@@ -20,9 +20,11 @@ const Styles = StyleSheet.create({
         height:moderateScaleVertical(50),
     },
   icon: {
+    marginLeft:moderateScaleVertical(20),
     height: moderateScaleVertical(24),
-    // width:moderateScaleVertical(24),
   },
+  icon2:{marginRight:  moderateScaleVertical(23)
+  }
 });
 
 export default HomeHeader;

@@ -15,11 +15,12 @@ const TabStack = () => {
             tabBarInactiveTintColor: colors.matterhorn,
             tabBarShowLabel: false,
             tabBarStyle:{
+                // marginBottom:3,
                 height:moderateVerticalScale(60),
                 paddingBottom:moderateVerticalScale(5),
-                borderTopEndRadius:moderateScale(15),
-                borderTopStartRadius:moderateScale(15),
-               backgroundColor:colors.lightgrey
+                borderToprRadius:moderateScale(15),
+                borderTopStartRadius:moderateScale(3),
+               backgroundColor:colors.SECONDARY_COLOR
             }
         }}
         >

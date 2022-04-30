@@ -16,6 +16,7 @@ export default {
     icSHARE: require('../assets/images/ic_direction.png'),
     ic_logout:require ('../assets/images/ic_logout.png'),
     ic_key: require ('../assets/images/ic_key.png'),
-    
+    card_image:'https://images.unsplash.com/photo-1604049928882-31200d4a13cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
+    profile_image: 'https://www.whatsappimages.in/wp-content/uploads/2021/12/Free-Stylish-Boys-Whatsapp-DP-Wallpaper-for-Status.jpg',   
 
 }
