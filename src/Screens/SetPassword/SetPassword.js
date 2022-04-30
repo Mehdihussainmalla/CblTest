@@ -19,9 +19,9 @@ const SetPassword = () => {
 {/* </View> */}
 <View style={styles.setpasswordstyle}>
     <View style={styles.passwordview}>
-<Text style={styles.passwordtext}>Set Password</Text>
+<Text style={styles.passwordtext}>{strings.SET_PASSWORD}</Text>
 <View style={styles.btmtextview}>
-<Text style={styles.btmtext}>Create secure and unique password.</Text>
+<Text style={styles.btmtext}>{strings.NEW_PASS}</Text>
 </View>
 </View>
 </View>

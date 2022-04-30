@@ -5,7 +5,7 @@ import Routes from './src/navigation/Routes';
 import actions from './src/redux/actions';
 import store from './src/redux/store';
 import colors from './src/styles/colors';
-import { getLogin } from './src/utils/utils';
+import { getItem, getLogin } from './src/utils/utils';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 const App = () => {
@@ -19,6 +19,16 @@ GoogleSignin.configure();
     })
 
 
+    getItem('intro').then((res)=>{
+      console.log(res,"getItem>>>res")
+      if (res == null) {
+        actions.Intro(true)
+        
+      } else {
+        actions.Intro(res)
+      }
+      
+    })
 
 
   }), []

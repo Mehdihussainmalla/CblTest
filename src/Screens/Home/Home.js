@@ -51,9 +51,9 @@ const Home = () => {
     },
   ];
   return (
-    <WrapperContainer style={{backgroundColor:colors.PRIMARY_COLOR,}} >
-      <HomeHeader/>
-      <Cards data ={data} />
+    <WrapperContainer style={{ backgroundColor: colors.PRIMARY_COLOR, }} >
+      <HomeHeader />
+      <Cards data={data} />
     </WrapperContainer>
   )
 }

@@ -42,3 +42,12 @@ export function signUp(data) {
     console.log("signUp", data)
     return apiPost(SIGNUP, data)
 }
+
+export const Intro =data=>{
+    console.log(data, "introoo")
+    // alert('hey')
+    dispatch({
+        type:types.INTRO,
+        payload:data,
+    })
+}

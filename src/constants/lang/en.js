@@ -23,8 +23,16 @@ export default {
  NEXT:'Next',
  CONFIRM_PASSWORD:'Confirm Password',
  PHONE_NUMBER:'Phone Number',
- CONFIRM_PASSWORD:'Confirm Password'
-
+ CONFIRM_PASSWORD:'Confirm Password',
+ EDIT_PROFILE:'Edit Profile',
+ CHANGE_PASSWORD:'Change Password',
+ SIGN_OUT:'SignOut',
+ DONE:'Done',
+ SET_PASSWORD:'Set Password',
+ NEW_PASS:'Create secure and unique password.',
+ OTP:'Enter the 4-digit code sent to you at 875 364 8947',
+ EDIT_NUMBER:'Edit my mobile number',
+RESEND_CODE:' Resend code in 0:14',
 
 
 }

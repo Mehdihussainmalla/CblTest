@@ -5,6 +5,7 @@ import ButtonComp from '../../Components/ButtonComp';
 import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/TextInputComponent';
 import WrapperContainer from '../../Components/WrapperContainer';
+import strings from '../../constants/lang';
 import navigationStrings from '../../navigation/navigationStrings';
 import colors from '../../styles/colors';
 import { height, moderateScaleVertical } from '../../styles/responsiveSize';
@@ -22,10 +23,10 @@ const OtpScreen = ({ navigation }) => {
 
                 <View style={styles.otpmainstyle}>
 
-                    <Text style={styles.codetext}>Enter the 4-digit code sent to you at 875 364 8947</Text>
+                    <Text style={styles.codetext}>{strings.OTP}</Text>
 
                     {/* <View style={styles.numberstyle}> */}
-                    <Text style={styles.eitview}>Edit my mobile number</Text>
+                    <Text style={styles.eitview}>{strings.EDIT_NUMBER}</Text>
 
                     {/* </View> */}
                 </View>
@@ -47,7 +48,7 @@ const OtpScreen = ({ navigation }) => {
 
                 <View style={styles.resendcodeview}>
                     <Text style={styles.codeotp}>
-                        Resend code in 0:14
+                       {strings.RESEND_CODE}
                     </Text>
                 </View>
                 <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>

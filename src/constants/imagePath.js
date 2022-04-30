@@ -16,5 +16,6 @@ export default {
     icSHARE: require('../assets/images/ic_direction.png'),
     ic_logout:require ('../assets/images/ic_logout.png'),
     ic_key: require ('../assets/images/ic_key.png'),
+    
 
 }
