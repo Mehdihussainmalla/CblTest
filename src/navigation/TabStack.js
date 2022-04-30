@@ -19,7 +19,7 @@ const TabStack = () => {
                 paddingBottom:moderateVerticalScale(5),
                 borderTopEndRadius:moderateScale(15),
                 borderTopStartRadius:moderateScale(15),
-                // borderRadius:50,
+               backgroundColor:colors.lightgrey
             }
         }}
         >
@@ -27,7 +27,7 @@ const TabStack = () => {
 
                 tabBarIcon: ({ focused }) => {
                     return (
-                        <Image style={{ tintColor: focused ? colors.redB : colors.black }} source={imagePath.home_icon} />
+                        <Image style={{ tintColor: focused ? colors.redB : colors.white }} source={imagePath.home_icon} />
                     )
                 }
             }} name={navigationStrings.HOME} component={Home} />
@@ -35,7 +35,7 @@ const TabStack = () => {
             <Tab.Screen options={{
                 tabBarIcon: ({ focused }) => {
                     return (
-                        <Image style={{ tintColor: focused ? colors.redB : colors.greyA }} source={imagePath.search_icon} />
+                        <Image style={{ tintColor: focused ? colors.redB : colors.white }} source={imagePath.search_icon} />
                     )
                 }
             }}
@@ -46,7 +46,7 @@ const TabStack = () => {
             <Tab.Screen options={{
                 tabBarIcon: ({ focused }) => {
                     return (
-                        <Image style={{ tintColor: focused ? colors.redB : colors.black }} source={imagePath.add_icon} />
+                        <Image style={{ tintColor: focused ? colors.redB : colors.white }} source={imagePath.add_icon} />
                     )
                 }
             }}
@@ -57,7 +57,7 @@ const TabStack = () => {
             <Tab.Screen options={{
                 tabBarIcon: ({ focused }) => {
                     return (
-                        <Image style={{ tintColor: focused ? colors.redB : colors.black }} source={imagePath.notification_icon} />
+                        <Image style={{ tintColor: focused ? colors.redB : colors.white }} source={imagePath.notification_icon} />
                     )
                 }
             }}
@@ -67,7 +67,7 @@ const TabStack = () => {
             <Tab.Screen options={{
                 tabBarIcon: ({ focused }) => {
                     return (
-                        <Image style={{ tintColor: focused ? colors.redB : colors.black }} source={imagePath.profile_icon} />
+                        <Image style={{ tintColor: focused ? colors.redB : colors.white }} source={imagePath.profile_icon} />
                     )
                 }
             }}
