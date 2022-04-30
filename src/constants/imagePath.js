@@ -10,6 +10,9 @@ export default {
     home_icon : require('../assets/images/ic_home.png'),
     profile_icon : require('../assets/images/ic_user.png'),
     notification_icon : require('../assets/images/ic_notify.png'),
-    add_icon:require('../assets/images/ic_add.png')
+    add_icon:require('../assets/images/ic_add.png'),
+    icAPP: require('../assets/images/ic_home_icon.png'),
+    icLOC: require('../assets/images/ic_loc.png'),
+    icSHARE: require('../assets/images/ic_direction.png'),
 
 }

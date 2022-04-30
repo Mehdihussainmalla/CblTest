@@ -127,6 +127,10 @@ export default {
     matterhorn:'#4C4C4C',
     lightgrey:'#AFAFAF',
     smalltextcolor:'#B8B8B8',
-    bluelightclr:'#32C5FF'
+    bluelightclr:'#32C5FF',
+    PRIMARY_COLOR: '#2E2E2E',
+    SECONDARY_COLOR: '#4C4C4C',
+    WHITE: '#FFFFFF',
+    LIGHTGREYTEXT: '#AEAEAE',
   };
   
