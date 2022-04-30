@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import MainStack from './MainStack';
 import { useSelector } from 'react-redux';
+import TabStack from './TabStack';
 
 
 
@@ -20,7 +21,7 @@ console.log('user data from redux ', userData)
         <NavigationContainer>
 
 
-            { userData != null ? MainStack(Stack) : AuthStack(Stack)}
+            { userData != null ? TabStack() : AuthStack(Stack)}
 
         </NavigationContainer>
     );

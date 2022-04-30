@@ -5,6 +5,10 @@ export default {
     NEW_ACCOUNT:'NewAccount',
     SET_PASSWORD:'Set Password',
     OTP_SCREEN:' Otp Screen',
-    HOME: 'Home'
-    
+    HOME: 'Home',
+    PROFILE:'Profile',
+    SEARCH_SCREEN:'Search screen',
+    NOTIFICATIONS:'Notifications',
+    ADD_SCREEN:'Add Screen',
+    TAB_STACK:'Tab stack',
 }
