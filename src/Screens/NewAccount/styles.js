@@ -6,24 +6,15 @@ import fontFamily from '../../styles/fontFamily';
 import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 
 export const styles = StyleSheet.create({
-    headerview: {
-
-        // marginTop: moderateScale(10),
-        paddingRight: moderateScale(15),
-        paddingHorizontal: moderateVerticalScale(10)
-    },
 
     textview: {
-        // backgroundColor:'green',
-        // flex:0.4,
+       
 
         marginRight: moderateScale(23),
         marginLeft: moderateScale(24),
 
     },
-    createview: {
-        // height: moderateScale(40),
-    },
+   
     createtext: {
         fontSize: textScale(24),
         fontFamily: fontFamily.BarlowBold,
@@ -33,11 +24,6 @@ export const styles = StyleSheet.create({
     
     },
 
-
-    accountview: {
-
-        height: moderateScale(24)
-    },
     bottomtext: {
         fontSize: textScale(15),
         color: colors.lightgrey,
@@ -45,41 +31,31 @@ export const styles = StyleSheet.create({
         lineHeight: moderateScale(32),
         letterSpacing: 0
     },
-    namesview: {
-// flex:0.2,
-      
+    namesview: {      
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginLeft: moderateScale(10),
         marginRight: moderateScale(23),
-        // height: moderateScale(48),
         marginTop: verticalScale(20),
-
         alignItems: 'center'
     },
     codeview:{
-
-        // backgroundColor:'white',
-        
-      flex:0.1,
-            flexDirection:'row',justifyContent:'space-between', 
-            marginVertical:moderateScale(24), 
+            flexDirection:'row',
+            justifyContent:'space-between', 
+            marginVertical:moderateScale(12), 
             marginLeft: moderateScale(10),
             marginRight: moderateScale(23),
-            // height: moderateScale(48),
-            // marginTop: verticalScale(8),
+            
 
     },
     firstname: {
        
         borderRadius: verticalScale(5),
-        // textAlign:'center',
-        // height:moderateScale(48),
         flex: 0.5,
         marginRight: moderateScale(24),
         backgroundColor: colors.matterhorn,
         marginHorizontal: moderateScale(15),
-        // width:moderateScale(100)
+     
 
 
     },
@@ -88,8 +64,6 @@ export const styles = StyleSheet.create({
         flex: 0.5,
         fontSize: textScale(14),
         backgroundColor: colors.matterhorn,
-        // marginHorizontal:moderateScale(30),
-        // width:moderateScale(100),
         borderRadius: verticalScale(5),
      
     },
@@ -98,25 +72,18 @@ export const styles = StyleSheet.create({
         marginLeft:moderateVerticalScale(24),
         marginRight:moderateScaleVertical(23)   
     },
-  btnstyle:{
-    //   flex:0.1,
-      marginTop:15,
-      marginLeft:moderateScaleVertical(24),
-      marginRight:moderateScaleVertical(23),
-  },
+  
   passwordview:{
-      marginBottom:30,
+      marginBottom:3,
     marginLeft:moderateScaleVertical(24),
     marginRight:moderateScaleVertical(23),
 
-    // flex:0.2, 
+    
   },
  confirmpasswordview:{
     marginTop:10,
     marginLeft:moderateScaleVertical(24),
     marginRight:moderateScaleVertical(23),
-
-    flex:0.1
   }
     
 

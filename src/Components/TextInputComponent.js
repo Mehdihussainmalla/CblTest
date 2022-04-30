@@ -11,16 +11,16 @@ import { textScale } from '../styles/responsiveSize';
 const TextInputComponent = ({
     placeholder = '',
     keyboardType = '',
-    onChangeText = ''
+    onChangeText = '',
+   
 }) => {
 
     return (
         <SafeAreaView>
             <TextInput onChangeText={onChangeText}
-            placeholderTextColor={colors.white}
-            placeholder={placeholder}
+                placeholderTextColor={colors.white}
+                placeholder={placeholder}
                 keyboardType={keyboardType}
-
                 style={styles.input}
 
 
@@ -34,20 +34,20 @@ export default TextInputComponent
 
 const styles = StyleSheet.create({
     input: {
-        height:moderateScale(48),
+        height: moderateScale(48),
         backgroundColor: colors.matterhorn,
-         marginRight: moderateScale(1),
-         marginLeft:moderateScale(1),
-         borderRadius:verticalScale(5),
-         paddingLeft:moderateScale(8),
-         paddingVertical:verticalScale(10),
-        
-        
+        marginRight: moderateScale(2),
+        marginLeft: moderateScale(2),
+        borderRadius: verticalScale(5),
+        paddingLeft: moderateScale(8),
+        paddingVertical: verticalScale(10),
+
+
     },
     text: {
-     
-         
-        
-        
+
+
+
+
     }
 })

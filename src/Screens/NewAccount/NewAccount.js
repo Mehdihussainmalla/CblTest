@@ -1,6 +1,7 @@
 //import liraries
 import React, { useState } from 'react';
-import { View, Text, StyleSheet ,ScrollView} from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { moderateScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/ButtonComp';
 import CountryCodePicker from '../../Components/CountryCodePicker';
 import Header from '../../Components/Header';
@@ -57,61 +58,64 @@ const NewAccount = ({ navigation }) => {
 
     return (
         <WrapperContainer>
-            <ScrollView>
-            <View style={{}}>
+            <ScrollView style={{ flex: 1, }}>
 
                 <Header />
-                <View style={{ }} >
-                    <View style={styles.textview}>
-                        <View style={styles.createview}>
-                            <Text style={styles.createtext}>{strings.CREATE_AN_ACCOUNT}</Text>
-                        </View>
-                        <View style={styles.accountview}>
-                            <Text style={styles.bottomtext}>{strings.CONTINUE_ACCOUNT}</Text>
-                        </View>
-                    </View>
-                    <View style={styles.namesview}>
-                        <View style={styles.firstname}>
-                            <TextInputComponent placeholder={strings.FIRST_NAME}
-                                onChangeText={(firstName) => updateState({ firstName })} />
-                        </View>
-                        <View style={styles.lastname}>
-                            <TextInputComponent placeholder={strings.LAST_NAME}
-                                onChangeText={(lastName) => updateState({ lastName })} />
-                        </View>
-                    </View>
-                    <View style={styles.emailview}>
-                        <TextInputComponent
-                            onChangeText={(email) => updateState({ email })}
-                            placeholder={strings.EMAIL} />
-                    </View>
-                    <View style={styles.codeview}>
-                        <View style={{ flex: 0.4 }}>
-                            <CountryCodePicker />
-                        </View>
-                        <View style={{ flex: 0.6 }}>
-                            <TextInputComponent
-                                onChangeText={(phone) => updateState({ phone })}
-                                placeholder={strings.PHONE_NUMBER} />
-                        </View>
-                    </View>
-                    <View style={{ }}>
-                        <View style={styles.passwordview}>
-                            <TextInputComponent placeholder={strings.PASSWORD}
-                                onChangeText={(password) => updateState(password)} />
-                        </View>
 
-                        <View style={styles.confirmpasswordview}>
-                            <TextInputComponent placeholder={strings.SET_PASSWORD}
-                                onChangeText={(confirmPassword) => updateState(confirmPassword)} />
-                        </View>
+                <View style={styles.textview}>
+
+                    <Text style={styles.createtext}>{strings.CREATE_AN_ACCOUNT}</Text>
+                    <Text style={styles.bottomtext}>{strings.CONTINUE_ACCOUNT}</Text>
+
+                </View>
+
+                <View style={styles.namesview}>
+                    <View style={styles.firstname}>
+                        <TextInputComponent placeholder={strings.FIRST_NAME}
+                            onChangeText={(firstName) => updateState({ firstName })} />
+                    </View>
+                    <View style={styles.lastname}>
+                        <TextInputComponent placeholder={strings.LAST_NAME}
+                            onChangeText={(lastName) => updateState({ lastName })} />
                     </View>
                 </View>
-                <View style={styles.btnstyle}>
-                    <ButtonComp onPress={onSignUp}
-                        ButtonText={strings.NEXT} />
+
+
+                <View style={styles.emailview}>
+                    <TextInputComponent
+                        onChangeText={(email) => updateState({ email })}
+                        placeholder={strings.EMAIL} />
                 </View>
-            </View>
+
+
+                <View style={styles.codeview}>
+                    <View style={{ flex: 0.4 }}>
+                        <CountryCodePicker />
+                    </View>
+                    <View style={{ flex: 0.6 }}>
+                        <TextInputComponent
+                            onChangeText={(phone) => updateState({ phone })}
+                            placeholder={strings.PHONE_NUMBER} />
+                    </View>
+                </View>
+               
+                    <View style={styles.passwordview}>
+                        <TextInputComponent placeholder={strings.PASSWORD}
+                            onChangeText={(password) => updateState(password)} />
+                    </View>
+
+                    <View style={styles.confirmpasswordview}>
+                        <TextInputComponent placeholder={strings.CONFIRM_PASSWORD}
+                            onChangeText={(confirmPassword) => updateState(confirmPassword)} />
+                    </View>
+               
+
+                
+                    <ButtonComp onPress={onSignUp}
+                     btnStyle={{ marginVertical: moderateScale(12) }}
+                        ButtonText={strings.NEXT} />
+            
+
             </ScrollView>
 
         </WrapperContainer>

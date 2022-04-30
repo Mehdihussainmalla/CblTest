@@ -23,12 +23,12 @@ const Header = ({onPressBack}) => {
 export default Header
 const styles=StyleSheet.create({
     container:{
-        // backgroundColor:'lightgrey',
-        flexDirection:'row',
-      // justifyContent:'flex-start',
+        marginLeft:moderateVerticalScale(24),
+        marginRight:moderateScale(23),
         height:moderateScale(42),
         marginTop:moderateScale(26),
-        paddingLeft:moderateScale(18)
+       
+        
        
     }
 })

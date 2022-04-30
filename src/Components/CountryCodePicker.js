@@ -8,6 +8,7 @@ import {
   moderateScaleVertical,
   width,
 } from '../styles/responsiveSize';
+
 function CountryCodePicker() {
   const [countryCode, setCountryCode] = useState('91');
   const [countryFlag, setCountryFlag] = useState('IN');
