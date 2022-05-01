@@ -132,5 +132,6 @@ export default {
     SECONDARY_COLOR: '#4C4C4C',
     WHITE: '#FFFFFF',
     LIGHTGREYTEXT: '#AEAEAE',
+    time_color:'#B5B0B0'
   };
   

@@ -17,6 +17,10 @@ import Header from '../../Components/Header';
 
 const Login = ({ navigation }) => {
 
+  useEffect(() => {
+    GoogleSignin.configure();
+  }, [])
+
 
   const fbLogin = (resCallBack) => {
     LoginManager.logOut();
@@ -63,9 +67,7 @@ const Login = ({ navigation }) => {
     }
   }
 
-  useEffect(() => {
-    GoogleSignin.configure();
-  }, [])
+ 
 
   //.............google login in ......................//
   const googleLogin = async () => {
