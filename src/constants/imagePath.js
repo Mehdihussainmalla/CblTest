@@ -21,5 +21,9 @@ export default {
     notify1: 'https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png',
     notify2:'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png',
     notify3:'https://png.pngtree.com/png-clipart/20210310/original/pngtree-avatar-profile-picture-png-image_5914820.jpg',
-    notify4:'https://simg.nicepng.com/png/small/182-1829287_cammy-lin-ux-designer-circle-picture-profile-girl.png'
+    notify4:'https://simg.nicepng.com/png/small/182-1829287_cammy-lin-ux-designer-circle-picture-profile-girl.png',
+    edit_icon:require ('../assets/images/ic_edit.png'),
+    profile_edit_image: require('../assets/images/profileedit_icon.png')
+    
+
 }

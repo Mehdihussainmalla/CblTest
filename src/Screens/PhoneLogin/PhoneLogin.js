@@ -67,7 +67,7 @@ const PhoneLogin = ({ navigation }) => {
 
             <ScrollView >
 
-                <Header />
+                <Header  isBackIcon={true}/>
 
 
                 <View style={styles.welcomeview}>

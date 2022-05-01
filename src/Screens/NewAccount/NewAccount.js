@@ -58,9 +58,11 @@ const NewAccount = ({ navigation }) => {
 
     return (
         <WrapperContainer>
-            <ScrollView style={{ flex: 1, }}>
+            <View style={{ flex: 1, }}>
+            <ScrollView >
 
-                <Header />
+                <Header 
+                isBackIcon={true}/>
 
                 <View style={styles.textview}>
 
@@ -111,13 +113,16 @@ const NewAccount = ({ navigation }) => {
                
 
                 
-                    <ButtonComp onPress={onSignUp}
-                     btnStyle={{ marginVertical: moderateScale(12) }}
-                        ButtonText={strings.NEXT} />
-            
+                   
 
             </ScrollView>
+            <ButtonComp onPress={onSignUp}
+                     btnStyle={{ marginVertical: moderateScale(12) }}
+                        ButtonText={strings.NEXT} />
+            </View>
 
+           
+            
         </WrapperContainer>
     );
 };

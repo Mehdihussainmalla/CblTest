@@ -7,8 +7,9 @@ import imagePath from '../../constants/imagePath';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Logout } from '../../redux/actions/auth';
 import strings from '../../constants/lang';
+import navigationStrings from '../../navigation/navigationStrings';
 
-const Profile = () => {
+const Profile = ({navigation}) => {
 
   const signOut = async () => {
     try {
@@ -23,10 +24,10 @@ const Profile = () => {
     <WrapperContainer>
       <Header
         title='Profile'
-        isBackIcon={false}
+        // isBackIcon={false}
       />
 
-      <TouchableOpacity activeOpacity={0.7} style={styles.container}>
+      <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.EDIT_PROFILE_SCREEN)} activeOpacity={0.7} style={styles.container}>
         <View style={styles.profileimage}>
           <Image style={{ marginTop: 5 }} source={imagePath.profile_icon} />
         </View>
@@ -34,7 +35,7 @@ const Profile = () => {
       </TouchableOpacity>
 
 
-      <TouchableOpacity activeOpacity={0.7} style={styles.container}>
+      <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.CHANGE_PASSWORD)} activeOpacity={0.7} style={styles.container}>
         <View style={styles.profileimage}>
           <Image style={{ marginTop: 5 }} source={imagePath.ic_key} />
         </View>

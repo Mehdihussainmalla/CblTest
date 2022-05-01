@@ -14,3 +14,5 @@ export {default as Profile} from './Profile/Profile';
 export {default as Notifications} from './Notifications/Notifications'
 export {default as SearchScreen} from './SearchScreen/SearchScreen';
 export {default as AddScreen} from './AddScreen/AddScreen'
+export {default as  EditProfileScreen} from './EditProfileScreen/EditProfileScreen';
+export {default as ChangePassword} from './ChangePassword/ChangePassword'

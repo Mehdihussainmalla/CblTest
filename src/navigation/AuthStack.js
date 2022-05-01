@@ -19,6 +19,7 @@ const AuthStack = (Stack) => {
                     component={SetPassword} />
                      <Stack.Screen options={{ headerShown: false }} name={navigationStrings.OTP_SCREEN}
                     component={OtpScreen} />
+                    
                     </Stack.Navigator>
                     </>
     )

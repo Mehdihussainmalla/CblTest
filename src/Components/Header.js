@@ -17,15 +17,16 @@ const Header = ({ title, onPressBack, isBackIcon }) => {
     <View style={styles.container}>
       <View>
         {!!isBackIcon && (
-          <TouchableOpacity
+          <TouchableOpacity style={styles.iconstyle}
           onPress={!!onPressBack ? onPressBack : () => goBack()}>
           <Image source={imagePath.BACK_ARROW} />
         </TouchableOpacity>
         )}
-        <View style={{marginRight:!!isBackIcon? moderateScale(10) : null }}  >
+       
+      </View>
+      <View style={{marginRight:!!isBackIcon? moderateScale(10) : null }}  >
           <Text style={styles.headertext}>{title}</Text>
         </View>
-      </View>
     </View>
   )
 }
@@ -33,6 +34,7 @@ const Header = ({ title, onPressBack, isBackIcon }) => {
 export default Header
 const styles = StyleSheet.create({
   container: {
+flexDirection:'row',
     // backgroundColor:'red',
     marginLeft: moderateVerticalScale(24),
     marginRight: moderateScale(23),
@@ -46,6 +48,13 @@ const styles = StyleSheet.create({
     color:colors.white,
     fontFamily:fontFamily.BarlowSemiBold,
     fontSize:textScale(16),
-  }
+    paddingLeft:moderateScale(20)
+  },
+  iconstyle:
+  {
+    marginTop:moderateScale(7),
+    paddingLeft:moderateScale(4)
+
+   }
 
 })
