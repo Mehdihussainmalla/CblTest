@@ -34,7 +34,10 @@ export default {
  EDIT_NUMBER:'Edit my mobile number',
 RESEND_CODE:' Resend code in 0:14',
 SAVE_CHANGES:'Save Changes',
-SAVE:'Save'
+SAVE:'Save',
+CHANDIGARH:'Chandigarh',
+SUGGESTIONS:'Suggestions',
+MANUALLY:'Enter location manually'
 
 
 
