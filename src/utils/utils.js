@@ -128,6 +128,7 @@ console.log("api hit",endPoint)
 }
 
 export function apiPost(endPoint, data, headers = {}) {
+	console.log("apipost+++",data)
 	return apiReq(endPoint, data, 'post', headers);
 }
 

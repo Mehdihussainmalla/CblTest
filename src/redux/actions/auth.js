@@ -38,8 +38,7 @@ export const login = (data, headers = {}) => {
 };
 
 export function signUp(data) {
-
-    console.log("signUp", data)
+     console.log("signUp", data)
     return apiPost(SIGNUP, data)
 }
 
