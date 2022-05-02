@@ -1,6 +1,5 @@
 export default {
-  TEXT  :'By clicking “Log In”, you agree with our Terms. Learn how',
-  text2:'we process your data in our Privacy policy.',
+  TEXT  :'By clicking “Log In”, you agree with our Terms. Learn how we process your data in our Privacy policy',
    LOGIN_WITH_PHONE_NUMBER:'Log In with Phone number',
    OR:'or',
   LOGIN_IN_WITH_FACEBOOK :'Log In with Facebook',
@@ -24,7 +23,21 @@ export default {
  NEXT:'Next',
  CONFIRM_PASSWORD:'Confirm Password',
  PHONE_NUMBER:'Phone Number',
- SET_PASSWORD:'Set Password'
+ CONFIRM_PASSWORD:'Confirm Password',
+ EDIT_PROFILE:'Edit Profile',
+ CHANGE_PASSWORD:'Change Password',
+ SIGN_OUT:'SignOut',
+ DONE:'Done',
+ SET_PASSWORD:'Set Password',
+ NEW_PASS:'Create secure and unique password.',
+ OTP:'Enter the 4-digit code sent to you at 875 364 8947',
+ EDIT_NUMBER:'Edit my mobile number',
+RESEND_CODE:' Resend code in 0:14',
+SAVE_CHANGES:'Save Changes',
+SAVE:'Save',
+CHANDIGARH:'Chandigarh',
+SUGGESTIONS:'Suggestions',
+MANUALLY:'Enter location manually'
 
 
 

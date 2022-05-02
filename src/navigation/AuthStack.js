@@ -8,8 +8,7 @@ const AuthStack = (Stack) => {
     return(
         <>
         <Stack.Navigator>
-        <Stack.Screen options={{ headerShown: false }} name={navigationStrings.SLIDER}
-                    component={Slider} />
+        
         <Stack.Screen options={{ headerShown: false }} name={navigationStrings.LOGIN}
                     component={Login} />
                 <Stack.Screen options={{ headerShown: false }} name={navigationStrings.PHONE_LOGIN}
@@ -20,6 +19,7 @@ const AuthStack = (Stack) => {
                     component={SetPassword} />
                      <Stack.Screen options={{ headerShown: false }} name={navigationStrings.OTP_SCREEN}
                     component={OtpScreen} />
+                    
                     </Stack.Navigator>
                     </>
     )

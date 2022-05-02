@@ -3,14 +3,19 @@ import { StyleSheet } from 'react-native'
 import { moderateScale, moderateVerticalScale, scale, verticalScale } from 'react-native-size-matters';
 import colors from '../../styles/colors';
 import fontFamily from '../../styles/fontFamily';
+import { textScale } from '../../styles/responsiveSize';
 
 export const styles = StyleSheet.create({
     phoneview: {
-    
-      flex:0.5,
-        // width: '100%',
+        marginLeft:moderateVerticalScale(24),
+        marginRight: moderateVerticalScale(23),
         alignItems: 'center',
+        marginTop:moderateVerticalScale(35),
         backgroundColor:colors.darkGrey
+    },
+    textview:{
+        marginHorizontal:moderateVerticalScale(23),
+        marginVertical:moderateVerticalScale(10),
     },
     container: {
         
@@ -37,17 +42,12 @@ export const styles = StyleSheet.create({
 
     },
 
-    text: {
-        
-       // padding: moderateScale(10),
-        //paddingLeft:moderateScale(10)
-    },
     texttt: {
-        fontFamily: fontFamily.BarlowMedium,
-        fontSize: scale(13),
         color: colors.greyA,
-        textAlign:'center'
-
+        textAlign: 'center',
+        fontSize: textScale(12),
+        lineHeight: 20,
+        fontFamily: fontFamily.BarlowRegular
     },
     loginphonenumber:{
         flex:0.1,
@@ -156,7 +156,6 @@ export const styles = StyleSheet.create({
         paddingLeft: 10
     },
     stringsview: {
-        // backgroundColor:'green',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         marginTop: moderateScale(10),

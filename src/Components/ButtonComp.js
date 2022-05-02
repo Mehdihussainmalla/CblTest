@@ -73,6 +73,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { moderateVerticalScale } from 'react-native-size-matters';
 import colors from '../styles/colors';
 import { moderateScale, textScale } from '../styles/responsiveSize';
 
@@ -110,6 +111,8 @@ const styles = StyleSheet.create({
     btnStyle: {
         height: moderateScale(48),
         // width: moderateScale(328),
+        marginLeft:moderateVerticalScale(24),
+        marginRight:moderateVerticalScale(23),
         backgroundColor: '#F43738',
         borderRadius: moderateScale(8),
         flexDirection: 'row',

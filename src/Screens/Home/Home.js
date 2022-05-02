@@ -1,38 +1,56 @@
-
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import ButtonComp from '../../Components/ButtonComp';
-import { Logout } from '../../redux/actions/auth';
-
+import { View, Text } from 'react-native'
+import React from 'react'
+import WrapperContainer from '../../Components/WrapperContainer'
+import Cards from '../../Components/Cards'
+import HomeHeader from '../../Components/HomeHeader'
+import colors from '../../styles/colors'
+import imagePath from '../../constants/imagePath'
 
 const Home = () => {
-    const signOut = async () => {
-        try {
-            await GoogleSignin.signOut();
-            Logout();
-        } catch (error) {
-            console.log(error)
-
-        }
-    }
-    return (
-        <View style={styles.container}>
-            <ButtonComp onPress={signOut} ButtonText='hiii'/>
-            <Text>Home</Text>
-        </View>
-    );
-};
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#2c3e50',
+  const data = [
+    {
+      id: 1,
+      profilePic:imagePath.profile_image,        
+      profileName: 'Russell Gordon',
+      location: 'Sector 28D, Chandigarh',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis luctus.',
+        image:imagePath.card_image,
+      time: '1 hr ago',
+      likes: 44686,
+      comments: 1254,
     },
-});
+    {
+      id: 2,
+      profilePic:imagePath.profile_image,
+      profileName: 'Russell Gordon',
+      location: 'Sector 28D, Chandigarh',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis luctus.',
+        image:imagePath.card_image,
+      time: '1 hr ago',
+      likes: 44686,
+      comments: 1254,
+    },
+    {
+      id: 3,
+      profilePic:imagePath.profile_image,
+       profileName: 'Russell Gordon',
+      location: 'Sector 28D, Chandigarh',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis luctus.',
+      image:imagePath.card_image,
+      time: '1 hr ago',
+      likes: 44686,
+      comments: 1254,
+    },
+  ];
+  return (
+    <WrapperContainer >
+      <HomeHeader />
+      <Cards data={data} />
+    </WrapperContainer>
+  )
+}
 
-
-export default Home;
+export default Home
