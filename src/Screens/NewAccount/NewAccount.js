@@ -20,15 +20,17 @@ const NewAccount = ({ navigation }) => {
         lastName: '',
         email: '',
         phone: '',
-        password: '',
-        confirmPassword: '',
-        countryCode: '',
-        deviceToken: '',
+        password: 'Mehdi',
+        confirmPassword: 'Mehdi',
+        countryCode: 'IN',
+        deviceToken: 'androidffff',
         deviceType: '',
+        phone_code:'+91',
+
     })
 
 
-    const { firstName, lastName, email, phone, password, confirmPassword, countryCode, deviceToken, deviceType } = state;
+    const { firstName, lastName, email, phone, password, confirmPassword, countryCode, deviceToken, phone_code } = state;
     const updateState = (data) => setState(() => ({ ...state, ...data }))
 
     const onSignUp = async () => {
@@ -37,9 +39,9 @@ const NewAccount = ({ navigation }) => {
             last_name: lastName,
             email: email,
             phone: phone,
-            phone_code: '91',
-            country_code: 'IN',
-            device_token: 'aaaa',
+            phone_code: phone_code,
+            country_code: countryCode,
+            device_token: deviceToken,
             device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
             password: password,
             confirmPassword: confirmPassword
@@ -47,8 +49,14 @@ const NewAccount = ({ navigation }) => {
         console.log("Signup data : ", apiData)
         try {
             const res = await actions.signUp(apiData)
+
             console.log("singnup api res_+++++", res)
-            navigation.navigate(navigationStrings.OTP_SCREEN)
+
+            navigation.navigate(navigationStrings.PHONE_LOGIN,{
+                    phone:phone, 
+                    phone_code:phone_code,
+                    // password:password,
+            })
             alert("User signup successfully....!!!")
         } catch (error) {
             console.log("error raised", error)

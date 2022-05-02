@@ -27,7 +27,7 @@ const ChangePassword = () => {
                     </View>
                     <View style={styles.confirmpasswordstyle}>
                         <View style={{ flex: 0.8 }}>
-                            <TextInputComponent placeholder={strings.PASSWORD} />
+                            <TextInputComponent placeholder={strings.CONFIRM_PASSWORD} />
                         </View>
                         <View style={{ flex: 0.2 }}>
                             <Text style={styles.textstyle}>{strings.SHOW}</Text>

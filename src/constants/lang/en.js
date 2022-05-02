@@ -23,7 +23,6 @@ export default {
  NEXT:'Next',
  CONFIRM_PASSWORD:'Confirm Password',
  PHONE_NUMBER:'Phone Number',
- CONFIRM_PASSWORD:'Confirm Password',
  EDIT_PROFILE:'Edit Profile',
  CHANGE_PASSWORD:'Change Password',
  SIGN_OUT:'SignOut',

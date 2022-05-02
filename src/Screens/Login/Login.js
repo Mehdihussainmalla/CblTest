@@ -20,6 +20,7 @@ const Login = ({ navigation }) => {
     GoogleSignin.configure();
   }, [])
 
+//.....................facebook login......................//
 
   const fbLogin = (resCallBack) => {
     LoginManager.logOut();

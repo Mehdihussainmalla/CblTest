@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
         marginLeft: moderateScale(10),
         marginRight: moderateScale(23),
         marginTop: verticalScale(20),
-        alignItems: 'center'
+        // alignItems: 'center'
     },
     codeview:{
             flexDirection:'row',
@@ -52,9 +52,9 @@ export const styles = StyleSheet.create({
        
         borderRadius: verticalScale(5),
         flex: 0.5,
-        marginRight: moderateScale(24),
+        // marginRight: moderateScale(24),
         backgroundColor: colors.matterhorn,
-        marginHorizontal: moderateScale(15),
+        marginHorizontal: moderateScale(10),
      
 
 
