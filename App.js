@@ -6,14 +6,11 @@ import actions from './src/redux/actions';
 import store from './src/redux/store';
 import colors from './src/styles/colors';
 import { getItem, getLogin } from './src/utils/utils';
-import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 const App = () => {
 
 
   useEffect(() => {
-
-
 
  
     getLogin().then((res) => {

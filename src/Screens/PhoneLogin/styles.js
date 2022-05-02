@@ -6,6 +6,13 @@ import fontFamily from '../../styles/fontFamily';
 import { textScale } from '../../styles/responsiveSize';
 export const styles = StyleSheet.create({
 
+    container:{
+        flex:1,
+        backgroundColor:colors.PRIMARY_COLOR,
+    //  marginLeft:moderateScale(24),
+    // marginRight:moderateVerticalScale(23)
+    },
+
     welcometext: {
         fontSize: scale(24),
         fontFamily: fontFamily.BarlowBold,
@@ -14,9 +21,9 @@ export const styles = StyleSheet.create({
         lineHeight: scale(32)
     },
     welcomeview: {
-     
         marginLeft: moderateVerticalScale(24),
         marginRight: moderateVerticalScale(23),
+        // height:moderateVerticalScale(50)
     },
     bottomview: {
         height: moderateScale(24),

@@ -4,6 +4,7 @@ import WrapperContainer from '../../Components/WrapperContainer';
 import imagePath from '../../constants/imagePath';
 import Header from '../../Components/Header';
 import { styles } from './styles';
+import strings from '../../constants/lang';
 const DATA = [
   {
     id: '1',
@@ -64,7 +65,7 @@ const Notification = () => {
   return (
     <WrapperContainer>
 
-      <Header title='notification' />
+      <Header title={strings.NOTIFICATION}/>
       <View  >
 
         <FlatList

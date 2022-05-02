@@ -64,7 +64,7 @@ const PhoneLogin = ({ navigation }) => {
     return (
 
         <WrapperContainer>
-
+<View style={styles.container}>
             <ScrollView >
 
                 <Header  isBackIcon={true}/>
@@ -110,7 +110,11 @@ const PhoneLogin = ({ navigation }) => {
                 </View>
 
 
-                <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
+                
+
+
+            </ScrollView>
+            <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
                     <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}>
 
                         <ButtonComp onPress={onLogin}
@@ -119,10 +123,7 @@ const PhoneLogin = ({ navigation }) => {
 
                     </View>
                 </KeyboardAvoidingView>
-
-
-            </ScrollView>
-
+            </View>
         </WrapperContainer>
 
     );

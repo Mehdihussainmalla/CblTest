@@ -11,7 +11,6 @@ import colors from '../../styles/colors';
 import { styles } from './styles';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { saveUserData } from '../../redux/actions/auth';
-
 import { LoginManager, GraphRequest, GraphRequestManager } from "react-native-fbsdk";
 import Header from '../../Components/Header';
 
@@ -24,50 +23,56 @@ const Login = ({ navigation }) => {
 
   const fbLogin = (resCallBack) => {
     LoginManager.logOut();
+
     return LoginManager.logInWithPermissions(['email', 'public_profile']).then(
       result => {
-        console.log("FB_LOGIN_RESULT =====>", result);
+        console.log('fb result shown', result);
         if (result.declinedPermissions && result.declinedPermissions.includes('email')) {
-          resCallBack({ message: "email is required" })
+          resCallBack({ message: 'email is required ' })
+
         }
         if (result.isCancelled) {
-          console.log("error")
-        } else {
+          console.log('error')
+        }
+        else {
           const infoResquest = new GraphRequest(
-            '/me?fields = email, name, picture',
+            '/me?fields=email,name,picture,friend',
             null,
             resCallBack
-          );
-          new GraphRequestManager().addRequest(infoResquest).start()
+          )
         }
       },
       function (error) {
-        console.log("login failed with error", error)
+        console.log("login fail error:",  error)
       }
     )
   }
 
   const onFbLogin = async () => {
     try {
-      await fbLogin(resInfoCallBack)
+      await fbLogin(responseInfoCallBack);
 
     } catch (error) {
-      console.log("error", error)
-    }
-  }
+      console.log('login with error')
 
-  const resInfoCallBack = async (error, result) => {
+    }
+
+  }
+  const responseInfoCallBack = async (error, result) => {
     if (error) {
-      console.log("Login Error", error)
-    } else {
-      const userData = result;
-      console.log(userData)
-      saveUserData(userData);
-
+      console.log("error occurred", error)
+      return;
     }
+    else {
+      const userData = result
+      console.log('fb dataaaa', userData)
+    }
+
   }
 
- 
+
+
+
 
   //.............google login in ......................//
   const googleLogin = async () => {
@@ -100,9 +105,9 @@ const Login = ({ navigation }) => {
 
 
   return (
-    <WrapperContainer style={{alignItems:'center'}}>
+    <WrapperContainer style={{ alignItems: 'center' }}>
       <ScrollView style={{ flex: 1, }}>
-          <View style={styles.phoneview}>
+        <View style={styles.phoneview}>
           <Image style={styles.logoview} source={imagePath.AWARD} />
         </View>
 
@@ -131,7 +136,7 @@ const Login = ({ navigation }) => {
           btnStyle={{ marginVertical: moderateScale(12), backgroundColor: colors.white }}
           buttonTxt={{ color: colors.loginWith }}
           btnIcon={imagePath.FACEBOOK_ICON}
-          onPress={onFbLogin}
+        onPress={onFbLogin}
         />
 
 
