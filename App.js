@@ -12,7 +12,10 @@ const App = () => {
 
 
   useEffect(() => {
-GoogleSignin.configure();
+
+
+
+ 
     getLogin().then((res) => {
       console.log("get login", res)
       actions.saveUserData(res)
