@@ -63,6 +63,14 @@
 			</dict>
 		</dict>
 	</dict>
+	 <key>NSCameraUsageDescription</key>
+  <string>will open camera</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>will access microphone</string>
+   <key>NSPhotoLibraryUsageDescription</key>
+  <string>phpto from gallery</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>choose photo accordingly</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIAppFonts</key>

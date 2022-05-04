@@ -1,4 +1,4 @@
-import {  View, Image, ScrollView } from 'react-native'
+import {  View, Image, ScrollView , TouchableOpacity} from 'react-native'
 import React, { useState } from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Header from '../../Components/Header'
@@ -10,8 +10,8 @@ import strings from '../../constants/lang'
 import { styles } from './styles'
 import validator from '../../utils/validations'
 import showError from '../../utils/helperfunctions'
-import { useSelector } from 'react-redux'
-
+import { useSelector } from 'react-redux';
+import ImagePicker from 'react-native-image-crop-picker'
 
 const EditProfileScreen = () => {
     const userData= useSelector(state=> state?.auth?.userData);
@@ -28,7 +28,7 @@ const [state, setState]= useState({
 
 });
 
- const {firstName, lastName,email, phone}=state;
+ const {firstName, lastName,email, phone, profileImage}=state;
  const updateState =data => setState(state=> ({...state,...data}))
 
  const isValidData =()=>{
@@ -48,6 +48,23 @@ const editProfileData = async()=>{
     }
 
 };
+
+
+
+const imageUpload = () =>{
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true
+    }).then(image => {
+      console.log(image,"my image>>>>>>");
+      updateState({
+        profileImage:image?.sourceURL || image?.path,
+        imageType:image?.mime
+      })
+    });
+  }
+ 
     return (
         <WrapperContainer>
             <View style={{ flex: 1 }}>
@@ -57,10 +74,12 @@ const editProfileData = async()=>{
 
                     <View style={styles.imagestyle}>
                         <Image style={styles.imageicon}
-                            source={imagePath.profile_edit_image} />
-                        <View style={styles.editiconstyle}>
-                            <Image source={imagePath.edit_icon} />
-                        </View>
+                            source={profileImage?{uri:profileImage}:imagePath.profile_edit_image} />
+                        <TouchableOpacity activeOpacity={0.7} onPress={imageUpload} 
+                        style={styles.editiconstyle}>
+                            <Image source={imagePath.edit_icon}
+                             />
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.inputstyle}>
                         <View style={{ flex: 0.5 }}>
