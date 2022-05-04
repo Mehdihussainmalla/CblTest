@@ -13,11 +13,24 @@ import actions from '../../redux/actions';
 import { moderateScaleVertical } from '../../styles/responsiveSize';
 import { moderateScale } from 'react-native-size-matters';
 import colors from '../../styles/colors';
-
+import validator from '../../utils/validations'
+import { showError } from '../../utils/helperfunctions';
 
 
 
 const PhoneLogin = ({ navigation }) => {
+
+    const isValidData = ()=>{
+            const error =validator({phone,password});
+
+            if (error){
+                showError(error)
+                return;
+            }
+            return true;
+    }
+
+
     const [state, setState] = useState({
         firstName: '',
         lastName: '',
@@ -36,7 +49,13 @@ const PhoneLogin = ({ navigation }) => {
     const updateState = (data) => setState(() => ({ ...state, ...data }))
 
 
-    const onLogin = async () => {
+    const onLogin = async()=>{
+        const checkValid =isValidData();
+        if(!checkValid){
+            return ;
+        }
+    
+    
 
 
         let apiData = {

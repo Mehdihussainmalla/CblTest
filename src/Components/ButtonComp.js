@@ -87,6 +87,7 @@ export default function ButtonComp({
     return (
 
         <TouchableOpacity
+        activeOpacity={0.8}
             style={{
                 ...styles.btnStyle,
                 ...btnStyle,

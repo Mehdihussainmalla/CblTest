@@ -13,8 +13,13 @@ import actions from '../../redux/actions';
 import { styles } from './styles';
 
 
+import validator from '../../utils/validations'
+import { showError } from '../../utils/helperfunctions';
 
 const NewAccount = ({ navigation }) => {
+
+
+
     const [state, setState] = useState({
         firstName: '',
         lastName: '',
@@ -33,7 +38,20 @@ const NewAccount = ({ navigation }) => {
     const { firstName, lastName, email, phone, password, confirmPassword, countryCode, deviceToken, phone_code } = state;
     const updateState = (data) => setState(() => ({ ...state, ...data }))
 
-    const onSignUp = async () => {
+    const isValidData = () => {
+        const error = validator({firstName,lastName,email,phone, password, confirmPassword});
+        if (error) {
+          showError(error)
+          return;
+        }
+        return true;
+      };
+      const onSignUp = async () => {
+
+        const checkValid = isValidData();
+        if (!checkValid) {
+          return;
+        }
         let apiData = {
             first_name: firstName,
             last_name: lastName,
