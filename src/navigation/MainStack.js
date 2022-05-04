@@ -1,5 +1,5 @@
 import React from "react";
-import { ChangePassword, EditProfileScreen, Home } from "../Screens";
+import { ChangePassword, EditProfileScreen, Home, PostAddScreen } from "../Screens";
 import navigationStrings from "./navigationStrings";
 import TabStack from "./TabStack";
 
@@ -20,6 +20,8 @@ const MainStack = (Stack) => {
                     component={EditProfileScreen} />
                 <Stack.Screen options={{ headerShown: false }} name={navigationStrings.CHANGE_PASSWORD}
                     component={ChangePassword} />
+                      <Stack.Screen options={{ headerShown: false }} name={navigationStrings.POST_ADD_SCREEN}
+                    component={PostAddScreen} />
 
 
             </Stack.Navigator>

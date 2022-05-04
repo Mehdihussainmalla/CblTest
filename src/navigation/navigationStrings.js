@@ -12,5 +12,6 @@ export default {
     ADD_SCREEN:'Add Screen',
     TAB_STACK:'Tab stack',
     EDIT_PROFILE_SCREEN:'Edit profile screen',
-    CHANGE_PASSWORD:'Change Password'
+    CHANGE_PASSWORD:'Change Password',
+    POST_ADD_SCREEN:'Post Add Screen'
 }
