@@ -7,7 +7,7 @@ const WrapperContainer = ({
   children,
   bgColor = colors.darkGrey,
   statusBarColor = colors.darkGrey,
-  barStyle = '',
+  barStyle ='',
   style={},
 }) => {
   return (

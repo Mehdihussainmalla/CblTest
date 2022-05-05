@@ -1,12 +1,13 @@
-import { View, Text } from 'react-native'
+import { View, Text , TouchableOpacity} from 'react-native'
 import React from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Cards from '../../Components/Cards'
 import HomeHeader from '../../Components/HomeHeader'
 import colors from '../../styles/colors'
 import imagePath from '../../constants/imagePath'
+import navigationStrings from '../../navigation/navigationStrings'
 
-const Home = () => {
+const Home = ({navigation, route}) => {
   const data = [
     {
       id: 1,
@@ -48,7 +49,9 @@ const Home = () => {
   return (
     <WrapperContainer >
       <HomeHeader />
-      <Cards data={data} />
+      {/* <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.POST_DETAIL, { data:data})}> */}
+      <Cards navigation={navigation} data={data} />
+      {/* </TouchableOpacity> */}
     </WrapperContainer>
   )
 }

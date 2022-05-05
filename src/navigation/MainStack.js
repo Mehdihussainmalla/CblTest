@@ -1,5 +1,5 @@
 import React from "react";
-import { ChangePassword, EditProfileScreen, Home, PostAddScreen } from "../Screens";
+import { ChangePassword, EditProfileScreen, Home, PostAddScreen, PostDetail } from "../Screens";
 import navigationStrings from "./navigationStrings";
 import TabStack from "./TabStack";
 
@@ -22,6 +22,8 @@ const MainStack = (Stack) => {
                     component={ChangePassword} />
                       <Stack.Screen options={{ headerShown: false }} name={navigationStrings.POST_ADD_SCREEN}
                     component={PostAddScreen} />
+                       <Stack.Screen options={{ headerShown: false }} name={navigationStrings.POST_DETAIL}
+                    component={PostDetail} />
 
 
             </Stack.Navigator>

@@ -1,10 +1,14 @@
-import { View, Text, StyleSheet, Image, FlatList} from 'react-native'
+import { View, Text, StyleSheet, Image, FlatList,TouchableOpacity} from 'react-native'
 import React from 'react'
 import colors from '../styles/colors'
 import { moderateScale, moderateScaleVertical, textScale } from '../styles/responsiveSize'
 import imagePath from '../constants/imagePath'
+import { NavigationContainer } from '@react-navigation/native'
+import navigationStrings from '../navigation/navigationStrings'
 
-const Cards = ({data}) => {
+const Cards = ({data, navigation, route}) => {
+  console.log(route, "routessss")
+  console.log(navigation, 'navigationnnnn')
   const userData = data;
   console.log(userData, 'userDataaaa');
   const PostHeader = userData => (
@@ -76,10 +80,12 @@ const Cards = ({data}) => {
     // const postData = userData.item;
     console.log(userData, 'userData in postContent');
     return (
-      <View style={styles.wrapper}>
+      <TouchableOpacity onPress={()=> navigation.navigate(navigationStrings.POST_DETAIL, {userData:userData})} style={styles.wrapper}>
+        {/* <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.POST_DETAIL)}> */}
         <PostHeader userData={userData} />
         <Post userData={userData} />
-      </View>
+        {/* </TouchableOpacity> */}
+      </TouchableOpacity>
     );
   };
 

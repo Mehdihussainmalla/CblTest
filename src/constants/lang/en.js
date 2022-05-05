@@ -37,7 +37,8 @@ SAVE:'Save',
 CHANDIGARH:'Chandigarh',
 SUGGESTIONS:'Suggestions',
 MANUALLY:'Enter location manually',
-NOTIFICATION:'notification'
+NOTIFICATION:'notification',
+View_Map:'View Map'
 
 
 

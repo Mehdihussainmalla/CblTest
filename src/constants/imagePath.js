@@ -23,7 +23,8 @@ export default {
     notify3:'https://png.pngtree.com/png-clipart/20210310/original/pngtree-avatar-profile-picture-png-image_5914820.jpg',
     notify4:'https://simg.nicepng.com/png/small/182-1829287_cammy-lin-ux-designer-circle-picture-profile-girl.png',
     edit_icon:require ('../assets/images/ic_edit.png'),
-    profile_edit_image: require('../assets/images/profileedit_icon.png')
+    profile_edit_image: require('../assets/images/profileedit_icon.png'),
+    ic_cross: require('../assets/images/ic_cross.png')
     
 
 }

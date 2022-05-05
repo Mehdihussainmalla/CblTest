@@ -7,8 +7,10 @@ const AddScreen = ({navigation}) => {
   return (
  <WrapperContainer style={{backgroundColor:'red'}}>
 
-      <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.POST_ADD_SCREEN)} style={{backgroundColor:'white', justifyContent:'center'
-    ,alignItems:'center',marginTop:30}}>
+      <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.POST_DETAIL)}
+       style={{backgroundColor:'white', justifyContent:'center',
+       alignItems:'center',
+       marginTop:30}}>
       <Text style={{fontSize:25}}>AddScreen</Text>
       </TouchableOpacity>
       </WrapperContainer>

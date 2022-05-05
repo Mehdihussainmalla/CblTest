@@ -5,6 +5,7 @@ import imagePath from '../../constants/imagePath';
 import Header from '../../Components/Header';
 import { styles } from './styles';
 import strings from '../../constants/lang';
+
 const DATA = [
   {
     id: '1',

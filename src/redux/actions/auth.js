@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN, SIGNUP } from "../../config/urls";
+import { LOGIN, SIGNUP, CHANGE_PASSWORD } from "../../config/urls";
 import types from '../types'
 import store from "../store";
 import { apiPost, setUserData } from "../../utils/utils";
@@ -49,4 +49,8 @@ export const Intro =data=>{
         type:types.INTRO,
         payload:data,
     })
+}
+export function changePassword (data){
+    console.log("changepassword", data)
+    return apiPost(CHANGE_PASSWORD,data)
 }

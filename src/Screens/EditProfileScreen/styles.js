@@ -13,8 +13,12 @@ export const styles = StyleSheet.create({
 
     },
     imageicon:{
-        height: moderateVerticalScale(100),
-        width: width / 3.5,
+        // height: moderateVerticalScale(100),
+        // width: width / 3.5,
+        height: moderateScale(width / 3.5),
+        width: moderateScale(width / 3.5),
+        borderRadius: moderateScale(width / 7),
+        
     },
     editiconstyle: {
 

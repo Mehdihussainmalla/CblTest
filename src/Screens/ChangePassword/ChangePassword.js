@@ -15,18 +15,24 @@ import { CHANGE_PASSWORD } from '../../config/urls'
 const ChangePassword = () => {
 
     const userData = useSelector (state => state?.auth?.userData);
-    console.log('check userdata for change password', userData);
+    // console.log('check userdata for change password', userData);
 
     const [state, setState] = useState({
+        id:'115951748002509989098',
         password:'',
         confirmPassword:'',
     });
+    const {password, confirmPassword}=state;
+
     const updateState = data => setState (state => ({...state, ...data}));
 
    const onChangePassword = ()=>{
     let apiData ={
         id:userData?.id,
+
         password:userData?.password,
+        // password:password,
+        // confirmPassword:confirmPassword
     }
     apiPost(CHANGE_PASSWORD, apiData)
     .then(res => {
