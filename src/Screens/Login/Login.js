@@ -12,7 +12,7 @@ import { styles } from './styles';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { saveUserData } from '../../redux/actions/auth';
 import { LoginManager, GraphRequest, GraphRequestManager } from "react-native-fbsdk";
-import Header from '../../Components/Header';
+
 
 const Login = ({ navigation }) => {
 
@@ -22,58 +22,50 @@ const Login = ({ navigation }) => {
 
 //.....................facebook login......................//
 
-  const fbLogin = (resCallBack) => {
-    LoginManager.logOut();
-
-    return LoginManager.logInWithPermissions(['email', 'public_profile']).then(
-      result => {
-        console.log('fb result shown', result);
-        if (result.declinedPermissions && result.declinedPermissions.includes('email')) {
-          resCallBack({ message: 'email is required ' })
-
-        }
-        if (result.isCancelled) {
-          console.log('error')
-        }
-        else {
-          const infoResquest = new GraphRequest(
-            '/me?fields=email,name,picture,friend',
-            null,
-            resCallBack
-          )
-        }
-      },
-      function (error) {
-        console.log("login fail error:",  error)
+const fbLogin = (resCallBack) => {
+  LoginManager.logOut();
+  return LoginManager.logInWithPermissions(['email', 'public_profile']).then(
+    result => {
+      console.log("FB_LOGIN_RESULT =====>", result);
+      if (result.declinedPermissions && result.declinedPermissions.includes('email')) {
+        resCallBack({ message: "email is required" })
       }
-    )
-  }
-
-  const onFbLogin = async () => {
-    try {
-      await fbLogin(responseInfoCallBack);
-
-    } catch (error) {
-      console.log('login with error')
-
+      if (result.isCancelled) {
+        console.log("error")
+      } else {
+        const infoResquest = new GraphRequest(
+          '/me?fields = email, name, picture',
+          null,
+          resCallBack
+        );
+        new GraphRequestManager().addRequest(infoResquest).start()
+      }
+    },
+    function (error) {
+      console.log("login failed with error", error)
     }
+  )
+}
+
+const onFbLogin = async () => {
+  try {
+    await fbLogin(resInfoCallBack)
+  
+  } catch (error) {
+    console.log("error", error)
+  }
+}
+
+const resInfoCallBack = async (error, result) => {
+  if (error) {
+    console.log("Login Error", error)
+  } else {
+    const userData = result;
+    console.log(userData)
+    saveUserData(userData);
 
   }
-  const responseInfoCallBack = async (error, result) => {
-    if (error) {
-      console.log("error occurred", error)
-      return;
-    }
-    else {
-      const userData = result
-      console.log('fb dataaaa', userData)
-    }
-
-  }
-
-
-
-
+}
 
   //.............google login in ......................//
   const googleLogin = async () => {

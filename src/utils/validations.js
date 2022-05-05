@@ -17,6 +17,7 @@ const checkMinLength = (val, minLength, key) => {
 };
 
 export default function (data) {
+  console.log(data, " ready to vilidate")
   let error = "";
   const {
     firstName,

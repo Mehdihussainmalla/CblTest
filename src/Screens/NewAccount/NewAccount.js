@@ -11,8 +11,6 @@ import strings from '../../constants/lang';
 import navigationStrings from '../../navigation/navigationStrings';
 import actions from '../../redux/actions';
 import { styles } from './styles';
-
-
 import validator from '../../utils/validations'
 import { showError } from '../../utils/helperfunctions';
 
@@ -25,8 +23,8 @@ const NewAccount = ({ navigation }) => {
         lastName: '',
         email: '',
         phone: '',
-        password: 'Mehdi',
-        confirmPassword: 'Mehdi',
+        password: '',
+        confirmPassword: '',
         countryCode: 'IN',
         deviceToken: 'androidffff',
         deviceType: '',
@@ -39,7 +37,7 @@ const NewAccount = ({ navigation }) => {
     const updateState = (data) => setState(() => ({ ...state, ...data }))
 
     const isValidData = () => {
-        const error = validator({firstName,lastName,email,phone, password, confirmPassword});
+        const error = validator({firstName,lastName,email,phone,password, confirmPassword});
         if (error) {
           showError(error)
           return;
@@ -129,12 +127,12 @@ const NewAccount = ({ navigation }) => {
                
                     <View style={styles.passwordview}>
                         <TextInputComponent placeholder={strings.PASSWORD}
-                            onChangeText={(password) => updateState(password)} />
+                            onChangeText={(password) => updateState({password})} />
                     </View>
 
                     <View style={styles.confirmpasswordview}>
                         <TextInputComponent placeholder={strings.CONFIRM_PASSWORD}
-                            onChangeText={(confirmPassword) => updateState(confirmPassword)} />
+                            onChangeText={(confirmPassword) => updateState({confirmPassword})} />
                     </View>
                
 
