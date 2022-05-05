@@ -4,7 +4,7 @@ import colors from '../../styles/colors';
 
 export const introStyles = StyleSheet.create({
     mainDiv: {
-        backgroundColor: '#2E2E2E',
+        backgroundColor:colors.PRIMARY_COLOR,
         flex: 1
     },
     tutMainStyle: {
@@ -12,21 +12,23 @@ export const introStyles = StyleSheet.create({
         height: height - height / 4,
         width: width - 60,
         marginTop: moderateScale(15),
-        backgroundColor: '#4C4C4C',
+        backgroundColor: colors.matterhorn,
         borderRadius: moderateScale(16),
-        shadowColor: '#4C4C4C',
+        shadowColor: colors.matterhorn,
         shadowOffset: { height: -2, width: -2 },
         shadowOpacity: 0.4,
         shadowRadius: 5,
     },
-    titleDesContainer:{
+    titleDesContainer: {
         flex: 0.5,
         justifyContent: 'center',
         paddingTop: moderateScaleVertical(40)
     },
     tittleTextView:
     {
+
         width: moderateScale(280),
+        paddingLeft: moderateScale(10),
         height: moderateScale(40)
     },
     tittleText:
@@ -56,6 +58,13 @@ export const introStyles = StyleSheet.create({
         fontSize: textScale(14),
         color: colors.white,
         lineHeight: 42,
-        alignSelf:'center'
+        alignSelf: 'center'
+    },
+    dec: {
+        marginLeft: moderateScaleVertical(24),
+        marginRight: moderateScaleVertical(23),
+       
+
+
     }
 });

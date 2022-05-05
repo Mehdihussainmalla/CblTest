@@ -38,7 +38,8 @@ CHANDIGARH:'Chandigarh',
 SUGGESTIONS:'Suggestions',
 MANUALLY:'Enter location manually',
 NOTIFICATION:'notification',
-View_Map:'View Map'
+View_Map:'View Map',
+Get_STARTED:'GET STARTED'
 
 
 

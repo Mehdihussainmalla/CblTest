@@ -7,6 +7,7 @@ import navigationStrings from '../../navigation/navigationStrings';
 import actions from '../../redux/actions';
 import colors from '../../styles/colors';
 import { moderateScale } from '../../styles/responsiveSize';
+import { styles } from '../NewAccount/styles';
 import { introStyles } from './styles';
 
 const Slider = ({ navigation }) => {
@@ -44,9 +45,9 @@ const Slider = ({ navigation }) => {
                     </View>
                     <View style={introStyles.titleDesContainer}>
                         <View style={introStyles.tittleTextView} >
-                            <Text style={introStyles.tittleText}>{item.tittle} </Text>
+                            <Text style={introStyles.tittleText}>{item?.title} </Text>
                         </View>
-                        <View style={{ marginHorizontal: moderateScale(25) }}>
+                        <View  style={introStyles.dec}>
                             <Text style={introStyles.desText}>{item.description}</Text>
                         </View>
                     </View>
@@ -58,7 +59,7 @@ const Slider = ({ navigation }) => {
     const renderDoneButton = () => {
         return (
             <TouchableOpacity onPress={() =>actions.Intro(false)}>
-                <Text style={introStyles.getStartStyle}>{strings.DONE}</Text>
+                <Text style={introStyles.getStartStyle}>{strings.Get_STARTED}</Text>
             </TouchableOpacity>
         );
     };
@@ -71,7 +72,7 @@ const Slider = ({ navigation }) => {
                 data={slides}
                 renderItem={renderItem}
                 renderDoneButton={renderDoneButton}
-                activeDotStyle={{ height: moderateScale(4), width: moderateScale(32), backgroundColor: colors.themeredColor, }}
+                activeDotStyle={{ height: moderateScale(4), width: moderateScale(32), backgroundColor: colors.redB, }}
                 dotStyle={{ height: moderateScale(4), width: moderateScale(16), backgroundColor: 'grey' }}
             />
             </SafeAreaView>
