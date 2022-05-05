@@ -133,6 +133,7 @@ export default {
     WHITE: '#FFFFFF',
     LIGHTGREYTEXT: '#AEAEAE',
     time_color:'#B5B0B0',
-    inputcolor:'#CECFCE'
+    inputcolor:'#CECFCE',
+    // timecolor:' #BFBFBF'
   };
   

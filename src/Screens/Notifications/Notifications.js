@@ -5,6 +5,8 @@ import imagePath from '../../constants/imagePath';
 import Header from '../../Components/Header';
 import { styles } from './styles';
 import strings from '../../constants/lang';
+import { Divider } from 'react-native-elements/dist/divider/Divider'
+import { moderateScale } from 'react-native-size-matters';
 
 const DATA = [
   {
@@ -53,9 +55,12 @@ const Notification = () => {
       <Text style={styles.description} >{item.description} </Text>
       </View>
       
+      
+      
        
      
     </View>
+    <Divider style={styles.divider}/>
 
     </ScrollView>
 

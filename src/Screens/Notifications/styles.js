@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
 
     view:{
     
-        borderBottomWidth:0.5,
+        // borderBottomWidth:0.5,
       borderBottomColor:colors.white,
       padding:10,
       marginTop:10,
@@ -48,6 +48,9 @@ export const styles = StyleSheet.create({
         marginLeft:moderateVerticalScale(11),
 
 
+    },
+    divider:{
+      marginLeft:moderateScale(90)
     }
 
   });

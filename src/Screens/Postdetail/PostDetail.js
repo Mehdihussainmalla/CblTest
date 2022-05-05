@@ -7,7 +7,7 @@ import ButtonComp from '../../Components/ButtonComp';
 import WrapperContainer from '../../Components/WrapperContainer';
 import imagePath from '../../constants/imagePath';
 import strings from '../../constants/lang';
-import { height, width } from '../../styles/responsiveSize';
+
 import { styles } from './styles';
 
 
@@ -32,20 +32,25 @@ const PostDetail = ({ route }) => {
                     </View>
 
                     <View style={styles.profilestyle}>
-                        <Image source={{ uri: item?.profilePic }} />
+                     <View style={{flexDirection:'row', }}>
+                         <View  > 
+                        <Image source={{uri:item?.image}}   style={styles.iconstyle}/>
+                        </View>
 
-
-                        <View style={{ flexDirection: 'column' }}>
+                        <View style={styles.headingtextstyle}>
                             <Text style={styles.textstyle1}>{item?.profileName}</Text>
                             <Text style={styles.textstyle2}>{item?.location}</Text>
+                        </View>
                         </View>
 
                         <TouchableOpacity onPress={() => goBack()}>
                             <Image source={imagePath.ic_cross} />
                         </TouchableOpacity>
                     </View>
+                    
                     <View style={styles.descriptionstyle}>
                         <Text style={styles.desctext}>{item?.description}</Text>
+                        <Text style={styles.timestyle}>{item?.time}</Text>
                     </View>
                     <View style={{ marginBottom: 10 }}>
                         <ButtonComp ButtonText={strings.View_Map}/>
@@ -54,8 +59,7 @@ const PostDetail = ({ route }) => {
                 </ImageBackground>
 
             </View>
-
-        </WrapperContainer>
+            </WrapperContainer>
     );
 };
 
