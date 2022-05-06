@@ -11,7 +11,8 @@ import { textScale } from '../styles/responsiveSize';
 const TextInputComponent = ({
     placeholder = '',
     // keyboardType = '',
-    onChangeText = '',
+    onChangeText,
+    value
    
 }) => {
 
@@ -22,6 +23,7 @@ const TextInputComponent = ({
                 placeholder={placeholder}
                 // keyboardType={keyboardType}
                 style={styles.input}
+                value={value}
 
 
             />

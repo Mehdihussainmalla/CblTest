@@ -9,13 +9,18 @@ import {
   width,
 } from '../styles/responsiveSize';
 
-function CountryCodePicker() {
-  const [countryCode, setCountryCode] = useState('91');
-  const [countryFlag, setCountryFlag] = useState('IN');
+function CountryCodePicker({
+  setCountryCode,
+  setCountryFlag,
+  countryCode,
+  countryFlag
+}) {
+  // const [countryCode, setCountryCode] = useState('91');
+  // const [countryFlag, setCountryFlag] = useState('IN');
 
   const onSelect = country => {
     setCountryFlag(country.cca2);
-    setCountryCode(country.callingCode[0]);
+    setCountryCode(country.callingCode[0])
   };
   return (
     <>
@@ -32,6 +37,7 @@ function CountryCodePicker() {
           marginLeft: moderateScale(15),
         }}>
         <CountryPicker
+          // onSelect={onSelect}
           onSelect={onSelect}
           visible={false}
           countryCode={countryFlag}

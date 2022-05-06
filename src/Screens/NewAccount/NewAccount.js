@@ -17,6 +17,8 @@ import { showError } from '../../utils/helperfunctions';
 const NewAccount = ({ navigation }) => {
 
 
+    const [countryCode, setCountryCode] = useState('91');
+    const [countryFlag, setCountryFlag] = useState('IN');
 
     const [state, setState] = useState({
         firstName: '',
@@ -24,39 +26,37 @@ const NewAccount = ({ navigation }) => {
         email: '',
         phone: '',
         password: '',
-        confirmPassword: '',
-        countryCode: '',
+        countryCode: 'IN',
         deviceToken: 'androidffff',
         deviceType: '',
-        phone_code:'',
 
     })
 
 
-    const { firstName, lastName, email, phone, password, confirmPassword, countryCode, deviceToken, phone_code } = state;
+    const { firstName, lastName, email, phone, password, confirmPassword, deviceToken} = state;
     const updateState = (data) => setState(() => ({ ...state, ...data }))
 
     const isValidData = () => {
-        const error = validator({firstName,lastName,email,phone,password, confirmPassword});
+        const error = validator({ firstName, lastName, email, phone, password, confirmPassword });
         if (error) {
-          showError(error)
-          return;
+            showError(error)
+            return;
         }
         return true;
-      };
-      const onSignUp = async () => {
+    };
+    const onSignUp = async () => {
 
         const checkValid = isValidData();
         if (!checkValid) {
-          return;
+            return;
         }
         let apiData = {
             first_name: firstName,
             last_name: lastName,
             email: email,
             phone: phone,
-            phone_code: phone_code,
-            country_code: countryCode,
+            phone_code: countryCode,
+            country_code: countryFlag,
             device_token: deviceToken,
             device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
             password: password,
@@ -68,7 +68,7 @@ const NewAccount = ({ navigation }) => {
 
             console.log("singnup api res_+++++", res?.data);
 
-            navigation.navigate(navigationStrings.OTP_SCREEN,{
+            navigation.navigate(navigationStrings.OTP_SCREEN, {
                 data: res?.data
             })
             alert("User signup successfully....!!!")
@@ -81,70 +81,75 @@ const NewAccount = ({ navigation }) => {
     return (
         <WrapperContainer>
             <View style={{ flex: 1, }}>
-            <ScrollView >
+                <ScrollView >
 
-                <Header 
-                isBackIcon={true}/>
+                    <Header
+                        isBackIcon={true} />
 
-                <View style={styles.textview}>
+                    <View style={styles.textview}>
 
-                    <Text style={styles.createtext}>{strings.CREATE_AN_ACCOUNT}</Text>
-                    <Text style={styles.bottomtext}>{strings.CONTINUE_ACCOUNT}</Text>
+                        <Text style={styles.createtext}>{strings.CREATE_AN_ACCOUNT}</Text>
+                        <Text style={styles.bottomtext}>{strings.CONTINUE_ACCOUNT}</Text>
 
-                </View>
-
-                <View style={styles.namesview}>
-                    <View style={styles.firstname}>
-                        <TextInputComponent placeholder={strings.FIRST_NAME}
-                            onChangeText={(firstName) => updateState({ firstName })} />
                     </View>
-                    <View style={styles.lastname}>
-                        <TextInputComponent placeholder={strings.LAST_NAME}
-                            onChangeText={(lastName) => updateState({ lastName })} />
+
+                    <View style={styles.namesview}>
+                        <View style={styles.firstname}>
+                            <TextInputComponent placeholder={strings.FIRST_NAME}
+                                onChangeText={(firstName) => updateState({ firstName })} />
+                        </View>
+                        <View style={styles.lastname}>
+                            <TextInputComponent placeholder={strings.LAST_NAME}
+                                onChangeText={(lastName) => updateState({ lastName })} />
+                        </View>
                     </View>
-                </View>
 
 
-                <View style={styles.emailview}>
-                    <TextInputComponent
-                        onChangeText={(email) => updateState({ email })}
-                        placeholder={strings.EMAIL} />
-                </View>
-
-
-                <View style={styles.codeview}>
-                    <View style={{ flex: 0.4 }}>
-                        <CountryCodePicker />
-                    </View>
-                    <View style={{ flex: 0.6 }}>
+                    <View style={styles.emailview}>
                         <TextInputComponent
-                            onChangeText={(phone) => updateState({ phone })}
-                            placeholder={strings.PHONE_NUMBER} />
+                            onChangeText={(email) => updateState({ email })}
+                            placeholder={strings.EMAIL} />
                     </View>
-                </View>
-               
+
+
+                    <View style={styles.codeview}>
+                        <View style={{ flex: 0.4 }}>
+                            <CountryCodePicker  
+                            countryCode={countryCode}
+                            countryFlag={countryFlag}
+                            setCountryCode={setCountryCode}
+                            setCountryFlag={setCountryFlag}
+                             />
+                        </View>
+                        <View style={{ flex: 0.6 }}>
+                            <TextInputComponent
+                                onChangeText={(phone) => updateState({ phone })}
+                                placeholder={strings.PHONE_NUMBER} />
+                        </View>
+                    </View>
+
                     <View style={styles.passwordview}>
                         <TextInputComponent placeholder={strings.PASSWORD}
-                            onChangeText={(password) => updateState({password})} />
+                            onChangeText={(password) => updateState({ password })} />
                     </View>
 
                     <View style={styles.confirmpasswordview}>
                         <TextInputComponent placeholder={strings.CONFIRM_PASSWORD}
-                            onChangeText={(confirmPassword) => updateState({confirmPassword})} />
+                            onChangeText={(confirmPassword) => updateState({ confirmPassword })} />
                     </View>
-               
 
-                
-                   
 
-            </ScrollView>
-            <ButtonComp onPress={onSignUp}
-                     btnStyle={{ marginVertical: moderateScale(12) }}
-                        ButtonText={strings.NEXT} />
+
+
+
+                </ScrollView>
+                <ButtonComp onPress={onSignUp}
+                    btnStyle={{ marginVertical: moderateScale(12) }}
+                    ButtonText={strings.NEXT} />
             </View>
 
-           
-            
+
+
         </WrapperContainer>
     );
 };

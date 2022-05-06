@@ -20,56 +20,55 @@ import { showError } from '../../utils/helperfunctions';
 
 const PhoneLogin = ({ navigation }) => {
 
-    const isValidData = ()=>{
-            const error =validator({phone,password});
+    // const isValidData = () => {
+    //     const error = validator({ phone, password });
 
-            if (error){
-                showError(error)
-                return;
-            }
-            return true;
-    }
+    //     if (error) {
+    //         showError(error)
+    //         return;
+    //     }
+    //     return true;
+    // }
 
 
     const [state, setState] = useState({
-      
+
         phone: '',
         password: '',
         loginType: 'aaa',
     })
 
 
-    const { phone, password,loginType } = state;
+    const { phone, password, loginType } = state;
     const updateState = (data) => setState(() => ({ ...state, ...data }))
 
- console.log("logintyedeew", loginType)
-    const onLogin = async()=>{
-        const checkValid =isValidData();
-        if(!checkValid){
-            return ;
-        }
-    
-    
+    //  console.log("logintyedeew", loginType)
 
+    const onLogin = async () => {
+        // const checkValid = isValidData();
+        // if (!checkValid) {
+        //     return;
+        // }
 
         let apiData = {
 
-            phone: "",
+            phone: phone,
             phone_code: '91',
-            country_code: '91',
+            country_code: 'IN',
             device_token: 'androidffff',
             device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
             password: password,
-            loginType:loginType,
+            loginType: loginType,
 
         }
-        console.log("this is the api data",apiData)
+        console.log("this is the api data", apiData)
         try {
             const res = await actions.login(apiData)
             console.log("signup api is......", res)
             navigation.navigate(navigationStrings.LOGINSCREEN)
-            alert("User signup sucessfully !")
-        } catch (error) {
+            alert("User login sucessfully !")
+        }
+        catch (error) {
             console.log("error raised", error)
             alert(error?.message)
         }
@@ -77,57 +76,59 @@ const PhoneLogin = ({ navigation }) => {
     return (
 
         <WrapperContainer>
-<View style={styles.container}>
-            <ScrollView >
+            <View style={styles.container}>
+                <ScrollView >
 
-                <Header  isBackIcon={true}/>
+                    <Header isBackIcon={true} />
 
 
-                <View style={styles.welcomeview}>
-                    <Text style={styles.welcometext}>{strings.WELCOME_BACK}</Text>
-                    <Text style={styles.bottomtext}>{strings.HAPPY_TEXT}</Text>
-                </View>
-
-                <View style={styles.codeview}>
-                    <View style={{ flex: 0.4 }}>
-                        <CountryCodePicker />
-                    </View>
-                    <View style={{ flex: 0.6 }}>
-                        <TextInputComponent placeholder={strings.PHONE_NUMBER}
-                            onChangeText={(phone) => updateState({ phone })}
-                        />
-                    </View>
-                </View>
-
-                <View style={styles.passview}>
-                    <View style={styles.btncomp}>
-                        <TextInputComponent placeholder={strings.PASSWORD}
-                            onChangeText={(password) => updateState({ password })}
-
-                        // keyboardType={strings.NUMERIC}
-                        />
+                    <View style={styles.welcomeview}>
+                        <Text style={styles.welcometext}>{strings.WELCOME_BACK}</Text>
+                        <Text style={styles.bottomtext}>{strings.HAPPY_TEXT}</Text>
                     </View>
 
-                    <Text style={styles.show}>{strings.SHOW}</Text>
-                </View>
+                    <View style={styles.codeview}>
+                        <View style={{ flex: 0.4 }}>
+                            <CountryCodePicker />
+                        </View>
+                        <View style={{ flex: 0.6 }}>
+                            <TextInputComponent placeholder={strings.PHONE_NUMBER}
+                                onChangeText={(phone) => updateState({ phone })}
+                                value={phone}
+                                
+                            />
+                        </View>
+                    </View>
 
-                <View style={styles.mainview}>
-                    <View style={styles.optview}>
-                        <Text style={styles.otp}>{strings.OTP}</Text>
+                    <View style={styles.passview}>
+                        <View style={styles.btncomp}>
+                            <TextInputComponent placeholder={strings.PASSWORD}
+                                onChangeText={(password) => updateState({ password })}
+
+                            // keyboardType={strings.NUMERIC}
+                            />
+                        </View>
+
+                        <Text style={styles.show}>{strings.SHOW}</Text>
+                    </View>
+
+                    <View style={styles.mainview}>
+                        <View style={styles.optview}>
+                            <Text style={styles.otp}>{strings.OTP}</Text>
+                        </View>
+
+
+                        <View style={styles.passwordview}>
+                            <Text style={styles.password}>{strings.FORGOT_PASSWORD}</Text>
+                        </View>
                     </View>
 
 
-                    <View style={styles.passwordview}>
-                        <Text style={styles.password}>{strings.FORGOT_PASSWORD}</Text>
-                    </View>
-                </View>
 
 
-                
 
-
-            </ScrollView>
-            <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
+                </ScrollView>
+                <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
                     <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}>
 
                         <ButtonComp onPress={onLogin}

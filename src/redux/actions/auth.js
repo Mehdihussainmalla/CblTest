@@ -22,20 +22,33 @@ export const Logout = () => {
 
     });
 }
-export const login = (data, headers = {}) => {
+export const login = (data) => {
+    console.log(data, 'the given data for login')
     return new Promise((resolve, reject) => {
-        apiPost(LOGIN, data, headers)
-            .then(res => {
-                // setUserData(res.data).then(suc => {
-                    saveUserData(res.data);
-                    resolve(res);
-                // });
-            })
-            .catch(error => {
-                reject(error);
-            });
+      apiPost(LOGIN, data)
+        .then((res) => {
+        saveUserData(res.data)
+          resolve(res)
+        })
+        .catch((error) => {
+          reject("gjyhj", error);
+        });
     });
-};
+  };
+// export const login = (data, headers = {}) => {
+//     return new Promise((resolve, reject) => {
+//         apiPost(LOGIN, data, headers)
+//             .then(res => {
+//                 // setUserData(res.data).then(suc => {
+//                     saveUserData(res.data);
+//                     resolve(res);
+//                 });
+//             })
+//             .catch(error => {
+//                 reject(error);
+//             });
+//     });
+// };
 
 export function signUp(data) {
      console.log("signUp", data)
