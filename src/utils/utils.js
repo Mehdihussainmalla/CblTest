@@ -252,16 +252,16 @@ export async function getLogin() {
 }
 
 
-// export const removeData = async () => {
-//     try {
-//         await AsyncStorage.removeItem('userData')
+export const removeData = async () => {
+    try {
+        await AsyncStorage.removeItem('userData')
 
 
-//     } catch (error) {
-//         console.log('error occurred in remove items', error)
+    } catch (error) {
+        console.log('error occurred in remove items', error)
 
-//     }
-// }
+    }
+}
 
 // export async function apiReq(
 // 	endPoint,
