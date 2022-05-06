@@ -36,14 +36,15 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginLeft: moderateScale(15),
         marginRight: moderateScale(23),
-        marginTop: verticalScale(20),
+        // marginTop: verticalScale(20),
+        marginVertical:moderateScale(8)
         
     },
     codeview: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginLeft: moderateScale(9),
-        marginRight: moderateScale(23),
+        marginLeft: moderateScale(8),
+        marginRight: moderateScale(21),
 
 
     },

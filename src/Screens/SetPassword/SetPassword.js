@@ -9,38 +9,36 @@ import ButtonComp from '../../Components/ButtonComp'
 import navigationStrings from '../../navigation/navigationStrings'
 import { useNavigation } from '@react-navigation/native'
 const SetPassword = () => {
-  const navigation=useNavigation()
+  const navigation = useNavigation()
   return (
-   
-      <WrapperContainer>
-        <View style={{flex:1}}>
-    {/* <View style={styles.headerview}> */}
-    <Header />
-{/* </View> */}
-<View style={styles.setpasswordstyle}>
-    <View style={styles.passwordview}>
-<Text style={styles.passwordtext}>{strings.SET_PASSWORD}</Text>
-<View style={styles.btmtextview}>
-<Text style={styles.btmtext}>{strings.NEW_PASS}</Text>
-</View>
-</View>
-</View>
-<View style={{flex:0.8}}>
-      <View style={styles.inputstyle}> 
 
-      <TextInputComponent placeholder={strings.PASSWORD}/>
-</View>
-<View style={styles.inputstyle2}> 
+    <WrapperContainer>
+      <View style={{ flex: 1 }}>
+        <Header />
+        <View style={styles.setpasswordstyle}>
+          <View style={styles.passwordview}>
+            <Text style={styles.passwordtext}>{strings.SET_PASSWORD}</Text>
+            <View style={styles.btmtextview}>
+              <Text style={styles.btmtext}>{strings.NEW_PASS}</Text>
+            </View>
+          </View>
+        </View>
+        <View style={{ flex: 0.8 }}>
+          <View style={styles.inputstyle}>
 
-<TextInputComponent placeholder={strings. CONFIRM_PASSWORD}/>
-</View>
-</View>
-<View style={styles.startedbtn}>
-  <ButtonComp  onPress={() => navigation.navigate(navigationStrings.OTP_SCREEN)} 
-  ButtonText='get started'/>
-</View>
-</View>
-</WrapperContainer>
+            <TextInputComponent placeholder={strings.PASSWORD} />
+          </View>
+          <View style={styles.inputstyle2}>
+
+            <TextInputComponent placeholder={strings.CONFIRM_PASSWORD} />
+          </View>
+        </View>
+        <View style={styles.startedbtn}>
+          <ButtonComp onPress={() => navigation.navigate(navigationStrings.OTP_SCREEN)}
+            ButtonText='get started' />
+        </View>
+      </View>
+    </WrapperContainer>
   )
 }
 

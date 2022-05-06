@@ -30,14 +30,16 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         marginLeft: moderateScale(24),
         marginRight: moderateScale(23),
-        marginTop: verticalScale(10),
+        // marginTop: verticalScale(10),
+        marginVertical:moderateScale(16),
         alignItems: 'center'
 
     },
     emailstyle: {
-        marginTop: moderateScale(10),
+        // marginTop: moderateScale(10),
         marginRight: moderateVerticalScale(23),
-        marginLeft: moderateVerticalScale(24)
+        marginLeft: moderateVerticalScale(24),
+        marginVertical:moderateScale(16),
     },
     codepickerview: {
         marginLeft: moderateVerticalScale(24),

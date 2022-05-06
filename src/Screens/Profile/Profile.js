@@ -47,9 +47,9 @@ const Profile = ({navigation}) => {
 
       <TouchableOpacity onPress={signOut} activeOpacity={0.7} style={styles.container}>
         <View style={styles.profileimage}>
-          <Image style={{ marginTop: 5 }} source={imagePath.ic_logout} />
+          <Image style={{ marginTop: 4 }} source={imagePath.ic_logout} />
         </View>
-        <Text style={styles.profiletext}>{strings.SIGN_OUT}</Text>
+        <Text style={styles.profiletext1}>{strings.SIGN_OUT}</Text>
       </TouchableOpacity>
 
     </WrapperContainer>

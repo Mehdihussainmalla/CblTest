@@ -19,7 +19,7 @@ const ChangePassword = () => {
 
     const userData = useSelector(state => state?.auth?.userData);
 
-    console.log('check userdata for change password', userData);
+    // console.log('check userdata for change password', userData);
 
     const [state, setState] = useState({
 
@@ -32,31 +32,39 @@ const ChangePassword = () => {
     const updateState = data => setState(state => ({ ...state, ...data }));
 
     const onChangePassword = async () => {
-        if (password.length <= 6) {
-            alert('password length must be 6')
+        // console.log(password, setPassword,confirmPassword,"ddhddsii cxcfds sdas")
+
+        if (setPassword.length <= 4) {
+            alert('password length must be minimum 4')
         }
         else {
-            if (password === confirmPassword) {
+            if (setPassword === confirmPassword) {
                 let updateApiData = {
-                    user_id: userData?.id,
+                   user_id: userData?.id,
                     password: password,
-                    setPassword: setPassword,
+                    setPassword:setPassword,
+                    confirmPassword: confirmPassword,
 
                 }
                 console.log("check api data before changing", updateApiData)
+
+                try {
+                    const res = await actions.changePassword(updateApiData);
+                    console.log("check res from the actions",)
+                    navigation.goBack();
+                    alert("password updated sucessfully")
+
+                } catch (error) {
+                    console.log("error raised", error)
+                    alert(error?.message)
+
+                }
+
+            }
+            else {
+                alert("password and confrim password must match")
             }
 
-            try {
-                const res = await actions.changePassword(updateApiData);
-                console.log("check res from the actions",)
-                navigation.goBack();
-                alert("password updated sucessfully")
-
-            } catch (error) {
-                console.log("error raised", error)
-                alert(error?.message)
-
-            }
         }
     }
 
@@ -72,7 +80,8 @@ const ChangePassword = () => {
                     <View style={styles.passwordstyle}>
                         <View style={{ flex: 0.8 }}>
                             <TextInputComponent placeholder={strings.PASSWORD}
-                                onChangeText={event => updateState({ password: event })} />
+                                onChangeText={event => updateState({ password: event })} 
+                                value={password}/>
                         </View>
 
                         <View style={{ flex: 0.2 }}>
@@ -84,7 +93,8 @@ const ChangePassword = () => {
                     <View style={styles.passwordstyle}>
                         <View style={{ flex: 0.8 }}>
                             <TextInputComponent placeholder={strings.SET_PASSWORD}
-                                onChangeText={event => updateState({ setpassword: event })} />
+                                onChangeText={event => updateState({ setPassword: event })}
+                                value={setPassword} />
                         </View>
 
                         <View style={{ flex: 0.2 }}>
@@ -95,7 +105,8 @@ const ChangePassword = () => {
                     <View style={styles.confirmpasswordstyle}>
                         <View style={{ flex: 0.8 }}>
                             <TextInputComponent placeholder={strings.CONFIRM_PASSWORD}
-                                onChangeText={event => updateState({ confirmPassword: event })} />
+                                onChangeText={event => updateState({ confirmPassword: event })}
+                                value={confirmPassword} />
                         </View>
                         <View style={{ flex: 0.2 }}>
                             <Text style={styles.textstyle}>{strings.SHOW}</Text>

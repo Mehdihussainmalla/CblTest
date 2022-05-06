@@ -25,7 +25,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb727820354896912</string>
+				<string>fb5790779767615555</string>
 			</array>
 		</dict>
 		<dict>
@@ -40,9 +40,9 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>727820354896912</string>
+	<string>5790779767615555</string>
 	<key>FacebookDisplayName</key>
-	<string>CblTest</string>
+	<string>cbltest</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -63,36 +63,16 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>LSApplicationQueriesSchemes</key>
-<array>
-  <string>fbapi</string>
-  <string>fb-messenger-api</string>
-  <string>fbauth2</string>
-  <string>fbshareextension</string>
-</array>
-	<key>CFBundleURLTypes</key>
-<array>
-  <dict>
-  <key>CFBundleURLSchemes</key>
-  <array>
-    <string>fb5790779767615555</string>
-  </array>
-  </dict>
-</array>
-<key>FacebookAppID</key>
-<string>5790779767615555</string>
-<key>FacebookDisplayName</key>
-<string>cbltest</string>
-	 <key>NSCameraUsageDescription</key>
-  <string>will open camera</string>
-  <key>NSMicrophoneUsageDescription</key>
-  <string>will access microphone</string>
-   <key>NSPhotoLibraryUsageDescription</key>
-  <string>phpto from gallery</string>
-  <key>NSPhotoLibraryAddUsageDescription</key>
-  <string>choose photo accordingly</string>
+	<key>NSCameraUsageDescription</key>
+	<string>will open camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>will access microphone</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>choose photo accordingly</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>phpto from gallery</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Barlow-Bold.ttf</string>

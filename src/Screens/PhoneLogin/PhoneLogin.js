@@ -113,7 +113,7 @@ const PhoneLogin = ({ navigation }) => {
                         <View style={styles.btncomp}>
                             <TextInputComponent placeholder={strings.PASSWORD}
                                 onChangeText={(password) => updateState({ password })}
-
+                                value={password}
                             // keyboardType={strings.NUMERIC}
                             />
                         </View>

@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
     welcomeview: {
         marginLeft: moderateVerticalScale(24),
         marginRight: moderateVerticalScale(23),
+        marginVertical:moderateScale(16)
         // height:moderateVerticalScale(50)
     },
     bottomview: {
@@ -115,8 +116,9 @@ export const styles = StyleSheet.create({
         marginLeft: moderateScale(10),
         marginRight: moderateScale(23),
         height: moderateScale(48),
-        marginTop: verticalScale(20),
-    },
+        // marginTop: verticalScale(20),
+        marginVertical:moderateScale(16)
+    },  
 
 
 }); 

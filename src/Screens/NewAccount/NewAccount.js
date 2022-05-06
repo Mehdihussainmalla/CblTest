@@ -121,7 +121,7 @@ const NewAccount = ({ navigation }) => {
                             setCountryFlag={setCountryFlag}
                              />
                         </View>
-                        <View style={{ flex: 0.6 }}>
+                        <View style={{ flex: 0.6, }}>
                             <TextInputComponent
                                 onChangeText={(phone) => updateState({ phone })}
                                 placeholder={strings.PHONE_NUMBER} />

@@ -12,7 +12,8 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         marginLeft: moderateVerticalScale(24),
         marginRight: moderateVerticalScale(23),
-        marginTop: moderateScale(34),
+        // marginTop: moderateScale(34)
+        marginVertical:moderateScale(6),
         height: height / 21,
 
     },
@@ -25,5 +26,13 @@ export const styles = StyleSheet.create({
         fontFamily: fontFamily.BarlowRegular,
         color: colors.white,
         fontSize: textScale(15),
+        
+    },
+    profiletext1: {
+        fontFamily: fontFamily.BarlowRegular,
+        color: colors.white,
+        fontSize: textScale(15),
+        marginHorizontal:moderateScale(5)
+        
     }
 })

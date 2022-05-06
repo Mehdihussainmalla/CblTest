@@ -49,9 +49,7 @@ const Home = ({navigation, route}) => {
   return (
     <WrapperContainer >
       <HomeHeader />
-      {/* <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.POST_DETAIL, { data:data})}> */}
       <Cards navigation={navigation} data={data} />
-      {/* </TouchableOpacity> */}
     </WrapperContainer>
   )
 }

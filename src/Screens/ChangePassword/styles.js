@@ -10,20 +10,23 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         marginLeft: moderateVerticalScale(24),
         marginRight: moderateVerticalScale(23),
-        marginTop: moderateScale(20)
+        marginVertical:moderateScale(8)
+        // marginTop: moderateScale(20)
     },
     confirmpasswordstyle: {
         backgroundColor: colors.matterhorn,
         borderRadius: moderateScale(5),
         flexDirection: 'row',
-        marginTop: moderateScale(18),
+        // marginTop: moderateScale(18),
         marginLeft: moderateVerticalScale(24),
-        marginRight: moderateVerticalScale(23)
+        marginRight: moderateVerticalScale(23),
+        marginVertical:moderateScale(8)
 
     },
     btnstyle:
     {
-        marginTop: moderateVerticalScale(15),
+        // marginTop: moderateVerticalScale(15),
+        marginVertical:moderateScale(8),
         bottom: moderateVerticalScale(10),
         width: '100%'
     },
