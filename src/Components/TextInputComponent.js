@@ -38,10 +38,11 @@ const styles = StyleSheet.create({
     input: {
         height: moderateScale(48),
         backgroundColor: colors.matterhorn,
-        marginRight: moderateScale(2),
-        marginLeft: moderateScale(2),
+        // marginRight: moderateScale(2),
+        // marginLeft: moderateScale(2),
+        paddingHorizontal:moderateScale(16),
         borderRadius: verticalScale(5),
-        paddingLeft: moderateScale(8),
+        // paddingLeft: moderateScale(8),
         paddingVertical: verticalScale(10),
         color:colors.white,
         fontFamily:fontFamily.BarlowRegular

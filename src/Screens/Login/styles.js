@@ -55,8 +55,6 @@ export const styles = StyleSheet.create({
     },
     loginbtn: {
         backgroundColor: 'red',
-        // height:moderateScale(40),
-       // marginTop: moderateScale(50),
         borderRadius: moderateScale(8),
         width: moderateScale(328),
         letterSpacing: 0,

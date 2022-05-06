@@ -20,15 +20,18 @@ import { showError } from '../../utils/helperfunctions';
 
 const PhoneLogin = ({ navigation }) => {
 
-    // const isValidData = () => {
-    //     const error = validator({ phone, password });
+    const [countryCode, setCountryCode] = useState('91');
+    const [countryFlag, setCountryFlag] = useState('IN');
 
-    //     if (error) {
-    //         showError(error)
-    //         return;
-    //     }
-    //     return true;
-    // }
+    const isValidData = () => {
+        const error = validator({ phone, password });
+
+        if (error) {
+            showError(error)
+            return;
+        }
+        return true;
+    }
 
 
     const [state, setState] = useState({
@@ -45,10 +48,10 @@ const PhoneLogin = ({ navigation }) => {
     //  console.log("logintyedeew", loginType)
 
     const onLogin = async () => {
-        // const checkValid = isValidData();
-        // if (!checkValid) {
-        //     return;
-        // }
+        const checkValid = isValidData();
+        if (!checkValid) {
+            return;
+        }
 
         let apiData = {
 
@@ -89,7 +92,13 @@ const PhoneLogin = ({ navigation }) => {
 
                     <View style={styles.codeview}>
                         <View style={{ flex: 0.4 }}>
-                            <CountryCodePicker />
+                            <CountryCodePicker 
+                             countryCode={countryCode}
+                             countryFlag={countryFlag}
+                             setCountryCode={setCountryCode}
+                             setCountryFlag={setCountryFlag}
+                            
+                            />
                         </View>
                         <View style={{ flex: 0.6 }}>
                             <TextInputComponent placeholder={strings.PHONE_NUMBER}

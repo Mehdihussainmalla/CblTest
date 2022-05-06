@@ -34,16 +34,15 @@ export const styles = StyleSheet.create({
     namesview: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginLeft: moderateScale(19),
+        marginLeft: moderateScale(15),
         marginRight: moderateScale(23),
         marginTop: verticalScale(20),
-        // alignItems: 'center'
+        
     },
     codeview: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginVertical: moderateScale(12),
-        marginLeft: moderateScale(12),
+        marginLeft: moderateScale(9),
         marginRight: moderateScale(23),
 
 
@@ -52,7 +51,6 @@ export const styles = StyleSheet.create({
 
         borderRadius: verticalScale(5),
         flex: 0.5,
-        // marginRight: moderateScale(24),
         backgroundColor: colors.matterhorn,
         marginHorizontal: moderateScale(10),
 
@@ -68,23 +66,26 @@ export const styles = StyleSheet.create({
 
     },
     emailview: {
-        marginTop: moderateScale(10),
+        // marginTop: moderateScale(10),
         marginLeft: moderateVerticalScale(24),
         marginRight: moderateScaleVertical(23),
-        borderRadius: moderateScale(5)
+        borderRadius: moderateScale(5),
+        marginVertical:moderateScale(16)
     },
 
     passwordview: {
-        marginBottom: 3,
+        marginBottom: moderateScale(3),
         marginLeft: moderateScaleVertical(24),
         marginRight: moderateScaleVertical(23),
+        marginVertical:moderateScale(16)
 
 
     },
     confirmpasswordview: {
-        marginTop: 10,
+        // marginTop: 10,
         marginLeft: moderateScaleVertical(24),
         marginRight: moderateScaleVertical(23),
+        marginVertical:moderateScale(16)
     }
 
 
