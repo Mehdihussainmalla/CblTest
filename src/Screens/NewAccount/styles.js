@@ -8,20 +8,20 @@ import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 export const styles = StyleSheet.create({
 
     textview: {
-       
+
 
         marginRight: moderateScale(23),
         marginLeft: moderateScale(24),
 
     },
-   
+
     createtext: {
         fontSize: textScale(24),
         fontFamily: fontFamily.BarlowBold,
         color: colors.white,
         letterSpacing: 0,
         lineHeight: moderateScale(32),
-    
+
     },
 
     bottomtext: {
@@ -31,61 +31,62 @@ export const styles = StyleSheet.create({
         lineHeight: moderateScale(32),
         letterSpacing: 0
     },
-    namesview: {      
+    namesview: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginLeft: moderateScale(10),
+        marginLeft: moderateScale(19),
         marginRight: moderateScale(23),
         marginTop: verticalScale(20),
         // alignItems: 'center'
     },
-    codeview:{
-            flexDirection:'row',
-            justifyContent:'space-between', 
-            marginVertical:moderateScale(12), 
-            marginLeft: moderateScale(10),
-            marginRight: moderateScale(23),
-            
+    codeview: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginVertical: moderateScale(12),
+        marginLeft: moderateScale(12),
+        marginRight: moderateScale(23),
+
 
     },
     firstname: {
-       
+
         borderRadius: verticalScale(5),
         flex: 0.5,
         // marginRight: moderateScale(24),
         backgroundColor: colors.matterhorn,
         marginHorizontal: moderateScale(10),
-     
+
 
 
     },
     lastname: {
-        height:moderateScale(48),
+        height: moderateScale(48),
         flex: 0.5,
         fontSize: textScale(14),
         backgroundColor: colors.matterhorn,
         borderRadius: verticalScale(5),
-     
-    },
-    emailview:{
-        marginTop:10,
-        marginLeft:moderateVerticalScale(24),
-        marginRight:moderateScaleVertical(23)   
-    },
-  
-  passwordview:{
-      marginBottom:3,
-    marginLeft:moderateScaleVertical(24),
-    marginRight:moderateScaleVertical(23),
 
-    
-  },
- confirmpasswordview:{
-    marginTop:10,
-    marginLeft:moderateScaleVertical(24),
-    marginRight:moderateScaleVertical(23),
-  }
-    
+    },
+    emailview: {
+        marginTop: moderateScale(10),
+        marginLeft: moderateVerticalScale(24),
+        marginRight: moderateScaleVertical(23),
+        borderRadius: moderateScale(5)
+    },
+
+    passwordview: {
+        marginBottom: 3,
+        marginLeft: moderateScaleVertical(24),
+        marginRight: moderateScaleVertical(23),
+
+
+    },
+    confirmpasswordview: {
+        marginTop: 10,
+        marginLeft: moderateScaleVertical(24),
+        marginRight: moderateScaleVertical(23),
+    }
+
 
 
 

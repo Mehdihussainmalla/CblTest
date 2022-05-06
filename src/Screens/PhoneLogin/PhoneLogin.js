@@ -32,23 +32,17 @@ const PhoneLogin = ({ navigation }) => {
 
 
     const [state, setState] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
+      
         phone: '',
         password: '',
-        confirmPassword: '',
-        countryCode: '',
-        deviceToken: '',
-        deviceType: '',
-        logintype: '',
+        loginType: 'aaa',
     })
 
 
-    const { phone, password, deviceToken, deviceType, logintype } = state;
+    const { phone, password,loginType } = state;
     const updateState = (data) => setState(() => ({ ...state, ...data }))
 
-
+ console.log("logintyedeew", loginType)
     const onLogin = async()=>{
         const checkValid =isValidData();
         if(!checkValid){
@@ -60,16 +54,16 @@ const PhoneLogin = ({ navigation }) => {
 
         let apiData = {
 
-            phone: phone,
+            phone: "",
             phone_code: '91',
             country_code: '91',
-            device_token: 'aaaa',
+            device_token: 'androidffff',
             device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
             password: password,
-            logintype: 'abc'
+            loginType:loginType,
 
         }
-        console.log(apiData)
+        console.log("this is the api data",apiData)
         try {
             const res = await actions.login(apiData)
             console.log("signup api is......", res)

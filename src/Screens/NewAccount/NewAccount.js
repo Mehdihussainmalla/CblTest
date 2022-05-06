@@ -25,10 +25,10 @@ const NewAccount = ({ navigation }) => {
         phone: '',
         password: '',
         confirmPassword: '',
-        countryCode: 'IN',
+        countryCode: '',
         deviceToken: 'androidffff',
         deviceType: '',
-        phone_code:'+91',
+        phone_code:'',
 
     })
 
@@ -66,12 +66,10 @@ const NewAccount = ({ navigation }) => {
         try {
             const res = await actions.signUp(apiData)
 
-            console.log("singnup api res_+++++", res)
+            console.log("singnup api res_+++++", res?.data);
 
-            navigation.navigate(navigationStrings.PHONE_LOGIN,{
-                    phone:phone, 
-                    phone_code:phone_code,
-                    // password:password,
+            navigation.navigate(navigationStrings.OTP_SCREEN,{
+                data: res?.data
             })
             alert("User signup successfully....!!!")
         } catch (error) {

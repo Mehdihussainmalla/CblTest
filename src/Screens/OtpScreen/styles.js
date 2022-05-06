@@ -19,6 +19,8 @@ export const styles = StyleSheet.create({
 
     },
     otpmainstyle: {
+        // flex:0.7,
+        // backgroundColor:'red',
         height: moderateScale(64),
         marginLeft: moderateScale(24),
         marginRight: moderateScale(23)
@@ -31,13 +33,6 @@ export const styles = StyleSheet.create({
         lineHeight: moderateScale(32),
         color: colors.white
     },
-    // numberstyle: {
-    //     // backgroundColor:'white',
-    //     marginTop: moderateScale(8),
-    //     height: moderateScale(width / 15),
-    //     // height:moderateScale(24)
-
-    // },
     eitview: {
         color: colors.bluelightclr,
         fontSize: textScale(15),
@@ -72,7 +67,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 6
     },
     resendcodeview: {
-        marginTop:moderateScaleVertical(8),
+        marginTop:moderateScaleVertical(25),
         justifyContent: 'center',
         flex: 0.1,
         marginLeft: moderateScale(24),

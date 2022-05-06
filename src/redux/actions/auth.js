@@ -26,10 +26,10 @@ export const login = (data, headers = {}) => {
     return new Promise((resolve, reject) => {
         apiPost(LOGIN, data, headers)
             .then(res => {
-                setUserData(res.data).then(suc => {
+                // setUserData(res.data).then(suc => {
                     saveUserData(res.data);
                     resolve(res);
-                });
+                // });
             })
             .catch(error => {
                 reject(error);
