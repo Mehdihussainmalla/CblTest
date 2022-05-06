@@ -5,7 +5,8 @@ import { StyleSheet} from 'react-native'
 export const styles = StyleSheet.create({
 
     imagestyle: {
-        marginTop: moderateVerticalScale(40),
+      
+        marginVertical:moderateScale(10),
         height: moderateVerticalScale(120),
         marginLeft: moderateVerticalScale(120),
         marginRight: moderateVerticalScale(134),
@@ -13,10 +14,10 @@ export const styles = StyleSheet.create({
 
     },
     imageicon:{
-        // height: moderateVerticalScale(100),
-        // width: width / 3.5,
-        height: moderateScale(width / 3.5),
-        width: moderateScale(width / 3.5),
+        height: moderateVerticalScale(100),
+        width: width / 3.5,
+        // height: moderateScale(width / 3.5),
+        // width: moderateScale(width / 3.5),
         borderRadius: moderateScale(width / 7),
         
     },
@@ -31,15 +32,15 @@ export const styles = StyleSheet.create({
         marginLeft: moderateScale(24),
         marginRight: moderateScale(23),
         // marginTop: verticalScale(10),
-        marginVertical:moderateScale(16),
+        marginVertical:moderateScale(8),
         alignItems: 'center'
 
     },
     emailstyle: {
-        // marginTop: moderateScale(10),
+      
         marginRight: moderateVerticalScale(23),
         marginLeft: moderateVerticalScale(24),
-        marginVertical:moderateScale(16),
+        marginVertical:moderateScale(8),
     },
     codepickerview: {
         marginLeft: moderateVerticalScale(24),
@@ -52,8 +53,8 @@ export const styles = StyleSheet.create({
 
     },
     btnstyle: {
-        marginTop: moderateVerticalScale(15),
-        // position:'absolute',
+     
+        marginVertical:moderateScale(8),
         bottom:moderateVerticalScale(10),
         width:'100%'
 

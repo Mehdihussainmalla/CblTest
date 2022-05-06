@@ -15,8 +15,12 @@ import ImagePicker from 'react-native-image-crop-picker'
 
 const EditProfileScreen = () => {
     const userData = useSelector(state => state?.auth?.userData);
-    console.log('userdaataaaaaa checking from edit profile', userData);
+    // console.log('userdaataaaaaa checking from edit profile', userData);
 
+
+    const [countryCode, setCountryCode]= useState("91");
+    const [countryFlag, setCountryFlag] = useState("IN");
+ 
 
     const [state, setState] = useState({
         firstName: userData?.firstName,
@@ -48,8 +52,6 @@ const EditProfileScreen = () => {
         }
 
     };
-
-
 
     const imageUpload = () => {
         ImagePicker.openPicker({
@@ -100,7 +102,13 @@ const EditProfileScreen = () => {
 
                     <View style={styles.codepickerview}>
                         <View style={{ flex: 0.4 }}>
-                            <CountryCodePicker />
+                            <CountryCodePicker 
+                            countryCode={countryCode}
+                            countryFlag={countryFlag}
+                            setCountryCode={setCountryCode}
+                            setCountryFlag={setCountryFlag}
+                            
+                            />
                         </View>
                         <View style={{ flex: 0.6 }}>
                             <TextInputComponent placeholder={strings.PHONE_NUMBER}
