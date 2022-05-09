@@ -16,7 +16,7 @@ export async function getHeaders() {
 		loginUser = JSON.parse(loginUser);
 		// console.log(loginUser.accessToken, 'header')
 		return {
-			authorization: `Bearer ${loginUser?.access_token}`,
+			authorization: ` ${loginUser?.access_token}`,
 		};
 	}
 	return {};

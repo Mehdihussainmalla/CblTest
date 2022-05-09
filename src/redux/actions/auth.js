@@ -62,7 +62,7 @@ export function editProfile(data) {
                 resolve(res)
             })
             .catch((error) => {
-                reject("gjyhj", error);
+                reject("rejected", error);
             });
     });
 }
