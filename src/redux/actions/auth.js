@@ -53,7 +53,16 @@ export function changePassword(data) {
     return apiPost(CHANGE_PASSWORD, data)
 }
 
-  export function editProfile (data){
-    console.log("edit profile ", data)
-  return apiPost(EDIT_PROFILE_API, data)
+export function editProfile(data) {
+    console.log(data, 'the given data for login')
+    return new Promise((resolve, reject) => {
+        apiPost(EDIT_PROFILE_API, data)
+            .then((res) => {
+                saveUserData(res.data)
+                resolve(res)
+            })
+            .catch((error) => {
+                reject("gjyhj", error);
+            });
+    });
 }

@@ -13,27 +13,27 @@ const App = () => {
 
   useEffect(() => {
 
- 
+
     getLogin().then((res) => {
       console.log("get login", res)
       actions.saveUserData(res)
     })
 
 
-    getItem('intro').then((res)=>{
-      console.log(res,"getItem>>>res")
+    getItem('intro').then((res) => {
+      console.log(res, "getItem>>>res")
       if (res == null) {
         actions.Intro(true)
-        
+
       } else {
         actions.Intro(res)
       }
-      
+
     });
 
     setTimeout(() => {
       SplashScreen.hide();
-      
+
     }, 2000);
 
 
