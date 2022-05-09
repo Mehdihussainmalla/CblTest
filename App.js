@@ -34,7 +34,7 @@ const App = () => {
     setTimeout(() => {
       SplashScreen.hide();
       
-    }, 500);
+    }, 2000);
 
 
   }), []

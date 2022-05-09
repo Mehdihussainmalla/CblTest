@@ -50,7 +50,7 @@ const ChangePassword = () => {
 
                 try {
                     const res = await actions.changePassword(updateApiData);
-                    console.log("check res from the actions",)
+                    console.log("check res from the actions",res)
                     navigation.goBack();
                     alert("password updated sucessfully")
 

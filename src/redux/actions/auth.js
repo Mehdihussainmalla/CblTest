@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN, SIGNUP, CHANGE_PASSWORD } from "../../config/urls";
+import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API } from "../../config/urls";
 import types from '../types'
 import store from "../store";
 import { apiPost, setUserData } from "../../utils/utils";
@@ -35,20 +35,6 @@ export const login = (data) => {
             });
     });
 };
-// export const login = (data, headers = {}) => {
-//     return new Promise((resolve, reject) => {
-//         apiPost(LOGIN, data, headers)
-//             .then(res => {
-//                 // setUserData(res.data).then(suc => {
-//                     saveUserData(res.data);
-//                     resolve(res);
-//                 });
-//             })
-//             .catch(error => {
-//                 reject(error);
-//             });
-//     });
-// };
 
 export function signUp(data) {
     console.log("signUp", data)
@@ -56,7 +42,7 @@ export function signUp(data) {
 }
 
 export const Intro = data => {
-    console.log(data, "introoo")
+    // console.log(data, "introoo")
     dispatch({
         type: types.INTRO,
         payload: data,
@@ -65,4 +51,9 @@ export const Intro = data => {
 export function changePassword(data) {
     console.log("changepassword", data)
     return apiPost(CHANGE_PASSWORD, data)
+}
+
+  export function editProfile (data){
+    console.log("edit profile ", data)
+  return apiPost(EDIT_PROFILE_API, data)
 }

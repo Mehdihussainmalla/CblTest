@@ -1,4 +1,4 @@
-import { View, Image, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Image, ScrollView, TouchableOpacity, ActionSheetIOS } from 'react-native'
 import React, { useState } from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import Header from '../../Components/Header'
@@ -11,9 +11,13 @@ import { styles } from './styles'
 import validator from '../../utils/validations'
 import showError from '../../utils/helperfunctions'
 import { useSelector } from 'react-redux';
-import ImagePicker from 'react-native-image-crop-picker'
+import ImagePicker from 'react-native-image-crop-picker';
+import actions from "../../redux/actions"
+import { useNavigation } from '@react-navigation/native'
 
 const EditProfileScreen = () => {
+
+    const navigation = useNavigation();
     const userData = useSelector(state => state?.auth?.userData);
     // console.log('userdaataaaaaa checking from edit profile', userData);
 
@@ -21,22 +25,8 @@ const EditProfileScreen = () => {
     const [countryCode, setCountryCode] = useState("91");
     const [countryFlag, setCountryFlag] = useState("IN");
 
-
-    const [state, setState] = useState({
-        firstName: userData?.firstName,
-        lastName: userData?.lastName,
-        email: userData?.email,
-        phone: userData?.phone,
-        profileImage: '',
-        imagetype: null,
-
-    });
-
-    const { firstName, lastName, email, phone, profileImage } = state;
-    const updateState = data => setState(state => ({ ...state, ...data }))
-
     const isValidData = () => {
-        const error = validator({ firstName, lastName, email, phone });
+        const error = validator({ first_name, last_name, email, phone });
         if (error) {
             showError(error)
 
@@ -45,13 +35,49 @@ const EditProfileScreen = () => {
         return true
     };
 
-    const editProfileData = async () => {
+    const [state, setState] = useState({
+        first_name: userData?.first_name,
+        last_name: userData?.last_name,
+        email: userData?.email,
+        phone: userData?.phone,
+        image: userData?.image,
+        imagetype: null,
+
+    });
+
+
+    const { first_name, last_name, email, phone, image } = state;
+    const updateState = data => setState(state => ({ ...state, ...data }))
+
+
+    const onEditProfile = async () => {
         const checkValid = isValidData();
         if (!checkValid) {
             return;
         }
 
-    };
+        let editAPIdata = {
+            image: image,
+            first_name: first_name,
+            last_name: last_name,
+            email: email,
+            phone: phone
+        }
+        console.log("Edit API data : ", editAPIdata)
+
+        actions
+            .editProfile(editAPIdata)
+            .then(res => {
+                console.log("Edit api res_+++++", res)
+                alert("Updated Profile successfully....!!!")
+                navigation.goBack();
+            })
+            .catch(err => {
+                console.log(err, 'err');
+                alert(err?.message);
+            });
+    }
+
 
     const imageUpload = () => {
         ImagePicker.openPicker({
@@ -61,7 +87,7 @@ const EditProfileScreen = () => {
         }).then(image => {
             // console.log(image, "my image>>>>>>");
             updateState({
-                profileImage: image?.sourceURL || image?.path,
+                image: image?.sourceURL || image?.path,
                 imageType: image?.mime
             })
         });
@@ -77,7 +103,8 @@ const EditProfileScreen = () => {
                     <View style={styles.imagestyle} >
                         <Image style={styles.imageicon}
                             resizeMode='stretch'
-                            source={profileImage ? { uri: profileImage } : imagePath.profile_edit_image} />
+                            source={image ? { uri: image } : imagePath.profile_edit_image}
+                        />
                         <TouchableOpacity activeOpacity={0.7}
                             onPress={imageUpload}
                             style={styles.editiconstyle}>
@@ -88,11 +115,11 @@ const EditProfileScreen = () => {
                     <View style={styles.inputstyle}>
                         <View style={{ flex: 0.5 }}>
                             <TextInputComponent placeholder={strings.FIRST_NAME}
-                                onChangeText={event => updateState({ firstName: event })} />
+                                onChangeText={event => updateState({ first_name: event })} />
                         </View>
-                        <View style={{ flex: 0.5, paddingLeft: 15 }}>
+                        <View style={styles.lastnamestyle}>
                             <TextInputComponent placeholder={strings.LAST_NAME}
-                                onChangeText={event => updateState({ lastName: event })} />
+                                onChangeText={event => updateState({ last_name: event })} />
                         </View>
                     </View>
                     <View style={styles.emailstyle}>
@@ -120,7 +147,7 @@ const EditProfileScreen = () => {
                 </ScrollView>
                 <View style={styles.btnstyle}>
                     <ButtonComp ButtonText={strings.SAVE_CHANGES}
-                        onPress={editProfileData} />
+                        onPress={onEditProfile} />
                 </View>
             </View>
         </WrapperContainer>

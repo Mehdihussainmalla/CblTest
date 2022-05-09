@@ -10,7 +10,7 @@ const { dispatch, getState } = store;
 
 
 export async function getHeaders() {
-	let loginUser = await AsyncStorage.getItem('userLogin');
+	let loginUser = await AsyncStorage.getItem('userData');
 	console.log('loginuser',loginUser)
 	if (loginUser) {
 		loginUser = JSON.parse(loginUser);

@@ -1,25 +1,25 @@
 import React from "react";
 import { moderateScale, moderateVerticalScale, verticalScale } from 'react-native-size-matters'
 import { width } from '../../styles/responsiveSize'
-import { StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 export const styles = StyleSheet.create({
 
     imagestyle: {
-      
-        marginVertical:moderateScale(10),
+
+        marginVertical: moderateScale(10),
         height: moderateVerticalScale(120),
         marginLeft: moderateVerticalScale(120),
         marginRight: moderateVerticalScale(134),
 
 
     },
-    imageicon:{
+    imageicon: {
         height: moderateVerticalScale(100),
         width: width / 3.5,
         // height: moderateScale(width / 3.5),
         // width: moderateScale(width / 3.5),
         borderRadius: moderateScale(width / 7),
-        
+
     },
     editiconstyle: {
 
@@ -32,15 +32,15 @@ export const styles = StyleSheet.create({
         marginLeft: moderateScale(24),
         marginRight: moderateScale(23),
         // marginTop: verticalScale(10),
-        marginVertical:moderateScale(8),
+        marginVertical: moderateScale(8),
         alignItems: 'center'
 
     },
     emailstyle: {
-      
+
         marginRight: moderateVerticalScale(23),
         marginLeft: moderateVerticalScale(24),
-        marginVertical:moderateScale(8),
+        marginVertical: moderateScale(8),
     },
     codepickerview: {
         marginLeft: moderateVerticalScale(24),
@@ -53,10 +53,14 @@ export const styles = StyleSheet.create({
 
     },
     btnstyle: {
-     
-        marginVertical:moderateScale(8),
-        bottom:moderateVerticalScale(10),
-        width:'100%'
 
+        marginVertical: moderateScale(8),
+        bottom: moderateVerticalScale(10),
+        width: '100%'
+
+    },
+    lastnamestyle: {
+        flex: 0.5,
+        paddingLeft: moderateScale(15)
     }
 })
