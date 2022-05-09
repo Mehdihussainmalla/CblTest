@@ -6,6 +6,7 @@ import actions from './src/redux/actions';
 import store from './src/redux/store';
 import colors from './src/styles/colors';
 import { getItem, getLogin } from './src/utils/utils';
+import SplashScreen from 'react-native-splash-screen'
 
 const App = () => {
 
@@ -28,7 +29,12 @@ const App = () => {
         actions.Intro(res)
       }
       
-    })
+    });
+
+    setTimeout(() => {
+      SplashScreen.hide();
+      
+    }, 500);
 
 
   }), []

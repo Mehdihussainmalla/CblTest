@@ -18,9 +18,9 @@ const EditProfileScreen = () => {
     // console.log('userdaataaaaaa checking from edit profile', userData);
 
 
-    const [countryCode, setCountryCode]= useState("91");
+    const [countryCode, setCountryCode] = useState("91");
     const [countryFlag, setCountryFlag] = useState("IN");
- 
+
 
     const [state, setState] = useState({
         firstName: userData?.firstName,
@@ -59,7 +59,7 @@ const EditProfileScreen = () => {
             height: 400,
             cropping: true
         }).then(image => {
-            console.log(image, "my image>>>>>>");
+            // console.log(image, "my image>>>>>>");
             updateState({
                 profileImage: image?.sourceURL || image?.path,
                 imageType: image?.mime
@@ -76,9 +76,10 @@ const EditProfileScreen = () => {
 
                     <View style={styles.imagestyle} >
                         <Image style={styles.imageicon}
-                        resizeMode='stretch'
+                            resizeMode='stretch'
                             source={profileImage ? { uri: profileImage } : imagePath.profile_edit_image} />
-                        <TouchableOpacity activeOpacity={0.7} onPress={imageUpload}
+                        <TouchableOpacity activeOpacity={0.7}
+                            onPress={imageUpload}
                             style={styles.editiconstyle}>
                             <Image source={imagePath.edit_icon}
                             />
@@ -102,12 +103,12 @@ const EditProfileScreen = () => {
 
                     <View style={styles.codepickerview}>
                         <View style={{ flex: 0.4 }}>
-                            <CountryCodePicker 
-                            countryCode={countryCode}
-                            countryFlag={countryFlag}
-                            setCountryCode={setCountryCode}
-                            setCountryFlag={setCountryFlag}
-                            
+                            <CountryCodePicker
+                                countryCode={countryCode}
+                                countryFlag={countryFlag}
+                                setCountryCode={setCountryCode}
+                                setCountryFlag={setCountryFlag}
+
                             />
                         </View>
                         <View style={{ flex: 0.6 }}>
