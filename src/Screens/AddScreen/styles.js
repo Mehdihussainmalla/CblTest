@@ -30,6 +30,10 @@ export const styles = StyleSheet.create({
     },
     imagelist: { height: width / 3, 
     width: width / 3 },
+    firstImg:{
+        width:width,
+        height: 300,
+    },
 
     camerastyle: {
         width: width / 5,

@@ -7,7 +7,8 @@ import {
   Platform,
   FlatList,
   Image,
-  ScrollView
+  ScrollView,
+
 }
   from 'react-native'
 import React, { useEffect, useState } from 'react'
@@ -17,8 +18,8 @@ import Header from '../../Components/Header';
 import imagePath from '../../constants/imagePath';
 import { styles } from './styles';
 import { moderateVerticalScale } from 'react-native-size-matters';
-import ImageCropPicker from 'react-native-image-crop-picker';
-import { openGallery } from '../../utils/imagePickerFunction';
+import ImagePicker from 'react-native-image-crop-picker';
+// import { openGallery } from '../../utils/imagePickerFunction';
 
 
 const AddScreen = () => {
@@ -52,7 +53,7 @@ const AddScreen = () => {
 
       .then(res => {
         setState({ photos: res.edges });
-        // console.log("elemnts are", element)
+        console.log("elemnts areeeeeeee", element)
 
       })
       .catch((error) => {
@@ -65,9 +66,8 @@ const AddScreen = () => {
   }, [])
   console.log("check add media ", addMedia)
 
-  const cameraClick = async () => {
-
-    ImageCropPicker.openPicker({
+  const cameraClick =() => {
+    ImagePicker.openCamera({
       width: 300,
       height: 400,
       cropping: true,
@@ -100,8 +100,8 @@ const AddScreen = () => {
             Gallery</Text>
         </View>
 
-        <TouchableOpacity 
-        // onPress={openAlbum}
+        <TouchableOpacity
+          // onPress={openAlbum}
           activeOpacity={0.5}
           style={{ flex: 0.28, flexDirection: 'row' }}>
 
@@ -111,36 +111,51 @@ const AddScreen = () => {
           <Image style={styles.downicon} source={imagePath.ic_down} />
         </TouchableOpacity>
       </View>
+      <View style={{flex:1}} >
       <FlatList
-
         data={state.photos}
         style={{ paddingBottom: moderateVerticalScale(80) }}
         numColumns={3}
-
         renderItem={(element, index) => {
-          console.log("elements are", element)
-          return (
-            <>
+          // console.log("elements are", element)
+          // console.log(index,"indessss")
+          let indx = element.index
+          console.log(indx, "indx")
+          if (indx == 0) {
+            return (
+              <View>
+                <Image
+                  key={index}
+                  style={styles.firstImg}
 
-              <Image
-                key={index}
-                style={styles.imagelist}
+                  source={{ uri: element.item.node.image.uri }}
 
-                source={{ uri: element.item.node.image.uri }}
+                />
+              </View>
+            )
+          } else {
+            return (
+              <View>
+                <Image
+                  key={index}
+                  style={styles.imagelist}
 
-              />
+                  source={{ uri: element.item.node.image.uri }}
 
-            </>
-          )
+                />
+              </View>
+            )
+          }
         }}
 
       />
       <TouchableOpacity
+      style={styles.camerastyle}
         onPress={cameraClick}
         activeOpacity={0.8}>
-
-        <Image style={styles.camerastyle} source={imagePath.photo_camera} />
+        <Image style={{height:60, width:60}} source={imagePath.photo_camera} />
       </TouchableOpacity>
+      </View>
 
       {/* </ScrollView> */}
 
