@@ -17,6 +17,8 @@ import Header from '../../Components/Header';
 import imagePath from '../../constants/imagePath';
 import { styles } from './styles';
 import { moderateVerticalScale } from 'react-native-size-matters';
+import ImageCropPicker from 'react-native-image-crop-picker';
+import { openGallery } from '../../utils/imagePickerFunction';
 
 
 const AddScreen = () => {
@@ -47,8 +49,11 @@ const AddScreen = () => {
       first: 20,
       assetType: 'Photos',
     })
+
       .then(res => {
         setState({ photos: res.edges });
+        // console.log("elemnts are", element)
+
       })
       .catch((error) => {
         console.log('error occurred at open gallery', error)
@@ -60,48 +65,84 @@ const AddScreen = () => {
   }, [])
   console.log("check add media ", addMedia)
 
+  const cameraClick = async () => {
+
+    ImageCropPicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+    });
+    // try {
+    //   const res = await openGallery();
+    //   console.log("image res", res);
+    //   setSelectPhotos(selectPhotos.concat(res.path))
+    // } catch (error) {
+    //   console.log("error raised", error);
+    // }
+
+  }
+
+  // const openAlbum = ()=>{
+  //   CameraRoll.getAlbums(params)
+  // }
+
+
+
   return (
     <WrapperContainer>
       <Header title={'Select photo'} />
-      <ScrollView>
-        <View style={styles.container}>
-          <View style={{ flex: 0.5 }}>
-            <Text style={styles.gallerytext} >
-              Gallery</Text>
-          </View>
-
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={{ flex: 0.28, flexDirection: 'row' }}>
-
-            <Text style={styles.recenttext} >
-              Recents
-            </Text>
-            <Image style={styles.downicon} source={imagePath.ic_down} />
-          </TouchableOpacity>
+      {/* <ScrollView> */}
+      <View style={styles.container}>
+        <View style={{ flex: 0.5 }}>
+          <Text style={styles.gallerytext} >
+            Gallery</Text>
         </View>
-        <FlatList
 
-          data={state.photos}
-          style={{ paddingBottom: moderateVerticalScale(80) }}
-          numColumns={3}
+        <TouchableOpacity 
+        // onPress={openAlbum}
+          activeOpacity={0.5}
+          style={{ flex: 0.28, flexDirection: 'row' }}>
 
-          renderItem={(element, index) => {
-            return (
-              <>
+          <Text style={styles.recenttext} >
+            Recents
+          </Text>
+          <Image style={styles.downicon} source={imagePath.ic_down} />
+        </TouchableOpacity>
+      </View>
+      <FlatList
 
-                <Image
-                  key={index}
-                  style={styles.imagelist}
+        data={state.photos}
+        style={{ paddingBottom: moderateVerticalScale(80) }}
+        numColumns={3}
 
-                  source={{ uri: element.item.node.image.uri }}
-                />
-              </>
-            )
-          }}
-        />
+        renderItem={(element, index) => {
+          console.log("elements are", element)
+          return (
+            <>
 
-      </ScrollView>
+              <Image
+                key={index}
+                style={styles.imagelist}
+
+                source={{ uri: element.item.node.image.uri }}
+
+              />
+
+            </>
+          )
+        }}
+
+      />
+      <TouchableOpacity
+        onPress={cameraClick}
+        activeOpacity={0.8}>
+
+        <Image style={styles.camerastyle} source={imagePath.photo_camera} />
+      </TouchableOpacity>
+
+      {/* </ScrollView> */}
 
     </WrapperContainer>
   )

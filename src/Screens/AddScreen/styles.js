@@ -28,5 +28,16 @@ export const styles = StyleSheet.create({
         marginLeft: moderateVerticalScale(10),
         marginVertical: moderateVerticalScale(10)
     },
-    imagelist: { height: width / 3, width: width / 3 }
+    imagelist: { height: width / 3, 
+    width: width / 3 },
+
+    camerastyle: {
+        width: width / 5,
+        height: width / 5,
+        marginBottom: moderateScale(20),
+        position: 'absolute',
+        right:moderateScale(10),
+        bottom: 0,
+       
+    },
 })
