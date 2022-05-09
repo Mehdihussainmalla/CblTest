@@ -1,10 +1,23 @@
-import { StyleSheet, Text, View, TouchableOpacity, PermissionsAndroid, Platform, FlatList, Image } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  PermissionsAndroid,
+  Platform,
+  FlatList,
+  Image,
+  ScrollView
+}
+  from 'react-native'
 import React, { useEffect, useState } from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
 import CameraRoll from "@react-native-community/cameraroll";
 import Header from '../../Components/Header';
+import imagePath from '../../constants/imagePath';
+import { styles } from './styles';
 import { moderateVerticalScale } from 'react-native-size-matters';
-import { height, width } from '../../styles/responsiveSize';
+
 
 const AddScreen = () => {
 
@@ -50,27 +63,45 @@ const AddScreen = () => {
   return (
     <WrapperContainer>
       <Header title={'Select photo'} />
-      <FlatList
-      
-        data={state.photos}
-        style={{ paddingBottom: moderateVerticalScale(80) }}
-        numColumns={3}
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={{ flex: 0.5 }}>
+            <Text style={styles.gallerytext} >
+              Gallery</Text>
+          </View>
 
-        renderItem={(element, index) => {
-          return (
-            <>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={{ flex: 0.28, flexDirection: 'row' }}>
 
-              <Image
-                key={index}
-                style={{ height: width / 3, width: width / 3 }}
+            <Text style={styles.recenttext} >
+              Recents
+            </Text>
+            <Image style={styles.downicon} source={imagePath.ic_down} />
+          </TouchableOpacity>
+        </View>
+        <FlatList
 
-                source={{ uri: element.item.node.image.uri }}
-              />
-            </>
-          )
-        }}
-      />
+          data={state.photos}
+          style={{ paddingBottom: moderateVerticalScale(80) }}
+          numColumns={3}
 
+          renderItem={(element, index) => {
+            return (
+              <>
+
+                <Image
+                  key={index}
+                  style={styles.imagelist}
+
+                  source={{ uri: element.item.node.image.uri }}
+                />
+              </>
+            )
+          }}
+        />
+
+      </ScrollView>
 
     </WrapperContainer>
   )
@@ -78,4 +109,3 @@ const AddScreen = () => {
 
 export default AddScreen
 
-const styles = StyleSheet.create({})

@@ -24,7 +24,9 @@ export default {
     notify4:'https://simg.nicepng.com/png/small/182-1829287_cammy-lin-ux-designer-circle-picture-profile-girl.png',
     edit_icon:require ('../assets/images/ic_edit.png'),
     profile_edit_image: require('../assets/images/profileedit_icon.png'),
-    ic_cross: require('../assets/images/ic_cross.png')
+    ic_cross: require('../assets/images/ic_cross.png'),
+    photo_camera: require('../assets/images/photo_camera.png'),
+    ic_down:require('../assets/images/ic_down.png'),
     
 
 }
