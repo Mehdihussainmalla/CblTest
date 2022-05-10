@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, Alert } from 'react-native';
-import { moderateVerticalScale } from 'react-native-size-matters';
+import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/ButtonComp';
 import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/TextInputComponent';
@@ -13,21 +13,22 @@ import ImagePicker from 'react-native-image-crop-picker';
 import { height, width } from '../../styles/responsiveSize';
 
 
+
 const AddInfo = ({ route }) => {
   const image = route?.params?.image;
-  // console.log("passing the params",image)
+  console.log("passing the params", image)
 
   const [state, setState] = useState({
     description: '',
     post: [],
     location: '',
-    imageType: null,
+
+
   })
-  const { description, post, location, imageType } = state;
-  console.log("check post", post)
+
+  const { description, post, location, } = state;
 
   const updateState = data => setState(state => ({ ...state, ...data }));
-  console.log("image check", image);
 
 
 
@@ -37,7 +38,7 @@ const AddInfo = ({ route }) => {
       height: 400,
       cropping: true,
     }).then(image => {
-      console.log(image);
+      console.log("here is camera click", image);
     });
   }
 
@@ -48,15 +49,13 @@ const AddInfo = ({ route }) => {
       height: 400,
       cropping: true,
     }).then(res => {
-      updateState({post:post.concat(res.path) || res.sourceURL});
-      // console.log("resssssss",res)
-      console.log("post", post);
+      updateState({ post: post.concat(res.path) || res.sourceURL });
+      console.log("resssssss",res)
+     
     });
   }
 
   const launchCamera = () => {
-
-
     Alert.alert(
       "Upload Image",
       "Choose an option",
@@ -76,41 +75,58 @@ const AddInfo = ({ route }) => {
     );
   }
 
-  const cancelImage = index => {
-    console.log("index", index)
-    console.log("post for update", post)
+  const cancelImage = (index) => {
+    console.log("indexxxxxxx>>>>", index)
+    let newArray = [...post];
 
-    let newArray = [...state];
-    newArray.splice(index, 1)
-    updateState({
-      position: newArray,
-    })
+    newArray.splice(index, 1);
+
+    updateState({post: newArray});
+    
+
+
   }
   return (
     <WrapperContainer>
       <View style={{ flex: 1 }}>
-        
-          <Header isBackIcon={true}
-            title={strings.ADD_INFO} />
-      <ScrollView style={{ height: height }} bounces={false}>
+
+        <Header isBackIcon={true}
+          title={strings.ADD_INFO} />
+        <ScrollView style={{ height: height }} bounces={false}>
           <View style={styles.container}>
 
-                <View style={styles.istimagestyle}>
-                  <Image style={styles.istimagestyle}
-                    source={image} />
-                </View>
-                
-                {post?post.map((element, index) => {
-                  console.log("element isssss",element)
-                        return (
-                        <View style={styles.uploadview}>
-                            <Image source={{uri: element}} style={styles.istimagestylesss} />
-                        </View>
-                        )
-                    }) : null
-                    }
+            <View style={styles.istimagestyle}>
+              <Image style={styles.imagestyle}
+                source={image} />
+            </View>
 
-            
+            {post ? post.map((element, index) => {
+              // console.log("element isssss", element)
+              return (
+                <View style={styles.uploadview}>
+                  <Image source={{ uri: element }} style={styles.imagestyle} />
+                  <View style={{ position: 'absolute', right: -10, top: -5 }}>
+                    <TouchableOpacity onPress={cancelImage}>
+                      <Image
+
+                        style={styles.crosssimage}
+                        source={imagePath.ic_cross} />
+                    </TouchableOpacity>
+                  </View>
+
+                </View>
+
+
+
+              )
+
+            })
+
+
+              : null
+            }
+
+
 
             <TouchableOpacity onPress={launchCamera}
               style={styles.sndimagestyle}>
@@ -125,21 +141,23 @@ const AddInfo = ({ route }) => {
             <TextInputComponent
               placeholder={strings.ADD_DESC}
               value={description}
-              onChangeText={(description)=>updateState({description})}
+              onChangeText={(description) => updateState({ description })}
               input={{ height: moderateVerticalScale(90), }} />
           </View>
 
 
           <View style={styles.addlocstyle}>
             <TextInputComponent
-            value={location}
-            onChangeText={(location)=>updateState({location})}
+              value={location}
+              onChangeText={(location) => updateState({ location })}
               placeholder={strings.ADD_LOCATION} />
           </View>
 
         </ScrollView>
       </View>
-      <ButtonComp ButtonText='Post' />
+      <ButtonComp
+
+        ButtonText={strings.POST} />
     </WrapperContainer>
   );
 };

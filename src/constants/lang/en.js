@@ -46,7 +46,8 @@ SELECT_PHOTO:'Select photo',
 PROFILE:'Profile',
 ADD_INFO:'Add Info',
 ADD_DESC:'Write description here...',
-ADD_LOCATION:'Add Location'
+ADD_LOCATION:'Add Location',
+POST:'Post'
 
 
 

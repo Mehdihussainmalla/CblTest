@@ -6,42 +6,33 @@ import colors from "../../styles/colors";
 import { height, moderateScaleVertical, width } from "../../styles/responsiveSize";
 export const styles = StyleSheet.create({
     container: {
-        //   backgroundColor:'red',
-        marginTop: moderateScale(10),
-        marginLeft: moderateVerticalScale(24),
-        marginRight: moderateVerticalScale(23),
         flexDirection: 'row',
         flexWrap: 'wrap',
-
-        height: height / 5
     },
     istimagestyle: {
-        backgroundColor: colors.matterhorn,
-        width: width / 5,
-        height: height / 12,
-        borderRadius: moderateScale(8),
-        justifyContent: 'center',
+        marginLeft: moderateScale(24),
+        marginTop: moderateScale(16)
     },
 
     sndimagestyle: {
         backgroundColor: colors.matterhorn,
-        width: width / 5,
-        height: height / 12,
+        height: width / 4,
+        width: width / 4,
         borderRadius: moderateScale(8),
-        // marginLeft: moderateVerticalScale(),
-        // marginRight:moderateScale(24),
+        marginLeft: moderateScale(24),
+        marginTop: moderateScale(16),
         justifyContent: 'center',
-        marginTop:16
+        alignItems: 'center'
 
     },
     plusimage: {
 
         alignSelf: 'center',
-        // marginVertical:moderateScaleVertical(20)
+
     },
 
     inputview: {
-        // backgroundColor:'red',
+
         marginTop: moderateScale(16),
         marginLeft: moderateScaleVertical(24),
         marginRight: moderateScaleVertical(23),
@@ -55,16 +46,24 @@ export const styles = StyleSheet.create({
 
     uploadview:
     {
-        width: width / 5,
-        height: height / 12,
-        marginRight: moderateScaleVertical(20)
-
+        marginLeft: moderateScale(24),
+        marginTop: moderateScale(16),
+        borderRadius: moderateScale(8)
     },
     istimagestylesss: {
         width: width / 5,
-        borderRadius:moderateScaleVertical(8),
+        borderRadius: moderateScaleVertical(8),
         height: height / 12,
-        marginHorizontal:moderateScaleVertical(16)
-    }
+        marginHorizontal: moderateScaleVertical(16)
+    },
+    imagestyle: {
+        height: width / 4,
+        width: width / 4,
+        borderRadius: moderateScale(8)
+    },
+    // crosssimage:{
+    //     height: moderateScale(width / 18),
+    //     width: moderateScale(width / 18),
+    //   }
 
 });
