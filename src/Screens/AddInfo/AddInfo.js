@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, Alert, FlatList } from 'react-native';
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/ButtonComp';
 import Header from '../../Components/Header';
@@ -34,7 +34,7 @@ const AddInfo = ({ navigation, route }) => {
 
 
 
-  const [selectedPhoto, setSelectedPhoto]=useState(image);
+  const [selectedPhoto, setSelectedPhoto] = useState(image);
 
   const cameraClick = () => {
     ImagePicker.openCamera({
@@ -63,8 +63,8 @@ const AddInfo = ({ navigation, route }) => {
 
   // }
 
-  const deleteImage =()=>{
-    
+  const deleteImage = () => {
+
     setSelectedPhoto(null);
   }
 
@@ -101,6 +101,7 @@ const AddInfo = ({ navigation, route }) => {
   }
 
   const cancelImage = (index) => {
+
     console.log("indexxxxxxx>>>>", index)
     let newArray = [...post];
 
@@ -118,24 +119,25 @@ const AddInfo = ({ navigation, route }) => {
         <ScrollView style={{ height: height }}>
           <View style={styles.container}>
 
-          {selectedPhoto?  <View style={styles.istimagestyle}>
+            {/* {selectedPhoto ? <View style={styles.istimagestyle}>
               <Image style={styles.imagestyle}
                 source={image}
-                />
-                <View style={{ position: 'absolute', right: -10, top: -7 }}>
-                  <TouchableOpacity onPress={deleteImage}>
-                  <Image source={imagePath.ic_cross}/>
-                  </TouchableOpacity>
-                </View>
-            </View>:null}
+              />
+              <View style={{ position: 'absolute', right: -10, top: -7 }}>
+                <TouchableOpacity onPress={deleteImage}>
+                  <Image source={imagePath.ic_cross} />
+                </TouchableOpacity>
+              </View>
+            </View> : null} */}
 
-            {post ? post.map((element, index) => {
-              // console.log("element isssss", element)
+            {/* {post ? post.map((element, index) => {
+              console.log("element isssss", element)
+              console.log("element isssss", index)
               return (
                 <View style={styles.uploadview}>
                   <Image source={{ uri: element }} style={styles.imagestyle} />
                   <View style={{ position: 'absolute', right: -10, top: -7 }}>
-                    <TouchableOpacity onPress={cancelImage}>
+                    <TouchableOpacity onPress={()=>{cancelImage(index)}}>
                       <Image
 
                         style={styles.crosssimage}
@@ -151,12 +153,54 @@ const AddInfo = ({ navigation, route }) => {
 
 
               : null
-            }
+            } */}
 
-            <TouchableOpacity onPress={launchCamera}
-              style={styles.sndimagestyle}>
-              <Image style={styles.plusimage} source={imagePath.ic_plus} />
-            </TouchableOpacity>
+            <FlatList
+              horizontal
+              data={post}
+              renderItem={({ index, item }) => {
+                console.log("element isssss", item)
+                console.log("index isssss", index)
+                return (
+                  <View style={styles.uploadview}>
+                    <Image source={{ uri: item }} style={styles.imagestyle} />
+                    <View style={{ position: 'absolute', right: -10, top: -7 }}>
+                      <TouchableOpacity onPress={() => { cancelImage(index) }}>
+                        <Image
+
+                          style={styles.crosssimage}
+                          source={imagePath.ic_cross} />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                )
+
+              }}
+              ListHeaderComponent={() => (
+                selectedPhoto ? (
+                  <View style={styles.istimagestyle} >
+                    <Image style={styles.imagestyle}
+                      source={image}
+                    />
+                    <View style={{ position: 'absolute', right: -10, top: -7 }}>
+                      <TouchableOpacity onPress={deleteImage}>
+                        <Image source={imagePath.ic_cross} />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                ) : null
+              )}
+              ListFooterComponent={() => (
+                <View>
+                  <TouchableOpacity onPress={launchCamera}
+                    style={styles.sndimagestyle}>
+                    <Image style={styles.plusimage} source={imagePath.ic_plus} />
+                  </TouchableOpacity>
+                </View>
+              )}
+            />
+
+
 
           </View>
 
