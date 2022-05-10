@@ -30,6 +30,8 @@ const AddScreen = ({ navigation }) => {
     photos: '',
   });
 
+
+
   const androidPermission = async () => {
 
     const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;

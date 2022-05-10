@@ -34,6 +34,8 @@ const AddInfo = ({ navigation, route }) => {
 
 
 
+  const [selectedPhoto, setSelectedPhoto]=useState(image);
+
   const cameraClick = () => {
     ImagePicker.openCamera({
       width: 300,
@@ -61,9 +63,9 @@ const AddInfo = ({ navigation, route }) => {
 
   // }
 
-  const deleteImage =(index)=>{
+  const deleteImage =()=>{
     
-    alert("heyy", index)
+    setSelectedPhoto(null);
   }
 
   const galleryClick = () => {
@@ -116,7 +118,7 @@ const AddInfo = ({ navigation, route }) => {
         <ScrollView style={{ height: height }}>
           <View style={styles.container}>
 
-            <View style={styles.istimagestyle}>
+          {selectedPhoto?  <View style={styles.istimagestyle}>
               <Image style={styles.imagestyle}
                 source={image}
                 />
@@ -125,7 +127,7 @@ const AddInfo = ({ navigation, route }) => {
                   <Image source={imagePath.ic_cross}/>
                   </TouchableOpacity>
                 </View>
-            </View>
+            </View>:null}
 
             {post ? post.map((element, index) => {
               // console.log("element isssss", element)
