@@ -56,9 +56,11 @@ const EditProfileScreen = () => {
             email: userData?.email,
             phone: userData?.phone,
             image: userData?.image,
-        })
-        setCountryCode(userData?.phone_code)
-        setCountryFlag(userData?.country_code)
+
+        }
+        )
+          setCountryCode(userData?.phone_code)
+          setCountryFlag(userData?.country_code)
     }, [])
 
 
@@ -127,21 +129,21 @@ const EditProfileScreen = () => {
                     <View style={styles.inputstyle}>
                         <View style={{ flex: 0.5 }}>
                             <TextInputComponent
-                            value={first_name}
-                             placeholder={strings.FIRST_NAME}
+                                value={first_name}
+                                placeholder={strings.FIRST_NAME}
                                 onChangeText={event => updateState({ first_name: event })} />
                         </View>
                         <View style={styles.lastnamestyle}>
-                            <TextInputComponent 
-                            last_name={last_name}
-                            placeholder={strings.LAST_NAME}
-                            onChangeText={event => updateState({ last_name: event })} />
+                            <TextInputComponent
+                                value={last_name}
+                                placeholder={strings.LAST_NAME}
+                                onChangeText={event => updateState({ last_name: event })} />
                         </View>
                     </View>
                     <View style={styles.emailstyle}>
-                        <TextInputComponent 
-                        value={email}
-                         placeholder={strings.EMAIL}
+                        <TextInputComponent
+                            value={email}
+                            placeholder={strings.EMAIL}
                             onChangeText={event => updateState({ email: event })} />
                     </View>
 
@@ -157,9 +159,9 @@ const EditProfileScreen = () => {
                             />
                         </View>
                         <View style={{ flex: 0.6 }}>
-                            <TextInputComponent 
-                            value={phone}
-                             placeholder={strings.PHONE_NUMBER}
+                            <TextInputComponent
+                                value={phone}
+                                placeholder={strings.PHONE_NUMBER}
                                 onChangeText={event => updateState({ phone: event })} />
                         </View>
                     </View>

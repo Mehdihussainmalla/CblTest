@@ -88,7 +88,7 @@ const AddScreen = ({ navigation }) => {
     });
   }
   // const openAlbum = ()=>{
-  //   CameraRoll.getAlbums(params)
+  //   CameraRoll.getAlbums()
   // }
   const launchCamera =()=>{
   
@@ -146,9 +146,9 @@ const AddScreen = ({ navigation }) => {
             console.log("indx of elements :", indx)
             if (indx == 0) {
               return (
-                <TouchableOpacity >
-               {/* onPress={()=>navigation.navigate(navigationStrings.ADD_INFO, 
-                {image:element.item.node.image})}> */}
+                <TouchableOpacity 
+               onPress={()=>navigation.navigate(navigationStrings.ADD_INFO, 
+                {image:element.item.node.image})}>
                   <Image
                     key={index}
                     style={styles.firstImg}
