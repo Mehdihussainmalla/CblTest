@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API } from "../../config/urls";
+import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API, POST_SEND } from "../../config/urls";
 import types from '../types'
 import store from "../store";
 import { apiPost, setUserData } from "../../utils/utils";
@@ -65,4 +65,10 @@ export function editProfile(data) {
                 reject("rejected", error);
             });
     });
+}
+
+export function postSend (data){
+    console.log("data from post send",data)
+    return apiPost(POST_SEND,data)
+   
 }

@@ -11,10 +11,12 @@ import strings from '../../constants/lang';
 import { styles } from './style';
 import ImagePicker from 'react-native-image-crop-picker';
 import { height, width } from '../../styles/responsiveSize';
+import actions from '../../redux/actions';
+import navigationStrings from '../../navigation/navigationStrings';
 
 
 
-const AddInfo = ({ route }) => {
+const AddInfo = ({ navigation, route }) => {
   const image = route?.params?.image;
   console.log("passing the params", image)
 
@@ -41,7 +43,28 @@ const AddInfo = ({ route }) => {
       console.log("here is camera click", image);
     });
   }
+  // const onPost = async () => {
 
+  //   let apiData = {
+  //     description: description,
+  //     location: location,
+  //   }
+  //   try {
+  //     const res = await actions.postSend(apiData);
+  //     console.log("ressssponseeee", res)
+  //     navigation.navigate(navigationStrings.HOME)
+
+  //   } catch (error) {
+  //     console.log("error occurred", error)
+
+  //   }
+
+  // }
+
+  const deleteImage =(index)=>{
+    
+    alert("heyy", index)
+  }
 
   const galleryClick = () => {
     ImagePicker.openPicker({
@@ -50,8 +73,8 @@ const AddInfo = ({ route }) => {
       cropping: true,
     }).then(res => {
       updateState({ post: post.concat(res.path) || res.sourceURL });
-      console.log("resssssss",res)
-     
+      console.log("resssssss", res)
+
     });
   }
 
@@ -81,9 +104,7 @@ const AddInfo = ({ route }) => {
 
     newArray.splice(index, 1);
 
-    updateState({post: newArray});
-    
-
+    updateState({ post: newArray });
 
   }
   return (
@@ -92,12 +113,18 @@ const AddInfo = ({ route }) => {
 
         <Header isBackIcon={true}
           title={strings.ADD_INFO} />
-        <ScrollView style={{ height: height }} bounces={false}>
+        <ScrollView style={{ height: height }}>
           <View style={styles.container}>
 
             <View style={styles.istimagestyle}>
               <Image style={styles.imagestyle}
-                source={image} />
+                source={image}
+                />
+                <View style={{ position: 'absolute', right: -10, top: -7 }}>
+                  <TouchableOpacity onPress={deleteImage}>
+                  <Image source={imagePath.ic_cross}/>
+                  </TouchableOpacity>
+                </View>
             </View>
 
             {post ? post.map((element, index) => {
@@ -105,7 +132,7 @@ const AddInfo = ({ route }) => {
               return (
                 <View style={styles.uploadview}>
                   <Image source={{ uri: element }} style={styles.imagestyle} />
-                  <View style={{ position: 'absolute', right: -10, top: -5 }}>
+                  <View style={{ position: 'absolute', right: -10, top: -7 }}>
                     <TouchableOpacity onPress={cancelImage}>
                       <Image
 
@@ -116,8 +143,6 @@ const AddInfo = ({ route }) => {
 
                 </View>
 
-
-
               )
 
             })
@@ -126,16 +151,12 @@ const AddInfo = ({ route }) => {
               : null
             }
 
-
-
             <TouchableOpacity onPress={launchCamera}
               style={styles.sndimagestyle}>
               <Image style={styles.plusimage} source={imagePath.ic_plus} />
             </TouchableOpacity>
 
           </View>
-
-
 
           <View style={styles.inputview} >
             <TextInputComponent
@@ -156,7 +177,7 @@ const AddInfo = ({ route }) => {
         </ScrollView>
       </View>
       <ButtonComp
-
+        // onPress={onPost}
         ButtonText={strings.POST} />
     </WrapperContainer>
   );
