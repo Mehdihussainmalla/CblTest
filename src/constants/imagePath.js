@@ -27,6 +27,7 @@ export default {
     ic_cross: require('../assets/images/ic_cross.png'),
     photo_camera: require('../assets/images/photo_camera.png'),
     ic_down:require('../assets/images/ic_down.png'),
+    ic_plus: require('../assets/images/ic_plus.png')
     
 
 }

@@ -12,6 +12,7 @@ const TextInputComponent = ({
     placeholder = '',
     // keyboardType = '',
     onChangeText,
+    input,
     value
    
 }) => {
@@ -22,7 +23,7 @@ const TextInputComponent = ({
                 placeholderTextColor={colors.white}
                 placeholder={placeholder}
                 // keyboardType={keyboardType}
-                style={styles.input}
+                style={{...styles.input, ...input}}
                 value={value}
 
 
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:moderateScale(16),
         borderRadius: verticalScale(5),
         // paddingLeft: moderateScale(8),
-        paddingVertical: verticalScale(10),
+        // paddingVertical: verticalScale(10),
         color:colors.white,
         fontFamily:fontFamily.BarlowRegular
 

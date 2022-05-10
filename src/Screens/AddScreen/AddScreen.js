@@ -20,6 +20,7 @@ import { styles } from './styles';
 import { moderateVerticalScale } from 'react-native-size-matters';
 import ImagePicker from 'react-native-image-crop-picker';
 import strings from '../../constants/lang';
+import navigationStrings from '../../navigation/navigationStrings';
 // import { openGallery } from '../../utils/imagePickerFunction';
 
 
@@ -145,7 +146,9 @@ const AddScreen = ({ navigation }) => {
             console.log("indx of elements :", indx)
             if (indx == 0) {
               return (
-                <TouchableOpacity>
+                <TouchableOpacity >
+               {/* onPress={()=>navigation.navigate(navigationStrings.ADD_INFO, 
+                {image:element.item.node.image})}> */}
                   <Image
                     key={index}
                     style={styles.firstImg}
@@ -158,19 +161,20 @@ const AddScreen = ({ navigation }) => {
               )
             } else {
               return (
-                <View>
+                <TouchableOpacity  onPress={()=>navigation.navigate(navigationStrings.ADD_INFO, 
+                {image:element.item.node.image})}>
                   <Image
                     key={index}
                     style={styles.imagelist}
 
                     source={{ uri: element.item.node.image.uri }} />
-                </View>
+                </TouchableOpacity>
               )
             }
           }}
 
         />
-        <TouchableOpacity
+        <TouchableOpacity 
           style={styles.camerastyle}
           onPress={launchCamera}
           activeOpacity={0.8}>
