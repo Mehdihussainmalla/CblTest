@@ -9,26 +9,27 @@ import { Logout } from '../../redux/actions/auth';
 import strings from '../../constants/lang';
 import navigationStrings from '../../navigation/navigationStrings';
 
-const Profile = ({navigation}) => {
+const Profile = ({ navigation }) => {
 
   const signOut = async () => {
     try {
-        await GoogleSignin.signOut();
-        Logout();
+      await GoogleSignin.signOut();
+      Logout();
     } catch (error) {
-        console.log(error)
+      console.log(error)
 
     }
-}
+  }
   return (
     <WrapperContainer>
       <Header
-        title='Profile'
-        // isBackIcon={false}
+        title={strings.PROFILE}
+      // isBackIcon={false}
       />
 
-      <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.EDIT_PROFILE_SCREEN)} 
-      activeOpacity={0.7} style={styles.container}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate(navigationStrings.EDIT_PROFILE_SCREEN)}
+        activeOpacity={0.7} style={styles.container}>
         <View style={styles.profileimage}>
           <Image style={{ marginTop: 5 }} source={imagePath.profile_icon} />
         </View>
@@ -36,8 +37,8 @@ const Profile = ({navigation}) => {
       </TouchableOpacity>
 
 
-      <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.CHANGE_PASSWORD)}
-       activeOpacity={0.7} style={styles.container}>
+      <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.CHANGE_PASSWORD)}
+        activeOpacity={0.7} style={styles.container}>
         <View style={styles.profileimage}>
           <Image style={{ marginTop: 5 }} source={imagePath.ic_key} />
         </View>

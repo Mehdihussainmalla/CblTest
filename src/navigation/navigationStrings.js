@@ -14,5 +14,6 @@ export default {
     EDIT_PROFILE_SCREEN:'Edit profile screen',
     CHANGE_PASSWORD:'Change Password',
     POST_ADD_SCREEN:'Post Add Screen',
-    POST_DETAIL:'Post Detail'
+    POST_DETAIL:'Post Detail',
+    ADD_INFO :'Add Info'
 }

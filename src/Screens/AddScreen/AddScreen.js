@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
@@ -8,6 +7,7 @@ import {
   FlatList,
   Image,
   ScrollView,
+  Alert
 
 }
   from 'react-native'
@@ -19,10 +19,11 @@ import imagePath from '../../constants/imagePath';
 import { styles } from './styles';
 import { moderateVerticalScale } from 'react-native-size-matters';
 import ImagePicker from 'react-native-image-crop-picker';
+import strings from '../../constants/lang';
 // import { openGallery } from '../../utils/imagePickerFunction';
 
 
-const AddScreen = () => {
+const AddScreen = ({ navigation }) => {
 
   const [state, setState] = useState({
     photos: '',
@@ -53,7 +54,7 @@ const AddScreen = () => {
 
       .then(res => {
         setState({ photos: res.edges });
-        console.log("elemnts areeeeeeee", element)
+        console.log("response is", res)
 
       })
       .catch((error) => {
@@ -66,7 +67,7 @@ const AddScreen = () => {
   }, [])
   console.log("check add media ", addMedia)
 
-  const cameraClick =() => {
+  const cameraClick = () => {
     ImagePicker.openCamera({
       width: 300,
       height: 400,
@@ -74,30 +75,51 @@ const AddScreen = () => {
     }).then(image => {
       console.log(image);
     });
-    // try {
-    //   const res = await openGallery();
-    //   console.log("image res", res);
-    //   setSelectPhotos(selectPhotos.concat(res.path))
-    // } catch (error) {
-    //   console.log("error raised", error);
-    // }
-
   }
 
+  const galleryClick = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+    });
+  }
   // const openAlbum = ()=>{
   //   CameraRoll.getAlbums(params)
   // }
-
+  const launchCamera =()=>{
+  
+ 
+    Alert.alert(
+      "Upload Image",
+      "Choose an option",
+    [
+      {
+        text: "camera",
+        onPress: cameraClick,
+        
+      },
+      {
+        text: "Gallery",
+        onPress: galleryClick,
+        
+      },
+      { text: "Cancel", onPress: () => console.log("OK Pressed") ,style: "cancel"}
+    ]
+  );
+  }
 
 
   return (
     <WrapperContainer>
-      <Header title={'Select photo'} />
+      <Header title={strings.SELECT_PHOTO} />
       {/* <ScrollView> */}
       <View style={styles.container}>
         <View style={{ flex: 0.5 }}>
           <Text style={styles.gallerytext} >
-            Gallery</Text>
+            {strings.GALLERY}</Text>
         </View>
 
         <TouchableOpacity
@@ -106,55 +128,54 @@ const AddScreen = () => {
           style={{ flex: 0.28, flexDirection: 'row' }}>
 
           <Text style={styles.recenttext} >
-            Recents
+            {strings.RECENTS}
           </Text>
           <Image style={styles.downicon} source={imagePath.ic_down} />
         </TouchableOpacity>
       </View>
-      <View style={{flex:1}} >
-      <FlatList
-        data={state.photos}
-        style={{ paddingBottom: moderateVerticalScale(80) }}
-        numColumns={3}
-        renderItem={(element, index) => {
-          // console.log("elements are", element)
-          // console.log(index,"indessss")
-          let indx = element.index
-          console.log(indx, "indx")
-          if (indx == 0) {
-            return (
-              <View>
-                <Image
-                  key={index}
-                  style={styles.firstImg}
+      <View style={{ flex: 1 }} >
+        <FlatList
+          data={state.photos}
+          style={{ paddingBottom: moderateVerticalScale(80) }}
+          numColumns={3}
+          renderItem={(element, index) => {
+            // console.log("elements are", element)
+            // console.log(index,"indessss")
+            let indx = element.index
+            console.log("indx of elements :", indx)
+            if (indx == 0) {
+              return (
+                <TouchableOpacity>
+                  <Image
+                    key={index}
+                    style={styles.firstImg}
 
-                  source={{ uri: element.item.node.image.uri }}
+                    source={{ uri: element.item.node.image.uri }}
 
-                />
-              </View>
-            )
-          } else {
-            return (
-              <View>
-                <Image
-                  key={index}
-                  style={styles.imagelist}
 
-                  source={{ uri: element.item.node.image.uri }}
+                  />
+                </TouchableOpacity>
+              )
+            } else {
+              return (
+                <View>
+                  <Image
+                    key={index}
+                    style={styles.imagelist}
 
-                />
-              </View>
-            )
-          }
-        }}
+                    source={{ uri: element.item.node.image.uri }} />
+                </View>
+              )
+            }
+          }}
 
-      />
-      <TouchableOpacity
-      style={styles.camerastyle}
-        onPress={cameraClick}
-        activeOpacity={0.8}>
-        <Image style={{height:60, width:60}} source={imagePath.photo_camera} />
-      </TouchableOpacity>
+        />
+        <TouchableOpacity
+          style={styles.camerastyle}
+          onPress={launchCamera}
+          activeOpacity={0.8}>
+          <Image style={{ height: 60, width: 60 }} source={imagePath.photo_camera} />
+        </TouchableOpacity>
       </View>
 
       {/* </ScrollView> */}

@@ -39,7 +39,12 @@ SUGGESTIONS:'Suggestions',
 MANUALLY:'Enter location manually',
 NOTIFICATION:'notification',
 View_Map:'View Map',
-Get_STARTED:'GET STARTED'
+Get_STARTED:'GET STARTED',
+RECENTS:' Recents',
+GALLERY:'Gallery',
+SELECT_PHOTO:'Select photo',
+PROFILE:'Profile',
+
 
 
 
