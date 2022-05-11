@@ -34,11 +34,11 @@ const AddInfo = ({ navigation, route }) => {
 
 
 
-  const [selectedPhoto, setSelectedPhoto] = useState(image);
-  const deleteImage = () => {
-    setSelectedPhoto(null);
+  // const [selectedPhoto, setSelectedPhoto] = useState(image);
+  // const deleteImage = () => {
+  //   setSelectedPhoto(null);
 
-  }
+  // }
 
   const cameraClick = () => {
     ImagePicker.openCamera({
@@ -63,6 +63,8 @@ const AddInfo = ({ navigation, route }) => {
   }
  //.................click image via camera & gallery.........//
   const launchCamera = () => {
+   
+
     Alert.alert(
       "Upload Image",
       "Choose an option",

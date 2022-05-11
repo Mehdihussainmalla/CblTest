@@ -30,9 +30,11 @@ const AddScreen = ({ navigation }) => {
   const [state, setState] = useState({
     photos: '',
     imageSelect: '',
+    imageType:'image.jpeg',
+    uploadImage:''
   });
 
-  const { photos, imageSelect } = state;
+  const { photos, imageSelect , uploadImage,imageType} = state;
   const updateState = data => setState(state => ({ ...state, ...data }))
 
   const androidPermission = async () => {
@@ -59,7 +61,7 @@ const AddScreen = ({ navigation }) => {
     })
 
       .then(res => {
-        
+
         updateState({ photos: res.edges })
         console.log("response is", res)
         updateState({ imageSelect: res.edges[0].node.image.uri })
@@ -117,16 +119,19 @@ const AddScreen = ({ navigation }) => {
       ]
     );
   }
-     const addImage =  () => {
-       const image=imageSelect;
-       console.log("image", image)
-       actions.imgUpload(image).then((res)=>{
-         console.log("check response for upload image",res);
-         alert("image added sucessfully")
-         navigation.navigate(navigationStrings.ADD_INFO,{image:imageSelect})
+  
+ 
 
-       })
-     }
+  const addImage = () => {
+    const image = imageSelect;
+    console.log("imagessssss", image)
+    actions.imgUpload(image).then((res) => {
+      console.log("check response for upload image", res);
+      alert("image added sucessfully")
+      navigation.navigate(navigationStrings.ADD_INFO, { image: imageSelect })
+
+    })
+  }
 
   const selectImage = (element) => {
     // console.log("check the element", element)
@@ -140,7 +145,7 @@ const AddScreen = ({ navigation }) => {
         <Header title={strings.SELECT_PHOTO} />
 
         <TouchableOpacity
-        onPress={addImage}
+          onPress={addImage}
           // onPress={() => navigation.navigate(navigationStrings.ADD_INFO, { image: imageSelect })}
           activeOpacity={0.5}
           style={styles.addview}>
@@ -204,7 +209,8 @@ const AddScreen = ({ navigation }) => {
           style={styles.camerastyle}
           onPress={launchCamera}
           activeOpacity={0.8}>
-          <Image style={{ height: 60, width: 60 }} source={imagePath.photo_camera} />
+          <Image style={styles.camerastylessss}
+            source={imagePath.photo_camera} />
         </TouchableOpacity>
       </View>
 

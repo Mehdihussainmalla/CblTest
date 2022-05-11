@@ -62,6 +62,10 @@ export const styles = StyleSheet.create({
         bottom: 0,
 
     },
+    camerastylessss  :{ 
+        height: moderateScaleVertical(65), 
+        width: moderateScaleVertical(60) 
+    },
     addview: {
         flex: 0.9,
         alignItems: 'flex-end',

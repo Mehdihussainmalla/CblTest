@@ -428,7 +428,7 @@ PODS:
     - React-Core
   - RNCAsyncStorage (1.17.4):
     - React-Core
-  - RNFBApp (14.9.2):
+  - RNFBApp (14.9.3):
     - Firebase/CoreOnly (= 8.15.0)
     - React-Core
   - RNGestureHandler (2.4.2):
@@ -705,7 +705,7 @@ SPEC CHECKSUMS:
   ReactCommon: 095366164a276d91ea704ce53cb03825c487a3f2
   ReactNativeLocalization: 076497d7ca70341c751cd3b3e7c86187332a182d
   RNCAsyncStorage: 9367a646dc24e3ab7b6874d79bc1bfd0832dce58
-  RNFBApp: 6f5c7b9931378efb467e08144959ff93172ac83b
+  RNFBApp: b6276fc67748c7174275cace56776f0228ae58b2
   RNGestureHandler: 61628a2c859172551aa2100d3e73d1e57878392f
   RNGoogleSignin: d7f8368b82d94f1dec964785d496387ca7f19092
   RNImageCropPicker: 44e2807bc410741f35d4c45b6586aedfe3da39d2
