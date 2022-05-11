@@ -7,7 +7,7 @@ import { height, moderateScaleVertical, width } from "../../styles/responsiveSiz
 export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        flexWrap: 'wrap',
+        // flexWrap: 'wrap',
     },
     istimagestyle: {
         marginLeft: moderateScale(24),
@@ -61,9 +61,10 @@ export const styles = StyleSheet.create({
         width: width / 4,
         borderRadius: moderateScale(8)
     },
-    // crosssimage:{
-    //     height: moderateScale(width / 18),
-    //     width: moderateScale(width / 18),
-    //   }
+    cancelbtn:
+    { position: 'absolute',
+     right: -10, 
+    top: -7 
+}
 
 });

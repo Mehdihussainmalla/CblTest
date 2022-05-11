@@ -35,6 +35,10 @@ const AddInfo = ({ navigation, route }) => {
 
 
   const [selectedPhoto, setSelectedPhoto] = useState(image);
+  const deleteImage = () => {
+    setSelectedPhoto(null);
+
+  }
 
   const cameraClick = () => {
     ImagePicker.openCamera({
@@ -63,10 +67,7 @@ const AddInfo = ({ navigation, route }) => {
 
   // }
 
-  const deleteImage = () => {
 
-    setSelectedPhoto(null);
-  }
 
   const galleryClick = () => {
     ImagePicker.openPicker({
@@ -75,7 +76,7 @@ const AddInfo = ({ navigation, route }) => {
       cropping: true,
     }).then(res => {
       updateState({ post: post.concat(res.path) || res.sourceURL });
-      console.log("resssssss", res)
+      console.log("image uploaded from gallery", res)
 
     });
   }
@@ -116,111 +117,78 @@ const AddInfo = ({ navigation, route }) => {
 
         <Header isBackIcon={true}
           title={strings.ADD_INFO} />
-        <ScrollView style={{ height: height }}>
-          <View style={styles.container}>
+        {/* <ScrollView style={{ height: height }}> */}
+        <View style={styles.container}>
 
-            {/* {selectedPhoto ? <View style={styles.istimagestyle}>
-              <Image style={styles.imagestyle}
-                source={image}
-              />
-              <View style={{ position: 'absolute', right: -10, top: -7 }}>
-                <TouchableOpacity onPress={deleteImage}>
-                  <Image source={imagePath.ic_cross} />
-                </TouchableOpacity>
-              </View>
-            </View> : null} */}
 
-            {/* {post ? post.map((element, index) => {
-              console.log("element isssss", element)
-              console.log("element isssss", index)
+          {post ? <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={post}
+            renderItem={({ index, item }) => {
+              console.log("element isssss", item)
+              console.log("index isssss", index)
               return (
                 <View style={styles.uploadview}>
-                  <Image source={{ uri: element }} style={styles.imagestyle} />
+                  <Image source={{ uri: item }} style={styles.imagestyle} />
                   <View style={{ position: 'absolute', right: -10, top: -7 }}>
-                    <TouchableOpacity onPress={()=>{cancelImage(index)}}>
+                    <TouchableOpacity onPress={() => { cancelImage(index) }}>
                       <Image
 
                         style={styles.crosssimage}
                         source={imagePath.ic_cross} />
                     </TouchableOpacity>
                   </View>
-
                 </View>
-
               )
 
-            })
-
-
-              : null
-            } */}
-
-            <FlatList
-              horizontal
-              data={post}
-              renderItem={({ index, item }) => {
-                console.log("element isssss", item)
-                console.log("index isssss", index)
-                return (
-                  <View style={styles.uploadview}>
-                    <Image source={{ uri: item }} style={styles.imagestyle} />
-                    <View style={{ position: 'absolute', right: -10, top: -7 }}>
-                      <TouchableOpacity onPress={() => { cancelImage(index) }}>
-                        <Image
-
-                          style={styles.crosssimage}
-                          source={imagePath.ic_cross} />
-                      </TouchableOpacity>
-                    </View>
+            }}
+            ListHeaderComponent={() => (
+              selectedPhoto ? (
+                <View style={styles.istimagestyle} >
+                  <Image style={styles.imagestyle}
+                    source={image}
+                  />
+                  <View style={{ position: 'absolute', right: -10, top: -7 }}>
+                    <TouchableOpacity onPress={deleteImage}>
+                      <Image source={imagePath.ic_cross} />
+                    </TouchableOpacity>
                   </View>
-                )
-
-              }}
-              ListHeaderComponent={() => (
-                selectedPhoto ? (
-                  <View style={styles.istimagestyle} >
-                    <Image style={styles.imagestyle}
-                      source={image}
-                    />
-                    <View style={{ position: 'absolute', right: -10, top: -7 }}>
-                      <TouchableOpacity onPress={deleteImage}>
-                        <Image source={imagePath.ic_cross} />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                ) : null
-              )}
-              ListFooterComponent={() => (
-                <View>
-                  <TouchableOpacity onPress={launchCamera}
-                    style={styles.sndimagestyle}>
-                    <Image style={styles.plusimage} source={imagePath.ic_plus} />
-                  </TouchableOpacity>
                 </View>
-              )}
-            />
+              ) : null
+            )}
+            ListFooterComponent={() => (
+              <View>
+                <TouchableOpacity onPress={launchCamera}
+                  style={styles.sndimagestyle}>
+                  <Image style={styles.plusimage}
+                    source={imagePath.ic_plus} />
+                </TouchableOpacity>
+              </View>
+            )}
+          /> : null}
 
 
 
-          </View>
+        </View>
 
-          <View style={styles.inputview} >
-            <TextInputComponent
-              placeholder={strings.ADD_DESC}
-              value={description}
-              onChangeText={(description) => updateState({ description })}
-              input={{ height: moderateVerticalScale(90), }} />
-          </View>
+        <View style={styles.inputview} >
+          <TextInputComponent
+            placeholder={strings.ADD_DESC}
+            value={description}
+            onChangeText={(description) => updateState({ description })}
+            input={{ height: moderateVerticalScale(90), }} />
+        </View>
 
 
-          <View style={styles.addlocstyle}>
-            <TextInputComponent
-              value={location}
-              onChangeText={(location) => updateState({ location })}
-              placeholder={strings.ADD_LOCATION} />
-          </View>
+        <View style={styles.addlocstyle}>
+          <TextInputComponent
+            value={location}
+            onChangeText={(location) => updateState({ location })}
+            placeholder={strings.ADD_LOCATION} />
+        </View>
 
-        </ScrollView>
+        {/* </ScrollView> */}
       </View>
       <ButtonComp
         // onPress={onPost}
