@@ -120,15 +120,13 @@ const AddScreen = ({ navigation }) => {
     );
   }
   
- 
-
   const addImage = () => {
     const image = imageSelect;
     console.log("imagessssss", image)
     actions.imgUpload(image).then((res) => {
       console.log("check response for upload image", res);
       alert("image added sucessfully")
-      navigation.navigate(navigationStrings.ADD_INFO, { image: imageSelect })
+      navigation.navigate(navigationStrings.ADD_INFO, { image: imageSelect})
 
     })
   }
@@ -195,9 +193,6 @@ const AddScreen = ({ navigation }) => {
                   style={styles.imagelist}
                   source={{ uri: element.item.node.image.uri }}
                 />
-
-
-
 
               </TouchableOpacity>
 
