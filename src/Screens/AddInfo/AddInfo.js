@@ -131,7 +131,8 @@ const AddInfo = ({ navigation, route }) => {
               return (
                 <View style={styles.uploadview}>
                   <Image source={{ uri: item }} style={styles.imagestyle} />
-                  <View style={{ position: 'absolute', right: -10, top: -7 }}>
+
+                  <View style={styles.cancelbtn}>
                     <TouchableOpacity onPress={() => { cancelImage(index) }}>
                       <Image
 
@@ -149,7 +150,7 @@ const AddInfo = ({ navigation, route }) => {
                   <Image style={styles.imagestyle}
                     source={image}
                   />
-                  <View style={{ position: 'absolute', right: -10, top: -7 }}>
+                  <View style={styles.cancelbtn}>
                     <TouchableOpacity onPress={deleteImage}>
                       <Image source={imagePath.ic_cross} />
                     </TouchableOpacity>

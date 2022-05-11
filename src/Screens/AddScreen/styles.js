@@ -32,8 +32,9 @@ export const styles = StyleSheet.create({
     width: width / 3 },
     
     firstImg:{
-        width:width,
-        height: moderateScale(250),
+        // width:width,
+        // height: moderateScale(250),
+         height: height/3, width: width, resizeMode: 'cover', justifyContent: "flex-end" 
     
     },
 

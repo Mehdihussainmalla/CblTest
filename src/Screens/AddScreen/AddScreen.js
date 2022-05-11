@@ -21,16 +21,18 @@ import { moderateVerticalScale } from 'react-native-size-matters';
 import ImagePicker from 'react-native-image-crop-picker';
 import strings from '../../constants/lang';
 import navigationStrings from '../../navigation/navigationStrings';
-// import { openGallery } from '../../utils/imagePickerFunction';
+
 
 
 const AddScreen = ({ navigation }) => {
 
   const [state, setState] = useState({
     photos: '',
+    imageSelect: '',
   });
 
-
+  const { photos, imageSelect } = state;
+  const updateState = data => setState(state => ({ ...state, ...data }))
 
   const androidPermission = async () => {
 
@@ -56,14 +58,17 @@ const AddScreen = ({ navigation }) => {
     })
 
       .then(res => {
-        setState({ photos: res.edges });
+        // setState({ photos: res.edges });
+        updateState({ photos: res.edges })
         console.log("response is", res)
+        updateState({ imageSelect: res.edges[0].node.image.uri })
 
       })
       .catch((error) => {
         console.log('error occurred at open gallery', error)
       });
   }
+  console.log("check selected image", imageSelect)
   useEffect(() => {
     addMedia();
 
@@ -92,91 +97,87 @@ const AddScreen = ({ navigation }) => {
   // const openAlbum = ()=>{
   //   CameraRoll.getAlbums()
   // }
-  const launchCamera =()=>{
-  
- 
+  const launchCamera = () => {
+
+
     Alert.alert(
       "Upload Image",
       "Choose an option",
-    [
-      {
-        text: "camera",
-        onPress: cameraClick,
-        
-      },
-      {
-        text: "Gallery",
-        onPress: galleryClick,
-        
-      },
-      { text: "Cancel", onPress: () => console.log("OK Pressed") ,style: "cancel"}
-    ]
-  );
+      [
+        {
+          text: "camera",
+          onPress: cameraClick,
+
+        },
+        {
+          text: "Gallery",
+          onPress: galleryClick,
+
+        },
+        { text: "Cancel", onPress: () => console.log("OK Pressed"), style: "cancel" }
+      ]
+    );
+  }
+  const selectImage = (element) => {
+    console.log("check the element", element)
+    updateState({ imageSelect: element.item.node.image.uri })
+
   }
 
 
   return (
     <WrapperContainer>
       <Header title={strings.SELECT_PHOTO} />
-      {/* <ScrollView> */}
-      <View style={styles.container}>
-        <View style={{ flex: 0.5 }}>
-          <Text style={styles.gallerytext} >
-            {strings.GALLERY}</Text>
+      <TouchableOpacity>
+        <Image
+        //  source={imagePath.AWARD}
+          style={styles.firstImg}
+        source={{imageSelect }}
+        />
+      </TouchableOpacity>
+
+      <View style={{ flex: 1 }} >
+        <View style={styles.container}>
+          <View style={{ flex: 0.5 }}>
+            <Text style={styles.gallerytext} >
+              {strings.GALLERY}</Text>
+          </View>
+
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={{ flex: 0.28, flexDirection: 'row' }}>
+
+            <Text style={styles.recenttext} >
+              {strings.RECENTS}
+            </Text>
+            <Image style={styles.downicon} source={imagePath.ic_down} />
+          </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          // onPress={openAlbum}
-          activeOpacity={0.5}
-          style={{ flex: 0.28, flexDirection: 'row' }}>
-
-          <Text style={styles.recenttext} >
-            {strings.RECENTS}
-          </Text>
-          <Image style={styles.downicon} source={imagePath.ic_down} />
-        </TouchableOpacity>
-      </View>
-      <View style={{ flex: 1 }} >
         <FlatList
           data={state.photos}
           style={{ paddingBottom: moderateVerticalScale(80) }}
           numColumns={3}
           renderItem={(element, index) => {
-            // console.log("elements are", element)
-            // console.log(index,"indessss")
-            let indx = element.index
-            console.log("indx of elements :", indx)
-            if (indx == 0) {
-              return (
-                <TouchableOpacity 
-               onPress={()=>navigation.navigate(navigationStrings.ADD_INFO, 
-                {image:element.item.node.image})}>
-                  <Image
-                    key={index}
-                    style={styles.firstImg}
+            return (
+              <TouchableOpacity onPress={() => selectImage(element)}>
 
-                    source={{ uri: element.item.node.image.uri }}
+                <Image
+                  key={index}
+                  style={styles.imagelist}
+                  source={{ uri: element.item.node.image.uri }}
+                />
 
 
-                  />
-                </TouchableOpacity>
-              )
-            } else {
-              return (
-                <TouchableOpacity  onPress={()=>navigation.navigate(navigationStrings.ADD_INFO, 
-                {image:element.item.node.image})}>
-                  <Image
-                    key={index}
-                    style={styles.imagelist}
 
-                    source={{ uri: element.item.node.image.uri }} />
-                </TouchableOpacity>
-              )
-            }
+
+              </TouchableOpacity>
+
+            )
           }}
 
         />
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.camerastyle}
           onPress={launchCamera}
           activeOpacity={0.8}>
