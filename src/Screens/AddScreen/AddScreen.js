@@ -21,6 +21,7 @@ import { moderateVerticalScale } from 'react-native-size-matters';
 import ImagePicker from 'react-native-image-crop-picker';
 import strings from '../../constants/lang';
 import navigationStrings from '../../navigation/navigationStrings';
+import actions from '../../redux/actions';
 
 
 
@@ -58,7 +59,7 @@ const AddScreen = ({ navigation }) => {
     })
 
       .then(res => {
-        // setState({ photos: res.edges });
+        
         updateState({ photos: res.edges })
         console.log("response is", res)
         updateState({ imageSelect: res.edges[0].node.image.uri })
@@ -116,33 +117,42 @@ const AddScreen = ({ navigation }) => {
       ]
     );
   }
+     const addImage =  () => {
+       const image=imageSelect;
+       console.log("image", image)
+       actions.imgUpload(image).then((res)=>{
+         console.log("check response for upload image",res);
+         alert("image added sucessfully")
+         navigation.navigate(navigationStrings.ADD_INFO,{image:imageSelect})
+
+       })
+     }
+
   const selectImage = (element) => {
     // console.log("check the element", element)
     updateState({ imageSelect: element.item.node.image.uri })
     console.log("element is ", element)
-    // navigation.navigate(navigationStrings.ADD_INFO,{image:imageSelect})
 
   }
-
-
   return (
     <WrapperContainer>
       <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-
         <Header title={strings.SELECT_PHOTO} />
 
         <TouchableOpacity
-          onPress={()=>navigation.navigate(navigationStrings.ADD_INFO,{image:imageSelect})}
+        onPress={addImage}
+          // onPress={() => navigation.navigate(navigationStrings.ADD_INFO, { image: imageSelect })}
           activeOpacity={0.5}
-          style={{ flex: 0.9, alignItems: 'flex-end', marginLeft: 70 }}>
-          <Image style={{ paddingLeft: 15, marginTop: 35, }}
-            source={imagePath.add_icon}
-          />
+          style={styles.addview}>
+
+          <Image style={styles.addbtnstyle}
+            source={imagePath.add_icon} />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity>
-        <Image
 
+
+      <TouchableOpacity style={styles.styleimage}>
+        <Image
           style={styles.firstImg}
           source={{ uri: imageSelect }}
         />

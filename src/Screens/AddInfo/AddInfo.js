@@ -22,7 +22,7 @@ const AddInfo = ({ navigation, route }) => {
 
   const [state, setState] = useState({
     description: '',
-    post: [],
+    post: [image],
     location: '',
 
 
@@ -49,26 +49,7 @@ const AddInfo = ({ navigation, route }) => {
       console.log("here is camera click", image);
     });
   }
-  // const onPost = async () => {
-
-  //   let apiData = {
-  //     description: description,
-  //     location: location,
-  //   }
-  //   try {
-  //     const res = await actions.postSend(apiData);
-  //     console.log("ressssponseeee", res)
-  //     navigation.navigate(navigationStrings.HOME)
-
-  //   } catch (error) {
-  //     console.log("error occurred", error)
-
-  //   }
-
-  // }
-
-
-
+ //...............add photo from gallery.............//
   const galleryClick = () => {
     ImagePicker.openPicker({
       width: 300,
@@ -80,7 +61,7 @@ const AddInfo = ({ navigation, route }) => {
 
     });
   }
-
+ //.................click image via camera & gallery.........//
   const launchCamera = () => {
     Alert.alert(
       "Upload Image",
@@ -100,10 +81,10 @@ const AddInfo = ({ navigation, route }) => {
       ]
     );
   }
-
+//.......................cancel image from the array ..........//
   const cancelImage = (index) => {
 
-    console.log("indexxxxxxx>>>>", index)
+    // console.log("indexxxxxxx>>>>", index)
     let newArray = [...post];
 
     newArray.splice(index, 1);
@@ -144,20 +125,20 @@ const AddInfo = ({ navigation, route }) => {
               )
 
             }}
-            ListHeaderComponent={() => (
-              selectedPhoto ? (
-                <View style={styles.istimagestyle} >
-                  <Image style={styles.imagestyle}
-                    source={{ uri: image }}
-                  />
-                  <View style={styles.cancelbtn}>
-                    <TouchableOpacity onPress={deleteImage}>
-                      <Image source={imagePath.ic_cross} />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ) : null
-            )}
+            // ListHeaderComponent={() => (
+            //   selectedPhoto ? (
+            //     <View style={styles.istimagestyle} >
+            //       <Image style={styles.imagestyle}
+            //         source={{ uri: image }}
+            //       />
+            //       <View style={styles.cancelbtn}>
+            //         <TouchableOpacity onPress={deleteImage}>
+            //           <Image source={imagePath.ic_cross} />
+            //         </TouchableOpacity>
+            //       </View>
+            //     </View>
+            //   ) : null
+            // )}
             ListFooterComponent={() => (
               <View>
                 <TouchableOpacity onPress={launchCamera}

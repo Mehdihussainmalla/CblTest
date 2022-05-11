@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API, POST_SEND } from "../../config/urls";
+import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API, POST_SEND, IMG_UPLOAD } from "../../config/urls";
 import types from '../types'
 import store from "../store";
 import { apiPost, setUserData } from "../../utils/utils";
@@ -67,8 +67,26 @@ export function editProfile(data) {
     });
 }
 
-export function postSend (data){
-    console.log("data from post send",data)
-    return apiPost(POST_SEND,data)
-   
-}
+export function imgUpload (data){
+
+
+    console.log(data,"the given data for img upload")
+    return new Promise ((resolve,reject)=>{
+        apiPost(IMG_UPLOAD,data).then((res)=>{
+            saveUserData(res.data)
+            resolve(res)
+        }). catch((error)=>{
+            reject(error,"rejected")
+        })
+    })
+    // console.log(data,"data for image upload")
+    // return new Promise((resolve, reject)=>{
+    // return apiPost(IMG_UPLOAD,data).then((res)=>{
+    //     saveUserData(res.data)
+    //     resolve(res)
+    // })
+    // .catch((error)=>{
+    //     console.log(error)
+    // })
+} 
+

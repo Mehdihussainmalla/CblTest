@@ -21,17 +21,17 @@ const userStatus = (state = initialState, action) => {
 
             };
         case types.LOGOUT:
-            removeData() .then((res) => {
+            removeData().then((res) => {
                 console.log('user status', res)
                 return { ...state.userData, userData: res }
-                }
+            }
             )
             return { ...state.userData, userData: undefined }
 
-            case types.NO_INTERNET: {
-                const internetConnection = action.payload.internetConnection
-                return { ...state, internetConnection }
-            }
+        case types.NO_INTERNET: {
+            const internetConnection = action.payload.internetConnection
+            return { ...state, internetConnection }
+        }
 
         default:
             return { ...state };
