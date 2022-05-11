@@ -148,7 +148,7 @@ const AddInfo = ({ navigation, route }) => {
               selectedPhoto ? (
                 <View style={styles.istimagestyle} >
                   <Image style={styles.imagestyle}
-                    source={image}
+                    source={{ uri: image }}
                   />
                   <View style={styles.cancelbtn}>
                     <TouchableOpacity onPress={deleteImage}>
@@ -191,8 +191,7 @@ const AddInfo = ({ navigation, route }) => {
 
         {/* </ScrollView> */}
       </View>
-      <ButtonComp
-        // onPress={onPost}
+      <ButtonComp btnStyle={{ marginBottom: moderateVerticalScale(5) }}
         ButtonText={strings.POST} />
     </WrapperContainer>
   );

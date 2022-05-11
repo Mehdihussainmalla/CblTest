@@ -68,7 +68,7 @@ const AddScreen = ({ navigation }) => {
         console.log('error occurred at open gallery', error)
       });
   }
-  console.log("check selected image", imageSelect)
+
   useEffect(() => {
     addMedia();
 
@@ -94,9 +94,7 @@ const AddScreen = ({ navigation }) => {
       console.log(image);
     });
   }
-  // const openAlbum = ()=>{
-  //   CameraRoll.getAlbums()
-  // }
+
   const launchCamera = () => {
 
 
@@ -119,20 +117,34 @@ const AddScreen = ({ navigation }) => {
     );
   }
   const selectImage = (element) => {
-    console.log("check the element", element)
+    // console.log("check the element", element)
     updateState({ imageSelect: element.item.node.image.uri })
+    console.log("element is ", element)
+    // navigation.navigate(navigationStrings.ADD_INFO,{image:imageSelect})
 
   }
 
 
   return (
     <WrapperContainer>
-      <Header title={strings.SELECT_PHOTO} />
+      <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+
+        <Header title={strings.SELECT_PHOTO} />
+
+        <TouchableOpacity
+          onPress={()=>navigation.navigate(navigationStrings.ADD_INFO,{image:imageSelect})}
+          activeOpacity={0.5}
+          style={{ flex: 0.9, alignItems: 'flex-end', marginLeft: 70 }}>
+          <Image style={{ paddingLeft: 15, marginTop: 35, }}
+            source={imagePath.add_icon}
+          />
+        </TouchableOpacity>
+      </View>
       <TouchableOpacity>
         <Image
-        //  source={imagePath.AWARD}
+
           style={styles.firstImg}
-        source={{imageSelect }}
+          source={{ uri: imageSelect }}
         />
       </TouchableOpacity>
 
@@ -150,7 +162,8 @@ const AddScreen = ({ navigation }) => {
             <Text style={styles.recenttext} >
               {strings.RECENTS}
             </Text>
-            <Image style={styles.downicon} source={imagePath.ic_down} />
+            <Image style={styles.downicon}
+              source={imagePath.ic_down} />
           </TouchableOpacity>
         </View>
 
