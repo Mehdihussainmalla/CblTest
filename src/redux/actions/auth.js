@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API, POST_SEND, IMG_UPLOAD } from "../../config/urls";
+import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API, POST_SEND, IMG_UPLOAD, POST_UPLOAD } from "../../config/urls";
 import types from '../types'
 import store from "../store";
 import { apiPost, setUserData } from "../../utils/utils";
@@ -83,17 +83,10 @@ export const imgUpload = (data,header ={} )=>{
     })
 
 }
-// export function imgUpload(data, header = {}) =>{
-//     console.log(data, "the given data for img upload")
-//     return new Promise((resolve, reject) => {
-//         apiPost(IMG_UPLOAD, data,header)
-//           .then((res) => {
-//             // saveUserData(res.data)
-//             resolve(res)
-//         }).catch((error) => {
-//             reject, error
-//         })
-//     });
 
-// }
+export function uploadPost (data) {
+    console.log("data check for upload post",data)
+    return apiPost(POST_UPLOAD, data)
+}
+
 

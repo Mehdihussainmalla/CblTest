@@ -23,15 +23,15 @@ const AddInfo = ({ navigation, route }) => {
   const [state, setState] = useState({
     description: '',
     post: [image],
-    location: '',
-
-
+    location: ''
   })
 
   const { description, post, location, } = state;
 
   const updateState = data => setState(state => ({ ...state, ...data }));
 
+  console.log("check data in array", post)
+  // console.log("check locartion>>>>", location)
 
 
   // const [selectedPhoto, setSelectedPhoto] = useState(image);
@@ -81,12 +81,8 @@ const AddInfo = ({ navigation, route }) => {
       height: 400,
       cropping: true,
     }).then(res => {
-      console.log("crfgdcvvfvgf",res)
+      console.log("crfgdcvvfvgf", res)
       addImage(res.path)
-
-      // updateState({ post: post.concat(res.path) || res.sourceURL });
-      // console.log("image uploaded from gallery", res)
-
     });
   }
   //.................click image via camera & gallery.........//
@@ -122,13 +118,35 @@ const AddInfo = ({ navigation, route }) => {
     updateState({ post: newArray });
 
   }
+
+  const uploadPost = () => {
+    let formData = new FormData();
+    formData.append('description', description);
+    formData.append('longitude', '2.0125');
+    formData.append('latitude', '2.0154');
+    formData.append('location_name', location);
+    formData.append('type', 'normal');
+    formData.append('images', {
+      uri: image,
+      name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+      type: 'image/jpeg'
+    })
+    console.log("check from data", formData)
+    // let header = { "Content-Type": "multipart/form-data" };
+    // actions.uploadPost(formData).then(formData,header).then((res)=>{
+    //   console.log("response after actions>>>>",res)
+    // })
+    // .catch(err=>{
+    //   console.log(err)
+    // })
+
+  }
   return (
     <WrapperContainer>
       <View style={{ flex: 1 }}>
 
         <Header isBackIcon={true}
           title={strings.ADD_INFO} />
-        {/* <ScrollView style={{ height: height }}> */}
         <View style={styles.container}>
 
 
@@ -187,22 +205,24 @@ const AddInfo = ({ navigation, route }) => {
         <View style={styles.inputview} >
           <TextInputComponent
             placeholder={strings.ADD_DESC}
-            value={description}
             onChangeText={(description) => updateState({ description })}
-            input={{ height: moderateVerticalScale(90), }} />
+            value={description}
+            input={{ height: moderateVerticalScale(90) }} />
         </View>
 
 
         <View style={styles.addlocstyle}>
           <TextInputComponent
-            value={location}
+            placeholder={strings.ADD_LOCATION}
             onChangeText={(location) => updateState({ location })}
-            placeholder={strings.ADD_LOCATION} />
+            value={location}
+          />
         </View>
 
-        {/* </ScrollView> */}
+
       </View>
-      <ButtonComp btnStyle={{ marginBottom: moderateVerticalScale(5) }}
+      <ButtonComp onPress={uploadPost}
+        btnStyle={{ marginBottom: moderateVerticalScale(5) }}
         ButtonText={strings.POST} />
     </WrapperContainer>
   );

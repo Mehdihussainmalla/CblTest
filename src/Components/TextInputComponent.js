@@ -25,6 +25,7 @@ const TextInputComponent = ({
                 // keyboardType={keyboardType}
                 style={{...styles.input, ...input}}
                 value={value}
+                
 
 
             />
