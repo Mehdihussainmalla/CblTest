@@ -30,11 +30,11 @@ const AddScreen = ({ navigation }) => {
   const [state, setState] = useState({
     photos: '',
     imageSelect: '',
-    imageType:'image.jpeg',
-    uploadImage:''
+    imageType: 'image.jpeg',
+    uploadImage: ''
   });
 
-  const { photos, imageSelect , uploadImage,imageType} = state;
+  const { photos, imageSelect, uploadImage, imageType } = state;
   const updateState = data => setState(state => ({ ...state, ...data }))
 
   const androidPermission = async () => {
@@ -119,24 +119,34 @@ const AddScreen = ({ navigation }) => {
       ]
     );
   }
-  
-  const addImage = () => {
-    const image = imageSelect;
-    console.log("imagessssss", image)
-    actions.imgUpload(image).then((res) => {
-      console.log("check response for upload image", res);
-      alert("image added sucessfully")
-      navigation.navigate(navigationStrings.ADD_INFO, { image: imageSelect})
 
-    })
+  const addImage = () => {
+    const formData = new FormData();
+    formData.append('image', {
+      uri: imageSelect,
+      name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+      imageType: 'image/jpeg'
+    });
+    console.log("check form data", formData)
+    let header=  { "Content-Type": "multipart/form-data" };
+    actions.imgUpload(formData,header).then
+      ((res) => {
+        navigation.navigate(navigationStrings.ADD_INFO, { image: res.data })
+        alert("image added sucessfully!!!!!")
+        console.log("response from form data", res)
+      }).catch((error) => {
+        console.log("errorr occurred during form data", error)
+      })
   }
 
+
+
   const selectImage = (element) => {
-    // console.log("check the element", element)
     updateState({ imageSelect: element.item.node.image.uri })
     console.log("element is ", element)
 
   }
+
   return (
     <WrapperContainer>
       <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
@@ -144,7 +154,6 @@ const AddScreen = ({ navigation }) => {
 
         <TouchableOpacity
           onPress={addImage}
-          // onPress={() => navigation.navigate(navigationStrings.ADD_INFO, { image: imageSelect })}
           activeOpacity={0.5}
           style={styles.addview}>
 

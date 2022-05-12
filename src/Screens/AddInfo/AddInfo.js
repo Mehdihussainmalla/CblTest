@@ -49,21 +49,49 @@ const AddInfo = ({ navigation, route }) => {
       console.log("here is camera click", image);
     });
   }
- //...............add photo from gallery.............//
+
+  //...................image upload ..................//
+  const addImage = (image) => {
+
+    const formData = new FormData();
+    formData.append('image', {
+      uri: image,
+      name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+      imageType: 'image/jpeg'
+    });
+    // console.log("check form data", formData)
+    let header = { "Content-Type": "multipart/form-data" };
+    actions.imgUpload(formData, header).then
+      ((res) => {
+        console.log("api res >>>>>>>>>>", res)
+        alert("image added sucessfully!!!!!")
+        updateState({ post: post.concat(res.data) })
+      }).catch((error) => {
+        console.log(error)
+        alert(err?.message);
+      })
+  }
+
+
+
+  //...............add photo from gallery.............//
   const galleryClick = () => {
     ImagePicker.openPicker({
       width: 300,
       height: 400,
       cropping: true,
     }).then(res => {
-      updateState({ post: post.concat(res.path) || res.sourceURL });
-      console.log("image uploaded from gallery", res)
+      console.log(res)
+      addImage(image.path)
+
+      // updateState({ post: post.concat(res.path) || res.sourceURL });
+      // console.log("image uploaded from gallery", res)
 
     });
   }
- //.................click image via camera & gallery.........//
+  //.................click image via camera & gallery.........//
   const launchCamera = () => {
-   
+
 
     Alert.alert(
       "Upload Image",
@@ -83,7 +111,7 @@ const AddInfo = ({ navigation, route }) => {
       ]
     );
   }
-//.......................cancel image from the array ..........//
+  //.......................cancel image from the array ..........//
   const cancelImage = (index) => {
 
     // console.log("indexxxxxxx>>>>", index)

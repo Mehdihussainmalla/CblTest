@@ -67,18 +67,33 @@ export function editProfile(data) {
     });
 }
 
-export function imgUpload(data) {
 
-
-    console.log(data, "the given data for img upload")
-    return apiPost(IMG_UPLOAD, data)
-    // return new Promise ((resolve,reject)=>{
-    //     apiPost(IMG_UPLOAD,data).then((res)=>{
-    //         saveUserData(res.data)
-    //         resolve(res)
-    //     }). catch((error)=>{
-    //         reject,error})
-    // });
+export const imgUpload = (data,header ={} )=>{
+    console.log("data from actions for img upload",data)
+    return new Promise ((resolve , reject)=>{
+        apiPost(IMG_UPLOAD , data , header)
+        .then((res)=>{
+            console.log("response from img upload",res);
+            resolve(res);
+        })
+        .catch((error)=>{
+            console.log("errorr occurred at img upload time",error);
+            reject(error)
+        })
+    })
 
 }
+// export function imgUpload(data, header = {}) =>{
+//     console.log(data, "the given data for img upload")
+//     return new Promise((resolve, reject) => {
+//         apiPost(IMG_UPLOAD, data,header)
+//           .then((res) => {
+//             // saveUserData(res.data)
+//             resolve(res)
+//         }).catch((error) => {
+//             reject, error
+//         })
+//     });
+
+// }
 
