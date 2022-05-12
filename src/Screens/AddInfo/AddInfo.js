@@ -18,7 +18,7 @@ import navigationStrings from '../../navigation/navigationStrings';
 
 const AddInfo = ({ navigation, route }) => {
   const image = route?.params?.image;
-  console.log("passing the params", image)
+  // console.log("passing the params", image)
 
   const [state, setState] = useState({
     description: '',
@@ -63,7 +63,7 @@ const AddInfo = ({ navigation, route }) => {
     let header = { "Content-Type": "multipart/form-data" };
     actions.imgUpload(formData, header).then
       ((res) => {
-        console.log("api res >>>>>>>>>>", res)
+        console.log("api res >>>>>>>>>>", res.data)
         alert("image added sucessfully!!!!!")
         updateState({ post: post.concat(res.data) })
       }).catch((error) => {
@@ -81,8 +81,8 @@ const AddInfo = ({ navigation, route }) => {
       height: 400,
       cropping: true,
     }).then(res => {
-      console.log(res)
-      addImage(image.path)
+      console.log("crfgdcvvfvgf",res)
+      addImage(res.path)
 
       // updateState({ post: post.concat(res.path) || res.sourceURL });
       // console.log("image uploaded from gallery", res)
@@ -137,8 +137,8 @@ const AddInfo = ({ navigation, route }) => {
             horizontal
             data={post}
             renderItem={({ index, item }) => {
-              console.log("element isssss", item)
-              console.log("index isssss", index)
+              // console.log("element isssss", item)
+              // console.log("index isssss", index)
               return (
                 <View style={styles.uploadview}>
                   <Image source={{ uri: item }} style={styles.imagestyle} />

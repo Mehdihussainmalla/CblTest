@@ -133,7 +133,7 @@ const AddScreen = ({ navigation }) => {
       ((res) => {
         navigation.navigate(navigationStrings.ADD_INFO, { image: res.data })
         alert("image added sucessfully!!!!!")
-        console.log("response from form data", res)
+        console.log("response !!!!!!", res.data)
       }).catch((error) => {
         console.log("errorr occurred during form data", error)
       })
