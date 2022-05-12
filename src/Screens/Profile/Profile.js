@@ -12,11 +12,14 @@ import navigationStrings from '../../navigation/navigationStrings';
 const Profile = ({ navigation }) => {
 
   const signOut = async () => {
+
     try {
       await GoogleSignin.signOut();
+      alert("logout sucessfully!!!")
       Logout();
     } catch (error) {
-      console.log(error)
+      alert ('logout failure!!!')
+      console.log("logout failure",error)
 
     }
   }

@@ -20,52 +20,52 @@ const Login = ({ navigation }) => {
     GoogleSignin.configure();
   }, [])
 
-//.....................facebook login......................//
+  //.....................facebook login......................//
 
-const fbLogin = (resCallBack) => {
-  LoginManager.logOut();
-  return LoginManager.logInWithPermissions(['email', 'public_profile']).then(
-    result => {
-      console.log("FB_LOGIN_RESULT =====>", result);
-      if (result.declinedPermissions && result.declinedPermissions.includes('email')) {
-        resCallBack({ message: "email is required" })
+  const fbLogin = (resCallBack) => {
+    LoginManager.logOut();
+    return LoginManager.logInWithPermissions(['email', 'public_profile']).then(
+      result => {
+        console.log("FB_LOGIN_RESULT =====>", result);
+        if (result.declinedPermissions && result.declinedPermissions.includes('email')) {
+          resCallBack({ message: "email is required" })
+        }
+        if (result.isCancelled) {
+          console.log("error")
+        } else {
+          const infoResquest = new GraphRequest(
+            '/me?fields = email, name, picture',
+            null,
+            resCallBack
+          );
+          new GraphRequestManager().addRequest(infoResquest).start()
+        }
+      },
+      function (error) {
+        console.log("login failed with error", error)
       }
-      if (result.isCancelled) {
-        console.log("error")
-      } else {
-        const infoResquest = new GraphRequest(
-          '/me?fields = email, name, picture',
-          null,
-          resCallBack
-        );
-        new GraphRequestManager().addRequest(infoResquest).start()
-      }
-    },
-    function (error) {
-      console.log("login failed with error", error)
+    )
+  }
+
+  const onFbLogin = async () => {
+    try {
+      await fbLogin(resInfoCallBack)
+
+    } catch (error) {
+      console.log("error", error)
     }
-  )
-}
-
-const onFbLogin = async () => {
-  try {
-    await fbLogin(resInfoCallBack)
-  
-  } catch (error) {
-    console.log("error", error)
   }
-}
 
-const resInfoCallBack = async (error, result) => {
-  if (error) {
-    console.log("Login Error", error)
-  } else {
-    const userData = result;
-    console.log(userData)
-    saveUserData(userData);
+  const resInfoCallBack = async (error, result) => {
+    if (error) {
+      console.log("Login Error", error)
+    } else {
+      const userData = result;
+      console.log(userData)
+      saveUserData(userData);
 
+    }
   }
-}
 
   //.............google login in ......................//
   const googleLogin = async () => {
@@ -80,16 +80,12 @@ const resInfoCallBack = async (error, result) => {
 
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
         console.log('errorr occurred during google sign in', error)
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        // operation (e.g. sign in) is in progress already
         console.log('errorr occurred during google sign in', error)
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
         console.log('errorr occurred during google sign in', error)
       } else {
-        // some other error happened
         console.log('errorr occurred during google sign in', error)
       }
     }
@@ -115,7 +111,7 @@ const resInfoCallBack = async (error, result) => {
           ButtonText={strings.LOGIN_WITH_PHONE_NUMBER} />
 
         <View style={styles.orview}>
-          <Text style={styles.ortext}>or</Text>
+          <Text style={styles.ortext}>{strings.OR}</Text>
         </View>
 
         <ButtonComp onPress={googleLogin}
@@ -129,7 +125,7 @@ const resInfoCallBack = async (error, result) => {
           btnStyle={{ marginVertical: moderateScale(12), backgroundColor: colors.white }}
           buttonTxt={{ color: colors.loginWith }}
           btnIcon={imagePath.FACEBOOK_ICON}
-        onPress={onFbLogin}
+          onPress={onFbLogin}
         />
 
 

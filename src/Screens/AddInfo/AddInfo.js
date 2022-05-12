@@ -30,8 +30,8 @@ const AddInfo = ({ navigation, route }) => {
 
   const updateState = data => setState(state => ({ ...state, ...data }));
 
-  console.log("check data in array", post)
-  // console.log("check locartion>>>>", location)
+  // console.log("check data in array", post)
+ 
 
 
   // const [selectedPhoto, setSelectedPhoto] = useState(image);

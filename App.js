@@ -15,7 +15,7 @@ const App = () => {
 
 
     getLogin().then((res) => {
-      console.log("get login", res)
+      console.log("get login", res) 
       actions.saveUserData(res)
     })
 

@@ -47,7 +47,8 @@ PROFILE:'Profile',
 ADD_INFO:'Add Info',
 ADD_DESC:'Write description here...',
 ADD_LOCATION:'Add Location',
-POST:'Post'
+POST:'Post',
+OR:'Or'
 
 
 

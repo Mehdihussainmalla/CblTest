@@ -62,9 +62,10 @@ export const styles = StyleSheet.create({
         borderRadius: moderateScale(8)
     },
     cancelbtn:
-    { position: 'absolute',
-     right: -10, 
-    top: -7 
-}
+    {
+        position: 'absolute',
+        right: -10,
+        top: -7
+    }
 
 });

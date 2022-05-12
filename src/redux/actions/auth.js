@@ -42,7 +42,7 @@ export function signUp(data) {
 }
 
 export const Intro = data => {
-    // console.log(data, "introoo")
+
     dispatch({
         type: types.INTRO,
         payload: data,
