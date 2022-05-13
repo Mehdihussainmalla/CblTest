@@ -188,6 +188,6 @@ const Home = ({ navigation, route }) => {
   )
 }
 
-  
+
 
 export default Home

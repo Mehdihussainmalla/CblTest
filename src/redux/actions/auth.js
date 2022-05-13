@@ -92,7 +92,7 @@ export function uploadPost (data, header) {
 
 export function getPost (data, query=''){
     console.log("check data for get post",data)
-    return apiGet(GET_POST, data, query)
+    return apiGet(GET_POST+query)
 }
 
 

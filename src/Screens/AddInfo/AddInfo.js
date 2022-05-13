@@ -128,7 +128,7 @@ const AddInfo = ({ navigation, route }) => {
     let formData = new FormData();
     post.map((item)=>{
       console.log("check items", item)
-      formData.append('images',item)
+      formData.append('images[]',item)
       // formData.append('images', {
       //   uri: item,
       //   name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,

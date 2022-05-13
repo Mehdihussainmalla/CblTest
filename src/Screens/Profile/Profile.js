@@ -31,6 +31,7 @@ const Profile = ({ navigation }) => {
       />
 
       <TouchableOpacity
+      
         onPress={() => navigation.navigate(navigationStrings.EDIT_PROFILE_SCREEN)}
         activeOpacity={0.7} style={styles.container}>
         <View style={styles.profileimage}>
