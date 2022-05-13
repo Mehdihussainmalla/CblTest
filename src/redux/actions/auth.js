@@ -1,8 +1,9 @@
 import axios from "axios";
-import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API, POST_SEND, IMG_UPLOAD, POST_UPLOAD } from "../../config/urls";
+import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API, IMG_UPLOAD, POST_UPLOAD, GET_POST } from "../../config/urls";
 import types from '../types'
 import store from "../store";
-import { apiPost, setUserData } from "../../utils/utils";
+import { apiGet, apiPost,} from "../../utils/utils";
+
 const { dispatch } = store;
 
 export const saveUserData = (data) => {
@@ -84,9 +85,14 @@ export const imgUpload = (data,header ={} )=>{
 
 }
 
-export function uploadPost (data) {
+export function uploadPost (data, header) {
     console.log("data check for upload post",data)
-    return apiPost(POST_UPLOAD, data)
+    return apiPost(POST_UPLOAD, data, header)
+}
+
+export function getPost (data){
+    console.log("check data for get post",data)
+    return apiGet(GET_POST, data)
 }
 
 

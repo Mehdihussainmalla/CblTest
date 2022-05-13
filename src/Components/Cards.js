@@ -1,16 +1,38 @@
 import { View, Text, StyleSheet, Image, FlatList,TouchableOpacity} from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import colors from '../styles/colors'
 import { moderateScale, moderateScaleVertical, textScale } from '../styles/responsiveSize'
 import imagePath from '../constants/imagePath'
 import { NavigationContainer } from '@react-navigation/native'
 import navigationStrings from '../navigation/navigationStrings'
+import strings from '../constants/lang'
 
 const Cards = ({data, navigation, route}) => {
+
+  const [post, setPost]= useState();
   console.log(route, "routessss")
   console.log(navigation, 'navigationnnnn')
   const userData = data;
   console.log(userData, 'userDataaaa');
+
+  useEffect(()=>{
+    console.warn("hey");
+
+  },[])
+
+  // useEffect(()=>{
+  //   actions.getPost().then((res)=>{
+  //     console.log("check response>>>>>>>>",res)
+
+  //   //   console.log("check response for post at home",res.data)
+  //   //   setPost(res.data)
+  //   //
+  //  })
+      
+
+  // },[])
+
+  
   const PostHeader = userData => (
     <View style={styles.postHeaderContainer}>
       <View style={styles.posterName}>
@@ -60,10 +82,10 @@ const Cards = ({data, navigation, route}) => {
             </Text>
             <View style={styles.postFooterTxt}>
               <Text style={styles.textCommon}>
-                Comments {userData.userData.item.comments}
+               {strings.COMMENTS} {userData.userData.item.comments}
               </Text>
               <Text style={styles.textCommon}>
-                Likes {userData.userData.item.likes}
+                {strings.LIKES} {userData.userData.item.likes}
               </Text>
               <Image
                 style={{tintColor: colors.LIGHTGREYTEXT}}
@@ -81,10 +103,10 @@ const Cards = ({data, navigation, route}) => {
     console.log(userData, 'userData in postContent');
     return (
       <TouchableOpacity onPress={()=> navigation.navigate(navigationStrings.POST_DETAIL, {userData:userData})} style={styles.wrapper}>
-        {/* <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.POST_DETAIL)}> */}
+        
         <PostHeader userData={userData} />
         <Post userData={userData} />
-        {/* </TouchableOpacity> */}
+        
       </TouchableOpacity>
     );
   };

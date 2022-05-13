@@ -30,7 +30,6 @@ const AddInfo = ({ navigation, route }) => {
 
   const updateState = data => setState(state => ({ ...state, ...data }));
 
-  // console.log("check data in array", post)
  
 
 
@@ -54,6 +53,7 @@ const AddInfo = ({ navigation, route }) => {
   const addImage = (image) => {
 
     const formData = new FormData();
+    
     formData.append('image', {
       uri: image,
       name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
@@ -68,7 +68,7 @@ const AddInfo = ({ navigation, route }) => {
         updateState({ post: post.concat(res.data) })
       }).catch((error) => {
         console.log(error)
-        alert(err?.message);
+        // alert(err?.message);
       })
   }
 
@@ -121,24 +121,29 @@ const AddInfo = ({ navigation, route }) => {
 
   const uploadPost = () => {
     let formData = new FormData();
+    post.map((item)=>{
+      console.log("check items", item)
+      formData.append('images',item)
+      // formData.append('images', {
+      //   uri: item,
+      //   name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+      //   type: 'image/jpeg'
+      // })
+    })
     formData.append('description', description);
     formData.append('longitude', '2.0125');
     formData.append('latitude', '2.0154');
     formData.append('location_name', location);
     formData.append('type', 'normal');
-    formData.append('images', {
-      uri: image,
-      name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-      type: 'image/jpeg'
+    console.log("check api  data", formData)
+    let header = { "Content-Type": "multipart/form-data" };
+    actions.uploadPost(formData,header).then((res)=>{
+      console.log("response after actions>>>>",res)
+      navigation.navigate(navigationStrings.HOME)
     })
-    console.log("check from data", formData)
-    // let header = { "Content-Type": "multipart/form-data" };
-    // actions.uploadPost(formData).then(formData,header).then((res)=>{
-    //   console.log("response after actions>>>>",res)
-    // })
-    // .catch(err=>{
-    //   console.log(err)
-    // })
+    .catch(err=>{
+      console.log(err)
+    })
 
   }
   return (
