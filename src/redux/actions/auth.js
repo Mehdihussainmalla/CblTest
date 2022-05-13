@@ -90,9 +90,9 @@ export function uploadPost (data, header) {
     return apiPost(POST_UPLOAD, data, header)
 }
 
-export function getPost (data){
+export function getPost (data, query=''){
     console.log("check data for get post",data)
-    return apiGet(GET_POST, data)
+    return apiGet(GET_POST, data, query)
 }
 
 

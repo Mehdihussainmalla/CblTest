@@ -39,6 +39,8 @@ const AddInfo = ({ navigation, route }) => {
 
   // }
 
+  const [isLoading, setIsLoading]=useState(true)
+
   const cameraClick = () => {
     ImagePicker.openCamera({
       width: 300,
@@ -51,14 +53,15 @@ const AddInfo = ({ navigation, route }) => {
 
   //...................image upload ..................//
   const addImage = (image) => {
-
+    setIsLoading(true);
     const formData = new FormData();
-    
-    formData.append('image', {
+        formData.append('image', {
       uri: image,
       name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
       imageType: 'image/jpeg'
     });
+
+    setIsLoading(false)
     // console.log("check form data", formData)
     let header = { "Content-Type": "multipart/form-data" };
     actions.imgUpload(formData, header).then
@@ -120,6 +123,7 @@ const AddInfo = ({ navigation, route }) => {
   }
 
   const uploadPost = () => {
+    setIsLoading(true);
     let formData = new FormData();
     post.map((item)=>{
       console.log("check items", item)
@@ -138,6 +142,7 @@ const AddInfo = ({ navigation, route }) => {
     console.log("check api  data", formData)
     let header = { "Content-Type": "multipart/form-data" };
     actions.uploadPost(formData,header).then((res)=>{
+      setIsLoading(false);
       console.log("response after actions>>>>",res)
       navigation.navigate(navigationStrings.HOME)
     })
@@ -147,7 +152,7 @@ const AddInfo = ({ navigation, route }) => {
 
   }
   return (
-    <WrapperContainer>
+    <WrapperContainer isLoading={isLoading} withModal={isLoading}>
       <View style={{ flex: 1 }}>
 
         <Header isBackIcon={true}
