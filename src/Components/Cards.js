@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import colors from '../styles/colors'
 import { moderateScale, moderateScaleVertical, textScale } from '../styles/responsiveSize'
 import imagePath from '../constants/imagePath'
-import { NavigationContainer } from '@react-navigation/native'
 import navigationStrings from '../navigation/navigationStrings'
 import strings from '../constants/lang'
+import actions from '../redux/actions'
 
 const Cards = ({data, navigation, route}) => {
 
@@ -16,21 +16,14 @@ const Cards = ({data, navigation, route}) => {
   console.log(userData, 'userDataaaa');
 
   useEffect(()=>{
+    actions.getPost().then ((res)=>{
+      console.log("check res>>>>>>>>>>>>>>>>",res)
+      setPost(res.data)
+    })
+    
     console.warn("hey");
 
   },[])
-
-  // useEffect(()=>{
-  //   actions.getPost().then((res)=>{
-  //     console.log("check response>>>>>>>>",res)
-
-  //   //   console.log("check response for post at home",res.data)
-  //   //   setPost(res.data)
-  //   //
-  //  })
-      
-
-  // },[])
 
   
   const PostHeader = userData => (
@@ -115,7 +108,7 @@ const Cards = ({data, navigation, route}) => {
     <View>
       {/* <PostHeader userData={userData} /> */}
       <FlatList
-        data={userData}
+        data={post}
         renderItem={PostContent}
         extraData={userData.id}
         ListFooterComponent={() => (
