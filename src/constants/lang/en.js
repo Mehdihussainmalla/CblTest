@@ -48,7 +48,7 @@ ADD_INFO:'Add Info',
 ADD_DESC:'Write description here...',
 ADD_LOCATION:'Add Location',
 POST:'Post',
-OR:'Or',
+OR:'or',
 COMMENTS:' Comments',
 LIKES:'Likes'
 

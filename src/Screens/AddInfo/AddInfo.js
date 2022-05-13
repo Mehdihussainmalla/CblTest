@@ -39,7 +39,7 @@ const AddInfo = ({ navigation, route }) => {
 
   // }
 
-  const [isLoading, setIsLoading]=useState(true)
+  const [isLoading, setIsLoading]=useState(false)
 
   const cameraClick = () => {
     ImagePicker.openCamera({
@@ -53,7 +53,7 @@ const AddInfo = ({ navigation, route }) => {
 
   //...................image upload ..................//
   const addImage = (image) => {
-    setIsLoading(true);
+    // setIsLoading(true);
     const formData = new FormData();
         formData.append('image', {
       uri: image,
@@ -61,11 +61,12 @@ const AddInfo = ({ navigation, route }) => {
       imageType: 'image/jpeg'
     });
 
-    setIsLoading(false)
+    
     // console.log("check form data", formData)
     let header = { "Content-Type": "multipart/form-data" };
     actions.imgUpload(formData, header).then
       ((res) => {
+        // setIsLoading(false)
         console.log("api res >>>>>>>>>>", res.data)
         alert("image added sucessfully!!!!!")
         updateState({ post: post.concat(res.data) })
