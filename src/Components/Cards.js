@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, FlatList,TouchableOpacity} from 'react-native'
+import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import colors from '../styles/colors'
 import { moderateScale, moderateScaleVertical, textScale } from '../styles/responsiveSize'
@@ -7,25 +7,24 @@ import navigationStrings from '../navigation/navigationStrings'
 import strings from '../constants/lang'
 import actions from '../redux/actions'
 
-const Cards = ({data, navigation, route}) => {
+const Cards = ({ data, navigation, route }) => {
 
-  const [post, setPost]= useState();
-  console.log(route, "routessss")
-  console.log(navigation, 'navigationnnnn')
-  const userData = data;
-  console.log(userData, 'userDataaaa');
+  const [post, setPost] = useState();
+  // console.log(route, "routessssssss")
+    const userData = data;
+  // console.log(userData, 'userDataaaa>>>>>>>>');
 
-  useEffect(()=>{
-    actions.getPost().then ((res)=>{
-      console.log("check res>>>>>>>>>>>>>>>>",res)
+  useEffect(() => {
+    actions.getPost().then((res) => {
+      console.log("check res>>>>>>>>>>>>>>>>", res)
       setPost(res.data)
     })
-    
-    console.warn("hey");
 
-  },[])
 
-  
+
+  }, [])
+
+
   const PostHeader = userData => (
     <View style={styles.postHeaderContainer}>
       <View style={styles.posterName}>
@@ -33,33 +32,33 @@ const Cards = ({data, navigation, route}) => {
           <Image
             style={styles.profilePicture}
             source={{
-              uri: userData.userData.item.profilePic,
+              uri: userData.userData.item.user.profile,
             }}
           />
         </View>
-        <View style={{marginLeft: moderateScale(16)}}>
+        <View style={{ marginLeft: moderateScale(16) }}>
           <Text style={styles.profileName}>
-            {userData.userData.item.profileName}
+            {userData.userData.item.user.first_name} {userData.userData.item.user.last_name}
           </Text>
-          <Text style={styles.loc}>{userData.userData.item.location}</Text>
+          <Text style={styles.loc}>{userData.userData.item.location_name}</Text>
         </View>
       </View>
       <View>
-        <Text style={{color: 'white', fontWeight: '900'}}> ... </Text>
+        <Text style={{ color: 'white', fontWeight: '900' }}> ... </Text>
       </View>
     </View>
   );
 
   const Post = userData => {
-    console.log(userData, 'userrrrr in post');
-    console.log(userData.userData.item.location, 'item in post');
+    // console.log(userData, 'userrrrr in post');
+    console.log(userData.userData.item, 'item in postsssssss');
     return (
       <View>
         <View style={styles.postContainer}>
           <Image
             style={styles.postImage}
             source={{
-              uri: userData.userData.item.image,
+              uri: userData.userData.item.images.file,
             }}
           />
           <View style={styles.postFooter}>
@@ -75,13 +74,15 @@ const Cards = ({data, navigation, route}) => {
             </Text>
             <View style={styles.postFooterTxt}>
               <Text style={styles.textCommon}>
-               {strings.COMMENTS} {userData.userData.item.comments}
+                {strings.COMMENTS}
+                {userData.userData.item.comments}
               </Text>
               <Text style={styles.textCommon}>
-                {strings.LIKES} {userData.userData.item.likes}
+                {strings.LIKES}
+                {userData.userData.item.likes}
               </Text>
               <Image
-                style={{tintColor: colors.LIGHTGREYTEXT}}
+                style={{ tintColor: colors.LIGHTGREYTEXT }}
                 source={imagePath.icSHARE}
               />
             </View>
@@ -92,27 +93,30 @@ const Cards = ({data, navigation, route}) => {
   };
 
   const PostContent = (userData, index) => {
-    // const postData = userData.item;
-    console.log(userData, 'userData in postContent');
+    // console.log("check>>>>>>>> userdataaaaaaaaaa",userData)
+    // console.log(userData, 'userData in postContent');
     return (
-      <TouchableOpacity onPress={()=> navigation.navigate(navigationStrings.POST_DETAIL, {userData:userData})} style={styles.wrapper}>
-        
+      <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.POST_DETAIL,
+        { userData: userData})}
+        style={styles.wrapper}>
+
         <PostHeader userData={userData} />
         <Post userData={userData} />
-        
+
       </TouchableOpacity>
     );
   };
+  
 
   return (
     <View>
-      {/* <PostHeader userData={userData} /> */}
+
       <FlatList
         data={post}
         renderItem={PostContent}
         extraData={userData.id}
         ListFooterComponent={() => (
-          <View style={{height: moderateScaleVertical(32)}} />
+          <View style={{ height: moderateScaleVertical(32) }} />
         )}
       />
     </View>
@@ -125,8 +129,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.SECONDARY_COLOR,
     borderRadius: moderateScale(8),
     paddingHorizontal: moderateScale(8),
-    marginRight:moderateScaleVertical(20),
-    marginLeft:moderateScaleVertical(20)
+    marginRight: moderateScaleVertical(20),
+    marginLeft: moderateScaleVertical(20)
   },
 
   postHeaderContainer: {

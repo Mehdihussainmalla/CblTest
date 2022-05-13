@@ -49,7 +49,8 @@ const Home = ({navigation, route}) => {
   return (
     <WrapperContainer >
       <HomeHeader />
-      <Cards navigation={navigation} data={data} />
+      <Cards navigation={navigation}
+       data={data} />
     </WrapperContainer>
   )
 }
