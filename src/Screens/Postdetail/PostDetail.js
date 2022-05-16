@@ -16,7 +16,7 @@ const PostDetail = ({ route }) => {
     }
 
     const { userData } = route?.params;
-    const item = userData?.item
+    const item = userData?.item?.images
     console.log("checkkkkkk items",item)
 
    
@@ -26,7 +26,7 @@ const PostDetail = ({ route }) => {
         <WrapperContainer>
             <View style={{ flex: 1, }} >
                 <ImageBackground style={styles.backgroundstyle}
-                    source={{ uri: userData?.item?.images[0]}}
+                    source={{ uri:item?.file[0]}}
                     >
                     <View>
                     </View>
@@ -38,8 +38,9 @@ const PostDetail = ({ route }) => {
                         </View>
 
                         <View style={styles.headingtextstyle}>
-                            <Text style={styles.textstyle1}>{userData?.item?.user?.first_name}</Text>
-                            <Text style={styles.textstyle2}>{userData?.item?.user?.last_name}</Text>
+                            <Text style={styles.textstyle1}>{userData?.item?.user?.first_name} {userData?.item?.user?.last_name}
+                            </Text>
+                            <Text style={styles.textstyle2}>{userData?.item?.location_name}</Text>
                         </View>
                         </View>
 
@@ -49,7 +50,7 @@ const PostDetail = ({ route }) => {
                     </View>
                     
                     <View style={styles.descriptionstyle}>
-                        <Text style={styles.desctext}>{item?.description}</Text>
+                        <Text style={styles.desctext}>{userData?.item?.description}</Text>
                         <Text style={styles.timestyle}>{userData?.item?.time_ago}</Text>
                     </View>
                     <View style={{ marginBottom: 10 }}>

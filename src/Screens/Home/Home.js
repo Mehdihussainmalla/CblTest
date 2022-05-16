@@ -114,15 +114,15 @@ const Home = ({ navigation, route }) => {
     return (
       <View>
         <View style={styles.postContainer}>
-          
-        <Image 
+
+          <Image
             style={styles.postImage}
             source={{
               uri: userData.userData.item.images.file[0],
             }}
-             />
-          
-            
+          />
+
+
           <View style={styles.postFooter}>
             <Text style={styles.postDesc}>
               {userData.userData.item.description}
@@ -132,7 +132,7 @@ const Home = ({ navigation, route }) => {
                 color: colors.lightgrey,
                 marginVertical: moderateScaleVertical(8),
               }}>
-              {userData.userData.item.time}
+              {userData.userData.item?.time_ago}
             </Text>
             <View style={styles.postFooterTxt}>
               <Text style={styles.textCommon}>
