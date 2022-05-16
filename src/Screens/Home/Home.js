@@ -19,6 +19,7 @@ import actions from '../../redux/actions'
 import strings from '../../constants/lang'
 import { styles } from './styles'
 import { moderateScaleVertical } from '../../styles/responsiveSize'
+import { useSelector } from 'react-redux'
 
 
 const Home = ({ navigation, route }) => {
@@ -60,13 +61,12 @@ const Home = ({ navigation, route }) => {
       comments: 1254,
     },
   ];
+
   const [post, setPost] = useState();
   const [count, setCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  // console.log(route, "routessssssss")
-  const userData = data;
-  // console.log(userData, 'userDataaaa>>>>>>>>');
 
+  const userData = data;
   useEffect(() => {
     let apidata = `?skip=${count}`;
     setIsLoading(true);
@@ -92,7 +92,7 @@ const Home = ({ navigation, route }) => {
             source={{
               uri: userData.userData.item.user.profile,
             }}
-          
+
           />
         </View>
         <View style={{ marginLeft: moderateScale(16) }}>
@@ -114,12 +114,15 @@ const Home = ({ navigation, route }) => {
     return (
       <View>
         <View style={styles.postContainer}>
-          <Image
+          
+        <Image 
             style={styles.postImage}
             source={{
               uri: userData.userData.item.images.file[0],
             }}
-          />
+             />
+          
+            
           <View style={styles.postFooter}>
             <Text style={styles.postDesc}>
               {userData.userData.item.description}

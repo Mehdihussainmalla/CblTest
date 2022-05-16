@@ -1,8 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, ImageBackground, Image, TouchableOpacity } from 'react-native';
-import LocalizedStrings from 'react-native-localization';
-import { moderateVerticalScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/ButtonComp';
 import WrapperContainer from '../../Components/WrapperContainer';
 import imagePath from '../../constants/imagePath';
@@ -19,27 +17,29 @@ const PostDetail = ({ route }) => {
 
     const { userData } = route?.params;
     const item = userData?.item
+    console.log("checkkkkkk items",item)
 
-    console.log("checkkkkk", item)
+   
 
 
     return (
         <WrapperContainer>
             <View style={{ flex: 1, }} >
                 <ImageBackground style={styles.backgroundstyle}
-                    source={{ uri: item?.image }}>
+                    source={{ uri: userData?.item?.images[0]}}
+                    >
                     <View>
                     </View>
 
                     <View style={styles.profilestyle}>
                      <View style={{flexDirection:'row', }}>
                          <View  > 
-                        <Image source={{uri:item?.image}}   style={styles.iconstyle}/>
+                        <Image source={{uri:userData?.item?.user?.profile}}   style={styles.iconstyle}/>
                         </View>
 
                         <View style={styles.headingtextstyle}>
-                            <Text style={styles.textstyle1}>{item?.profileName}</Text>
-                            <Text style={styles.textstyle2}>{item?.location}</Text>
+                            <Text style={styles.textstyle1}>{userData?.item?.user?.first_name}</Text>
+                            <Text style={styles.textstyle2}>{userData?.item?.user?.last_name}</Text>
                         </View>
                         </View>
 
@@ -50,7 +50,7 @@ const PostDetail = ({ route }) => {
                     
                     <View style={styles.descriptionstyle}>
                         <Text style={styles.desctext}>{item?.description}</Text>
-                        <Text style={styles.timestyle}>{item?.time}</Text>
+                        <Text style={styles.timestyle}>{userData?.item?.time_ago}</Text>
                     </View>
                     <View style={{ marginBottom: 10 }}>
                         <ButtonComp ButtonText={strings.View_Map}/>

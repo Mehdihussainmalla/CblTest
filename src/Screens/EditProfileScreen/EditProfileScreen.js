@@ -17,11 +17,12 @@ import { useNavigation } from '@react-navigation/native'
 
 const EditProfileScreen = () => {
 
-    const navigation = useNavigation();
+
+    const navigation = useNavigation(true);
     const userData = useSelector(state => state?.auth?.userData);
     // console.log('userdaataaaaaa checking from edit profile', userData);
 
-
+    const [isLoading, setIsLoading] = useState();
     const [countryCode, setCountryCode] = useState("91");
     const [countryFlag, setCountryFlag] = useState("IN");
 
@@ -60,7 +61,7 @@ const EditProfileScreen = () => {
         )
         //   setCountryCode(userData?.phone_code)
         //   setCountryFlag(userData?.country_code)
-   
+
     }, [userData])
 
 
@@ -69,42 +70,45 @@ const EditProfileScreen = () => {
         if (!checkValid) {
             return;
         }
-
-        let formData= new FormData();
-        formData.append('first_name',first_name),
-        formData.append('last_name',last_name),
-        formData.append('email',email)
-        formData.append('image',{
-            uri:image,
-             name:`${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-            type:null,
+        setIsLoading(true)
+        let formData = new FormData();
+        formData.append('first_name', first_name),
+            formData.append('last_name', last_name),
+            formData.append('email', email)
+        formData.append('image', {
+            uri: image,
+            name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+            type: null,
         });
-        console.log("api data",formData);
+        console.log("api data", formData);
         let header = { "Content-Type": "multipart/form-data" }
-        actions.editProfile(formData, header).then((res)=>{
-            console.log("check",res)
+        actions.editProfile(formData, header).then((res) => {
+            console.log("check", res)
+            setIsLoading(false)
             alert("api hit sucessfully !!!");
             navigation.goBack();
-        }).catch ((error)=>{
-            console.log("error occurred",error)
+        }).catch((error) => {
+            console.log("error occurred", error)
             alert(err.message)
         })
     }
 
-    const changeProfile = (image)=>{
+    const changeProfile = (image) => {
+        setIsLoading(true)
         let apiData = new FormData();
         apiData.append('image', {
-            uri:image ,
-            name:`${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-            type:'image/jpeg',
+            uri: image,
+            name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+            type: 'image/jpeg',
         })
-        console.log("check api data for edit profile",apiData)
+        console.log("check api data for edit profile", apiData)
         let header = { "Content-Type": "multipart/form-data" }
-        actions.imgUpload(apiData, header).then((res)=>{
-            console.log("res>>>>>>>>for edit profile",res)
-            
-            updateState({image:res.data})
-           
+        actions.imgUpload(apiData, header).then((res) => {
+            console.log("res>>>>>>>>for edit profile", res)
+
+            updateState({ image: res.data })
+            setIsLoading(false)
+
 
         })
     }
@@ -116,17 +120,12 @@ const EditProfileScreen = () => {
             height: 400,
             cropping: true
         }).then(image => {
-            changeProfile (image.sourceURL)
-            // // console.log(image, "my image>>>>>>");
-            // updateState({
-            //     image: image?.sourceURL || image?.path,
-            //     imageType: image?.mime
-            // })
+            changeProfile(image.sourceURL)
         });
     }
 
     return (
-        <WrapperContainer>
+        <WrapperContainer isLoading={isLoading} withModal={isLoading} >
             <View style={{ flex: 1 }}>
                 <ScrollView>
                     <Header isBackIcon={true}
@@ -150,22 +149,22 @@ const EditProfileScreen = () => {
                                 value={first_name}
                                 placeholder={strings.FIRST_NAME}
                                 onChangeText={event => updateState({ first_name: event })}
-                                 />
+                            />
                         </View>
                         <View style={styles.lastnamestyle}>
                             <TextInputComponent
                                 value={last_name}
                                 placeholder={strings.LAST_NAME}
                                 onChangeText={event => updateState({ last_name: event })}
-                                 />
+                            />
                         </View>
                     </View>
                     <View style={styles.emailstyle}>
                         <TextInputComponent
                             value={email}
                             placeholder={strings.EMAIL}
-                            onChangeText={event => updateState({ email: event })} 
-                            />
+                            onChangeText={event => updateState({ email: event })}
+                        />
                     </View>
 
 
@@ -184,15 +183,15 @@ const EditProfileScreen = () => {
                                 value={phone}
                                 placeholder={strings.PHONE_NUMBER}
                                 onChangeText={event => updateState({ phone: event })}
-                                 />
+                            />
                         </View>
                     </View>
 
                 </ScrollView>
                 <View style={styles.btnstyle}>
                     <ButtonComp ButtonText={strings.SAVE_CHANGES}
-                        onPress={onEditProfile} 
-                        />
+                        onPress={onEditProfile}
+                    />
                 </View>
             </View>
         </WrapperContainer>

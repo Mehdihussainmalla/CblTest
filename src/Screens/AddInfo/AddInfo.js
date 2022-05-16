@@ -46,6 +46,7 @@ const AddInfo = ({ navigation, route }) => {
       width: 300,
       height: 400,
       cropping: true,
+      showsSelectedCount:true,
     }).then(image => {
       console.log("here is camera click", image);
     });
@@ -129,11 +130,6 @@ const AddInfo = ({ navigation, route }) => {
     post.map((item)=>{
       console.log("check items", item)
       formData.append('images[]',item)
-      // formData.append('images', {
-      //   uri: item,
-      //   name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-      //   type: 'image/jpeg'
-      // })
     })
     formData.append('description', description);
     formData.append('longitude', '2.0125');
@@ -166,8 +162,6 @@ const AddInfo = ({ navigation, route }) => {
             horizontal
             data={post}
             renderItem={({ index, item }) => {
-              // console.log("element isssss", item)
-              // console.log("index isssss", index)
               return (
                 <View style={styles.uploadview}>
                   <Image source={{ uri: item }} style={styles.imagestyle} />
