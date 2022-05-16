@@ -92,6 +92,7 @@ const Home = ({ navigation, route }) => {
             source={{
               uri: userData.userData.item.user.profile,
             }}
+          
           />
         </View>
         <View style={{ marginLeft: moderateScale(16) }}>
