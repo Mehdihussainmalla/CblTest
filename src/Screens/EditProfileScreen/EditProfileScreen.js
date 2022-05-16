@@ -50,19 +50,18 @@ const EditProfileScreen = () => {
     const updateState = data => setState(state => ({ ...state, ...data }))
 
     useEffect(() => {
-    //     updateState({
-    //         first_name: userData?.first_name,
-    //         last_name: userData?.last_name,
-    //         email: userData?.email,
-    //         phone: userData?.phone,
-    //         image: userData?.image,
-
-    //     }
-    //     )
+        updateState({
+            first_name: userData?.first_name,
+            last_name: userData?.last_name,
+            email: userData?.email,
+            phone: userData?.phone,
+            image: userData.profile,
+        }
+        )
         //   setCountryCode(userData?.phone_code)
         //   setCountryFlag(userData?.country_code)
    
-    }, [])
+    }, [userData])
 
 
     const onEditProfile = async () => {
@@ -71,26 +70,43 @@ const EditProfileScreen = () => {
             return;
         }
 
-        let editAPIdata = {
-            image: image,
-            first_name: first_name,
-            last_name: last_name,
-            email: email,
-            phone: phone
-        }
-        console.log("Edit API data : ", editAPIdata)
+        let formData= new FormData();
+        formData.append('first_name',first_name),
+        formData.append('last_name',last_name),
+        formData.append('email',email)
+        formData.append('image',{
+            uri:image,
+             name:`${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+            type:null,
+        });
+        console.log("api data",formData);
+        let header = { "Content-Type": "multipart/form-data" }
+        actions.editProfile(formData, header).then((res)=>{
+            console.log("check",res)
+            alert("api hit sucessfully !!!");
+            navigation.goBack();
+        }).catch ((error)=>{
+            console.log("error occurred",error)
+            alert(err.message)
+        })
+    }
 
-        actions
-            .editProfile(editAPIdata)
-            .then(res => {
-                console.log("Edit api res_+++++", res)
-                alert("Updated Profile successfully....!!!")
-                navigation.goBack();
-            })
-            .catch(err => {
-                console.log(err, 'err');
-                alert(err?.message);
-            });
+    const changeProfile = (image)=>{
+        let apiData = new FormData();
+        apiData.append('image', {
+            uri:image ,
+            name:`${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+            type:'image/jpeg',
+        })
+        console.log("check api data for edit profile",apiData)
+        let header = { "Content-Type": "multipart/form-data" }
+        actions.imgUpload(apiData, header).then((res)=>{
+            console.log("res>>>>>>>>for edit profile",res)
+            
+            updateState({image:res.data})
+           
+
+        })
     }
 
 
@@ -100,11 +116,12 @@ const EditProfileScreen = () => {
             height: 400,
             cropping: true
         }).then(image => {
-            // console.log(image, "my image>>>>>>");
-            updateState({
-                image: image?.sourceURL || image?.path,
-                imageType: image?.mime
-            })
+            changeProfile (image.sourceURL)
+            // // console.log(image, "my image>>>>>>");
+            // updateState({
+            //     image: image?.sourceURL || image?.path,
+            //     imageType: image?.mime
+            // })
         });
     }
 
@@ -118,7 +135,7 @@ const EditProfileScreen = () => {
                     <View style={styles.imagestyle} >
                         <Image style={styles.imageicon}
                             resizeMode='stretch'
-                            source={image ? { uri: image } : imagePath.profile_edit_image}
+                            source={{ uri: image }}
                         />
                         <TouchableOpacity activeOpacity={0.7}
                             onPress={imageUpload}
