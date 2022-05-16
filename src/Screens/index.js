@@ -17,4 +17,4 @@ export {default as AddScreen} from './AddScreen/AddScreen'
 export {default as EditProfileScreen} from './EditProfileScreen/EditProfileScreen'
 export {default as ChangePassword} from './ChangePassword/ChangePassword'
 export {default as PostDetail} from './Postdetail/PostDetail';
-export {default as AddInfo} from './AddInfo/AddInfo'
+export {default as AddInfo} from './AddInfo/AddInfo';

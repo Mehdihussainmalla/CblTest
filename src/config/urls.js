@@ -7,5 +7,8 @@ export const CHANGE_PASSWORD = getApiUrl("/change_password");
 export const EDIT_PROFILE_API = getApiUrl("/edit_profile");
 export const IMG_UPLOAD = getApiUrl("/img_upload");
 export const POST_UPLOAD = getApiUrl("/post_send");
-export const GET_POST = getApiUrl("/posts")
+export const GET_POST = getApiUrl("/posts");
+export const LIKE_POST = getApiUrl("/like-post");
+export const COMMENT_POST = getApiUrl("/comment-post")
+
 

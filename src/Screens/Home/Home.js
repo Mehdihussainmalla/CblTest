@@ -19,7 +19,7 @@ import actions from '../../redux/actions'
 import strings from '../../constants/lang'
 import { styles } from './styles'
 import { moderateScaleVertical } from '../../styles/responsiveSize'
-import { useSelector } from 'react-redux'
+import Carousel from 'react-native-snap-carousel';
 
 
 const Home = ({ navigation, route }) => {
@@ -66,6 +66,35 @@ const Home = ({ navigation, route }) => {
   const [count, setCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [state, setState] = useState({
+    post_id: '355',
+    status: '0',
+
+  })
+  const { post_id, status } = state;
+  const updateState = data => setState(state => ({ ...state, ...data }))
+
+  // useEffect(()=>{
+  //   // setCount=((count)=>count+1)
+  // },[])
+
+  const likePost = () => {
+    alert("chek likes !!!")
+    let likeApi = {
+      post_id: post_id,
+      status: status,
+
+    }
+    console.log("check>>>like api", likeApi)
+    actions.likePost(likeApi).then((res) => {
+      console.log("response is", res)
+      updateState(res?.data)
+    }).catch((err)=>{
+      console.log("error occurred",err)
+    })
+  }
+  
+
   const userData = data;
   useEffect(() => {
     let apidata = `?skip=${count}`;
@@ -87,6 +116,7 @@ const Home = ({ navigation, route }) => {
     <View style={styles.postHeaderContainer}>
       <View style={styles.posterName}>
         <View>
+
           <Image
             style={styles.profilePicture}
             source={{
@@ -135,16 +165,23 @@ const Home = ({ navigation, route }) => {
               {userData.userData.item?.time_ago}
             </Text>
             <View style={styles.postFooterTxt}>
-              <Text style={styles.textCommon}>
-                {strings.COMMENTS}
-                {userData.userData.item.comments}
-              </Text>
-              <Text style={styles.textCommon}>
-                {strings.LIKES}
-                {userData.userData.item.likes}
-              </Text>
+
+           
+                <Text style={styles.textCommon}>
+                  {strings.COMMENTS}
+                  {userData.userData.item.comments}
+                </Text>
+            
+
+
+              <TouchableOpacity onPress={likePost}>
+                <Text style={styles.textCommon}>
+                  {strings.LIKES}
+                  {userData.userData.item.likes}
+                </Text>
+              </TouchableOpacity>
               <Image
-                style={{ tintColor: colors.LIGHTGREYTEXT }}
+                style={{ tintColor: colors.white }}
                 source={imagePath.icSHARE}
               />
             </View>
@@ -154,7 +191,7 @@ const Home = ({ navigation, route }) => {
     );
   };
 
-  const PostContent = (userData, index) => {
+  const PostContent = (userData) => {
     // console.log("check>>>>>>>> userdataaaaaaaaaa",userData)
     // console.log(userData, 'userData in postContent');
     return (

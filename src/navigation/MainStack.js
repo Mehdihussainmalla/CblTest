@@ -24,6 +24,7 @@ const MainStack = (Stack) => {
                     component={PostDetail} />
                          <Stack.Screen options={{ headerShown: false }} name={navigationStrings.ADD_INFO}
                     component={AddInfo} />
+                    
 
 
             </Stack.Navigator>

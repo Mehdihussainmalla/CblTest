@@ -2,6 +2,7 @@ import React from "react";
 import {StyleSheet} from 'react-native'
 import { moderateScale } from "react-native-size-matters";
 import colors from "../../styles/colors";
+import fontFamily from "../../styles/fontFamily";
 import { moderateScaleVertical, textScale } from '../../styles/responsiveSize'
 export const styles= StyleSheet.create({
     wrapper: {
@@ -35,19 +36,24 @@ export const styles= StyleSheet.create({
       },
       profileName: {
         color: colors.WHITE,
+        fontFamily:fontFamily.BarlowSemiBold,
+        fontSize:textScale(16)
       },
       loc: {
         color: colors.LIGHTGREYTEXT,
+        fontFamily:fontFamily.BarlowRegular,
+        fontSize:moderateScale(13)
       },
       postImage: {
         width: '100%',
         height: moderateScaleVertical(312),
       },
       postDesc: {
-        color: colors.LIGHTGREYTEXT,
+        color: colors.white,
         textAlign: 'justify',
         fontSize: textScale(15),
-        //   fontFamily:
+       fontFamily:fontFamily.BarlowRegular,
+       
       },
       postFooter: {
         marginHorizontal: moderateScaleVertical(10),
@@ -60,7 +66,9 @@ export const styles= StyleSheet.create({
         paddingVertical: moderateScaleVertical(8),
       },
       textCommon: {
-        color: colors.LIGHTGREYTEXT,
+        color: colors.white,
+        fontFamily:fontFamily.BarlowRegular,
+        fontSize:textScale(15)
       },
     });
     

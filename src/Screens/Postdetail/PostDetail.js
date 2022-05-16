@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { View, Text, ImageBackground, Image, TouchableOpacity , SafeAreaView} from 'react-native';
 import ButtonComp from '../../Components/ButtonComp';
 import WrapperContainer from '../../Components/WrapperContainer';
 import imagePath from '../../constants/imagePath';
@@ -23,11 +23,14 @@ const PostDetail = ({ route }) => {
 
 
     return (
-        <WrapperContainer>
-            <View style={{ flex: 1, }} >
+        // <WrapperContainer>
+       
+            <View style={{ flex: 1}} >
+               
                 <ImageBackground style={styles.backgroundstyle}
                     source={{ uri:item?.file[0]}}
                     >
+                          <SafeAreaView style={{flex:1}}>
                     <View>
                     </View>
 
@@ -56,11 +59,12 @@ const PostDetail = ({ route }) => {
                     <View style={{ marginBottom: 10 }}>
                         <ButtonComp ButtonText={strings.View_Map}/>
                     </View>
-
+                    </SafeAreaView>
                 </ImageBackground>
-
+              
             </View>
-            </WrapperContainer>
+           
+            // </WrapperContainer>
     );
 };
 
