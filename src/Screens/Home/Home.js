@@ -20,6 +20,7 @@ import strings from '../../constants/lang'
 import { styles } from './styles'
 import { moderateScaleVertical } from '../../styles/responsiveSize'
 import Carousel from 'react-native-snap-carousel';
+import Pagination,{Icon,Dot} from 'react-native-pagination';
 
 
 const Home = ({ navigation, route }) => {
@@ -65,35 +66,7 @@ const Home = ({ navigation, route }) => {
   const [post, setPost] = useState();
   const [count, setCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-
-  const [state, setState] = useState({
-    post_id: '355',
-    status: '0',
-
-  })
-  const { post_id, status } = state;
-  const updateState = data => setState(state => ({ ...state, ...data }))
-
-  // useEffect(()=>{
-  //   // setCount=((count)=>count+1)
-  // },[])
-
-  const likePost = () => {
-    alert("chek likes !!!")
-    let likeApi = {
-      post_id: post_id,
-      status: status,
-
-    }
-    console.log("check>>>like api", likeApi)
-    actions.likePost(likeApi).then((res) => {
-      console.log("response is", res)
-      updateState(res?.data)
-    }).catch((err)=>{
-      console.log("error occurred",err)
-    })
-  }
-  
+  const [like, setLike]= useState(0)
 
   const userData = data;
   useEffect(() => {
@@ -110,6 +83,21 @@ const Home = ({ navigation, route }) => {
     })
 
   }, [count])
+
+  const likePost = ()=>{
+    alert("check likes!!!")
+    // const id=userData.id;
+    // console.log("check userdata for likes",userData)
+    // if(like===0)
+    // {
+    //   setLike=(like+1)
+    // }
+    // else{
+    //   setLike=(like-1)
+    // }
+    // console.log("check likes",like)
+
+  }
 
 
   const PostHeader = userData => (

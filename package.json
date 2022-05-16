@@ -32,6 +32,7 @@
     "react-native-image-crop-picker": "^0.37.3",
     "react-native-indicators": "^0.17.0",
     "react-native-localization": "^2.3.1",
+    "react-native-pagination": "^1.5.5",
     "react-native-safe-area-context": "^4.2.5",
     "react-native-screens": "^3.13.1",
     "react-native-size-matters": "^0.4.0",
