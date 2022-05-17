@@ -114,7 +114,7 @@ const Home = ({ navigation, route }) => {
     return (
       <View>
         <View style={styles.postContainer}>
-          <View >
+          <View style={styles.imageview} >
             {!!(
               userData?.userData?.item?.images?.file &&
               isArray(userData?.userData?.item?.images?.file) &&
@@ -124,7 +124,7 @@ const Home = ({ navigation, route }) => {
                 <Carousel
                   data={userData?.userData?.item?.images?.file}
                   sliderWidth={moderateScale(width - 65)}
-                  itemWidth={moderateScale(width - 20)}
+                  itemWidth={moderateScale(width - 0)}
                   scrollEnabled={userData?.userData?.item?.images?.file.length > 1 ? true : false}
                   horizontal
                   onSnapToItem={index => setSnapState(index)}
@@ -132,7 +132,7 @@ const Home = ({ navigation, route }) => {
                     if (i.item != null && typeof i.item != 'object') {
                       return (
                         <TouchableOpacity 
-                        style={styles.imageview}
+                        
                         activeOpacity={1} onPress={() => postNav(i.item)}>
                           <Image
                             source={{ uri: i.item }}

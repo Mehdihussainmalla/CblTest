@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native'
 import { moderateScale } from "react-native-size-matters";
 import colors from "../../styles/colors";
 import fontFamily from "../../styles/fontFamily";
-import { moderateScaleVertical, textScale, width } from '../../styles/responsiveSize'
+import { height, moderateScaleVertical, textScale, width } from '../../styles/responsiveSize'
 export const styles= StyleSheet.create({
     wrapper: {
         marginBottom: moderateScaleVertical(24),
@@ -15,9 +15,11 @@ export const styles= StyleSheet.create({
       },
     
       postHeaderContainer: {
+        marginRight:moderateScaleVertical(24),
+        marginLeft:moderateScaleVertical(23),
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '100%',
+        // width: '100%',
         alignItems: 'center',
         paddingHorizontal: 6,
         height: moderateScaleVertical(60),
@@ -46,13 +48,19 @@ export const styles= StyleSheet.create({
       },
 
       imageview:{
-        marginLeft:moderateScaleVertical(24),
-        marginRight:moderateScaleVertical(85)
+        marginLeft:moderateScale(23),
+        marginRight:moderateScale(44),
+     alignSelf:'center',
+      height:height/2.3
       },
       postImage: {
-        // backgroundColor:'red',
-        width: "100%",
-        height: moderateScaleVertical(310),
+      
+        marginLeft:moderateScale(23),
+        marginRight:moderateScale(40),
+              height:width,
+              
+       
+     
       },
       postDesc: {
         color: colors.white,
