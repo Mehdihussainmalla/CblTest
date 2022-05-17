@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native'
 import { moderateScale } from "react-native-size-matters";
 import colors from "../../styles/colors";
 import fontFamily from "../../styles/fontFamily";
-import { moderateScaleVertical, textScale } from '../../styles/responsiveSize'
+import { moderateScaleVertical, textScale, width } from '../../styles/responsiveSize'
 export const styles= StyleSheet.create({
     wrapper: {
         marginBottom: moderateScaleVertical(24),
@@ -44,9 +44,15 @@ export const styles= StyleSheet.create({
         fontFamily:fontFamily.BarlowRegular,
         fontSize:moderateScale(13)
       },
+
+      imageview:{
+        marginLeft:moderateScaleVertical(24),
+        marginRight:moderateScaleVertical(85)
+      },
       postImage: {
-        width: '100%',
-        height: moderateScaleVertical(312),
+        // backgroundColor:'red',
+        width: "100%",
+        height: moderateScaleVertical(310),
       },
       postDesc: {
         color: colors.white,
@@ -70,6 +76,18 @@ export const styles= StyleSheet.create({
         fontFamily:fontFamily.BarlowRegular,
         fontSize:textScale(15)
       },
+      dotstyle:{ 
+        color:colors.white, 
+        fontFamily:fontFamily.BarlowBold,
+        fontSize:textScale(16)
+      // fontWeight: '900'
+     },
+     postimage: {
+      width: moderateScale(width-20),
+      height: moderateScale(width - 40),
+      marginVertical: moderateScaleVertical(10),
+      alignSelf: 'center',
+    },
     });
     
 

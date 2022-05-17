@@ -18,52 +18,68 @@ import { moderateScale } from 'react-native-size-matters';
 import actions from '../../redux/actions'
 import strings from '../../constants/lang'
 import { styles } from './styles'
-import { moderateScaleVertical } from '../../styles/responsiveSize'
-import Carousel from 'react-native-snap-carousel';
-// import Pagination, { Icon, Dot } from 'react-native-pagination';
+import { moderateScaleVertical, width } from '../../styles/responsiveSize'
+import Carousel, { Pagination } from 'react-native-snap-carousel';
+import { isArray, isEmpty } from 'lodash';
 
 
 const Home = ({ navigation, route }) => {
   const [post, setPost] = useState([]);
   const [count, setCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
+  const [like, setLike] = useState(0);
+  const [snapState, setSnapState] = useState(0);
 
   useEffect(() => {
-    console.log("check posts",post)
-    let apidata = `?skip=${count}`
-    setIsLoading(true)
-    actions.getPost(apidata).then((res) => {
-      console.log("GET POST DATA+++++++++++++++++", res)
-      setIsLoading(false)
-      setPost([...post, ...res?.data])
-    })
-  }, [count])
+    console.log("check posts", post)
+    if (isLoading) {
+      let apidata = `?skip=${count}`
+      setIsLoading(true)
+      actions.getPost(apidata).then((res) => {
+        console.log("GET POST DATA+++++++++++++++++", res)
+        setIsLoading(false)
+        setPost([...post, ...res?.data])
+      })
+    }
+  }, [isLoading])
 
-  // const fetch = () => {
-  //   setCount(count);
-  //   setRefresh(false)
-  // }
+  const fetch = () => {
+    setCount(count);
+    setRefresh(false)
+  }
   const onRefresh = () => {
+    fetch();
     setCount(count - 8);
     setRefresh(false);
     console.log("check refresh", count)
   }
 
-  const likePost = () => {
-    alert("check likes!!!")
-    // const id=userData.id;
-    // console.log("check userdata for likes",userData)
-    // if(like===0)
-    // {
-    //   setLike=(like+1)
-    // }
-    // else{
-    //   setLike=(like-1)
-    // }
-    // console.log("check likes",like)
+  const likePost = (userData) => {
+    const id = userData?.userData?.item?.id;
+    const status = userData?.userData?.item?.status;
+    console.log("check status", status)
+    if (like === 0) {
+      setLike(like + 1)
+    }
+    else {
+      setLike(like - 1)
+    }
+    const apiData = {
+      post_id: id,
+      status: like
+    }
 
+
+    console.log("check api dataaaaa", apiData)
+    actions.likePost(apiData).then((res) => {
+      console.log("check response for like api", res)
+      // setIsLoading(true)
+    }).catch((err) => {
+      console.log("error occurred", err)
+    })
   }
+
 
 
   const PostHeader = userData => (
@@ -87,24 +103,78 @@ const Home = ({ navigation, route }) => {
         </View>
       </View>
       <View>
-        <Text style={{ color: 'white', fontWeight: '900' }}> ... </Text>
+        <Text style={styles.dotstyle}> ... </Text>
       </View>
     </View>
   );
 
   const Post = userData => {
-    // console.log(userData, 'userrrrr in post');
-    console.log(userData.userData.item, 'item in postsssssss');
+    console.log(userData, 'userrrrr in post');
+    // console.log(userData.userData.item?.id, 'item in postsssssss');
     return (
       <View>
         <View style={styles.postContainer}>
+          <View >
+            {!!(
+              userData?.userData?.item?.images?.file &&
+              isArray(userData?.userData?.item?.images?.file) &&
+              userData?.userData?.item?.images?.file.length
+            ) ? (
+              <>
+                <Carousel
+                  data={userData?.userData?.item?.images?.file}
+                  sliderWidth={moderateScale(width - 65)}
+                  itemWidth={moderateScale(width - 20)}
+                  scrollEnabled={userData?.userData?.item?.images?.file.length > 1 ? true : false}
+                  horizontal
+                  onSnapToItem={index => setSnapState(index)}
+                  renderItem={i => {
+                    if (i.item != null && typeof i.item != 'object') {
+                      return (
+                        <TouchableOpacity 
+                        style={styles.imageview}
+                        activeOpacity={1} onPress={() => postNav(i.item)}>
+                          <Image
+                            source={{ uri: i.item }}
+                            style={styles.postImage}
+                              />
+                        </TouchableOpacity>
+                      );
+                    }
+                  }}
+                />
+              </>
+            ) : null}
 
-          <Image
+            {/* Pagination dots */}
+            <Pagination
+              dotsLength={
+                !!(
+                  userData?.userData?.item?.images?.file &&
+                  isArray(userData?.userData?.item?.images?.file) &&
+                  userData?.userData?.item?.images?.file.length > 1
+                )
+                  ? userData?.userData?.item?.images?.file.length
+                  : []
+              }
+              activeDotIndex={snapState}
+              containerStyle={{ paddingVertical: 0, marginTop: 0 }}
+              dotColor={'white'}
+              dotStyle={{ width: 12, height: 12, borderRadius: 12 / 2 }}
+              inactiveDotStyle={{ width: 20, height: 20, borderRadius: 20 / 2 }}
+              inactiveDotColor={'black'}
+              inactiveDotOpacity={0.4}
+              activeOpacity={0.8}
+              dotContainerStyle={{ marginHorizontal: 2, paddingTop: 8 }}
+            />
+          </View>
+
+          {/* <Image
             style={styles.postImage}
             source={{
               uri: userData.userData.item.images.file[0],
             }}
-          />
+          /> */}
 
 
           <View style={styles.postFooter}>
@@ -122,16 +192,16 @@ const Home = ({ navigation, route }) => {
 
 
               <Text style={styles.textCommon}>
+                {userData?.userData?.item?.comment_count}
                 {strings.COMMENTS}
-                {userData.userData.item.comments}
+
               </Text>
 
 
 
-              <TouchableOpacity onPress={likePost}>
+              <TouchableOpacity onPress={() => { likePost(userData) }}>
                 <Text style={styles.textCommon}>
-                  {strings.LIKES}
-                  {userData.userData.item.likes}
+                  {userData?.userData?.item?.like_count} {strings.LIKES}
                 </Text>
               </TouchableOpacity>
               <Image
@@ -172,11 +242,12 @@ const Home = ({ navigation, route }) => {
           onEndReached={({ }) => {
             console.log("check count>>>>>>>>>", count)
             // alert("check on reached threshold")
+            setIsLoading(true)
             setCount(count + 8)
           }}
-          ListFooterComponent={() => (
-            <View style={{ height: moderateScaleVertical(32) }} />
-          )}
+          // ListFooterComponent={() => (
+          //   <View style={{ height: moderateScaleVertical(32) }} />
+          // )}
           refreshing={refresh}
           onRefresh={onRefresh}
         />

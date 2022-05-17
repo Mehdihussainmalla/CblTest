@@ -2,7 +2,7 @@ import axios from "axios";
 import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API, IMG_UPLOAD, POST_UPLOAD, GET_POST, LIKE_POST } from "../../config/urls";
 import types from '../types'
 import store from "../store";
-import { apiGet, apiPost,} from "../../utils/utils";
+import { apiGet, apiPost, } from "../../utils/utils";
 
 const { dispatch } = store;
 
@@ -69,38 +69,39 @@ export function editProfile(data) {
 }
 
 
-export const imgUpload = (data,header ={} )=>{
-    console.log("data from actions for img upload",data)
-    return new Promise ((resolve , reject)=>{
-        apiPost(IMG_UPLOAD , data , header)
-        .then((res)=>{
-            console.log("response from img upload",res);
-            resolve(res);
-        })
-        .catch((error)=>{
-            console.log("errorr occurred at img upload time",error);
-            reject(error)
-        })
+export const imgUpload = (data, header = {}) => {
+    console.log("data from actions for img upload", data)
+    return new Promise((resolve, reject) => {
+        apiPost(IMG_UPLOAD, data, header)
+            .then((res) => {
+                console.log("response from img upload", res);
+                resolve(res);
+            })
+            .catch((error) => {
+                console.log("errorr occurred at img upload time", error);
+                reject(error)
+            })
     })
 
 }
 
-export function uploadPost (data, header) {
-    console.log("data check for upload post",data)
+export function uploadPost(data, header) {
+    console.log("data check for upload post", data)
     return apiPost(POST_UPLOAD, data, header)
 }
 
-export function getPost (data, query=''){
-    console.log("check data for get post",data)
-    return apiGet(GET_POST+query)
+export function getPost(query = "") {
+    // console.log("check data for get post", data)
+    return apiGet(GET_POST + query)
 }
 
-export function likePost(data){
-console.log("check data for like post",data)
-return apiPost(LIKE_POST, data)
+export function likePost(data) {
+    return apiPost(LIKE_POST, data)
+
 }
 
-export function commentPost (data){
-    console.log("data for the comment post",data)
+
+export function commentPost(data) {
+    console.log("data for the comment post", data)
 }
 
