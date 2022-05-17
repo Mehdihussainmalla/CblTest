@@ -20,71 +20,37 @@ import strings from '../../constants/lang'
 import { styles } from './styles'
 import { moderateScaleVertical } from '../../styles/responsiveSize'
 import Carousel from 'react-native-snap-carousel';
-import Pagination,{Icon,Dot} from 'react-native-pagination';
+// import Pagination, { Icon, Dot } from 'react-native-pagination';
 
 
 const Home = ({ navigation, route }) => {
-  const data = [
-    {
-      id: 1,
-      profilePic: imagePath.profile_image,
-      profileName: 'Russell Gordon',
-      location: 'Sector 28D, Chandigarh',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis luctus.',
-      image: imagePath.card_image,
-      time: '1 hr ago',
-      likes: 44686,
-      comments: 1254,
-    },
-    {
-      id: 2,
-      profilePic: imagePath.profile_image,
-      profileName: 'Russell Gordon',
-      location: 'Sector 28D, Chandigarh',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis luctus.',
-      image: imagePath.card_image,
-      time: '1 hr ago',
-      likes: 44686,
-      comments: 1254,
-    },
-    {
-      id: 3,
-      profilePic: imagePath.profile_image,
-      profileName: 'Russell Gordon',
-      location: 'Sector 28D, Chandigarh',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis luctus.',
-      image: imagePath.card_image,
-      time: '1 hr ago',
-      likes: 44686,
-      comments: 1254,
-    },
-  ];
-
-  const [post, setPost] = useState();
+  const [post, setPost] = useState([]);
   const [count, setCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [like, setLike]= useState(0)
+  const [refresh, setRefresh] = useState(false);
 
-  const userData = data;
   useEffect(() => {
-    let apidata = `?skip=${count}`;
-    setIsLoading(true);
+    console.log("check posts",post)
+    let apidata = `?skip=${count}`
+    setIsLoading(true)
     actions.getPost(apidata).then((res) => {
-      setIsLoading(false);
-      console.log("check res>>>>>>>>>>>>>>>>", res)
-      setPost(res?.data)
-
-
-    }).catch(err => {
-      console.log("check error", err)
+      console.log("GET POST DATA+++++++++++++++++", res)
+      setIsLoading(false)
+      setPost([...post, ...res?.data])
     })
-
   }, [count])
 
-  const likePost = ()=>{
+  // const fetch = () => {
+  //   setCount(count);
+  //   setRefresh(false)
+  // }
+  const onRefresh = () => {
+    setCount(count - 8);
+    setRefresh(false);
+    console.log("check refresh", count)
+  }
+
+  const likePost = () => {
     alert("check likes!!!")
     // const id=userData.id;
     // console.log("check userdata for likes",userData)
@@ -154,12 +120,12 @@ const Home = ({ navigation, route }) => {
             </Text>
             <View style={styles.postFooterTxt}>
 
-           
-                <Text style={styles.textCommon}>
-                  {strings.COMMENTS}
-                  {userData.userData.item.comments}
-                </Text>
-            
+
+              <Text style={styles.textCommon}>
+                {strings.COMMENTS}
+                {userData.userData.item.comments}
+              </Text>
+
 
 
               <TouchableOpacity onPress={likePost}>
@@ -202,15 +168,17 @@ const Home = ({ navigation, route }) => {
         <FlatList
           data={post}
           renderItem={PostContent}
-          extraData={userData.id}
-
-          onEndReached={() => {
-            console.log("check count", count)
-            setCount(count + 1)
+          onEndReachedThreshold={0.5}
+          onEndReached={({ }) => {
+            console.log("check count>>>>>>>>>", count)
+            // alert("check on reached threshold")
+            setCount(count + 8)
           }}
           ListFooterComponent={() => (
             <View style={{ height: moderateScaleVertical(32) }} />
           )}
+          refreshing={refresh}
+          onRefresh={onRefresh}
         />
       </View>
     </WrapperContainer>
