@@ -1,5 +1,11 @@
 import React from "react";
-import { AddInfo, ChangePassword, EditProfileScreen, Home, PostDetail } from "../Screens";
+import {
+    AddInfo,
+    ChangePassword,
+    CommentScreen,
+    EditProfileScreen,
+    PostDetail
+} from "../Screens";
 import navigationStrings from "./navigationStrings";
 import TabStack from "./TabStack";
 
@@ -20,11 +26,13 @@ const MainStack = (Stack) => {
                     component={EditProfileScreen} />
                 <Stack.Screen options={{ headerShown: false }} name={navigationStrings.CHANGE_PASSWORD}
                     component={ChangePassword} />
-                       <Stack.Screen options={{ headerShown: false }} name={navigationStrings.POST_DETAIL}
+                <Stack.Screen options={{ headerShown: false }} name={navigationStrings.POST_DETAIL}
                     component={PostDetail} />
-                         <Stack.Screen options={{ headerShown: false }} name={navigationStrings.ADD_INFO}
+                <Stack.Screen options={{ headerShown: false }} name={navigationStrings.ADD_INFO}
                     component={AddInfo} />
-                    
+                <Stack.Screen options={{ headerShown: false }} name={navigationStrings.COMMENT_SCREEN}
+                    component={CommentScreen} />
+
 
 
             </Stack.Navigator>

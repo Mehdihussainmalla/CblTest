@@ -58,36 +58,35 @@ const Home = ({ navigation, route }) => {
   // }
 
   const onRefresh = () => {
-   setCount(0)
+    setCount(0)
     setRefresh(true);
 
   }
   const postNav = (userData, image) => {
     console.log("check userdataaaaaaaaaaaa", userData)
     // alert('hey')
-    navigation.navigate(navigationStrings.POST_DETAIL,{
-      item:userData,
-     image:image
+    navigation.navigate(navigationStrings.POST_DETAIL, {
+      item: userData,
+      image: image
+
+    })
+  }
+  const commentPost =(userData)=>{
+    console.log(userData,"check for comment")
+    navigation.navigate(navigationStrings.COMMENT_SCREEN,
+      {userData})
     
-  })
-    }
-    
-  
+  }
+
+
   const likePost = (userData) => {
 
     const id = userData?.userData?.item?.id;
-    // console.log("check userdataaaaaaa", id)
     const likeStatus = Number(userData?.userData?.item?.like_status) ? 0 : 1
-    // console.log(likeStatus, "Like status")
-
     let apiData = `?post_id=${id}&status=${likeStatus}`;
-
-    // console.log("check api dataaaaa", apiData)
     actions.likePost(apiData).then((res) => {
-      // console.log("check response for like api", res)
       let newArray = cloneDeep(post)
       newArray = newArray.map((i, index) => {
-        // console.log("check i>>>>>>>>>>>>", i)
         if (i?.id == id) {
           i.like_status = likeStatus,
             i.like_count = likeStatus ? Number(i?.like_count) + 1 : Number(i?.like_count) - 1
@@ -97,7 +96,7 @@ const Home = ({ navigation, route }) => {
         }
       })
       setPost(newArray);
-      console.log("new Array is :",newArray)
+      console.log("new Array is :", newArray)
     }).catch((err) => {
       console.log("error occurred", err)
     })
@@ -158,7 +157,7 @@ const Home = ({ navigation, route }) => {
                         <TouchableOpacity
 
                           // activeOpacity={1} 
-                          onPress={() => postNav(userData,i.item)}>
+                          onPress={() => postNav(userData, i.item)}>
                           <Image
                             source={{ uri: i.item }}
                             style={styles.postImage}
@@ -215,12 +214,16 @@ const Home = ({ navigation, route }) => {
             </Text>
             <View style={styles.postFooterTxt}>
 
+              <TouchableOpacity onPress={()=>commentPost(userData)}
+              // onPress={()=>navigation.navigate(navigationStrings.COMMENT_SCREEN,
+                // {item:userData})}
+                >
+                <Text style={styles.textCommon}>
+                  {userData?.userData?.item?.comment_count}
+                  {strings.COMMENTS}
 
-              <Text style={styles.textCommon}>
-                {userData?.userData?.item?.comment_count}
-                {strings.COMMENTS}
-
-              </Text>
+                </Text>
+              </TouchableOpacity>
 
 
 
@@ -266,7 +269,7 @@ const Home = ({ navigation, route }) => {
           renderItem={PostContent}
           extraData={post}
           onEndReachedThreshold={0.5}
-          onEndReached={({ }) => {         
+          onEndReached={({ }) => {
             setCount(count + 8)
             setIsLoading(true)
           }}
