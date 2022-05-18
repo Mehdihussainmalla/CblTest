@@ -5,7 +5,8 @@ import {
   FlatList,
   StyleSheet,
   Image,
-  Modal
+  Modal,
+  RefreshControl
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import WrapperContainer from '../../Components/WrapperContainer'
@@ -20,7 +21,7 @@ import strings from '../../constants/lang'
 import { styles } from './styles'
 import { moderateScaleVertical, width } from '../../styles/responsiveSize'
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import { isArray, isEmpty } from 'lodash';
+import { isArray, isEmpty, cloneDeep } from 'lodash';
 
 
 const Home = ({ navigation, route }) => {
@@ -40,42 +41,63 @@ const Home = ({ navigation, route }) => {
         console.log("GET POST DATA+++++++++++++++++", res)
         setIsLoading(false)
         setRefresh(false)
-        if(refresh){
+        if (refresh) {
           setPost(res?.data)
         }
-        else{
+        else {
           setPost([...post, ...res?.data])
         }
-        
+
       })
     }
-  }, [isLoading,refresh])
+  }, [isLoading, refresh])
+
+  // const fetch = () => {
+  //   setRefresh(true)
+  //   setCount(count - 0)
+  // }
 
   const onRefresh = () => {
-
-    setCount(count = 0);
+   setCount(0)
     setRefresh(true);
 
   }
-  const postNav = () => {
-    alert("hey")
-  }
+  const postNav = (userData, image) => {
+    console.log("check userdataaaaaaaaaaaa", userData)
+    // alert('hey')
+    navigation.navigate(navigationStrings.POST_DETAIL,{
+      item:userData,
+     image:image
+    
+  })
+    }
+    
+  
   const likePost = (userData) => {
 
     const id = userData?.userData?.item?.id;
-    console.log("check userdataaaaaaa", id)
-    const likeStatus = Number(userData?.userData?.item?.status) ? 0 : 1
-    console.log(likeStatus, "Like status")
+    // console.log("check userdataaaaaaa", id)
+    const likeStatus = Number(userData?.userData?.item?.like_status) ? 0 : 1
+    // console.log(likeStatus, "Like status")
 
     let apiData = `?post_id=${id}&status=${likeStatus}`;
 
-    console.log("check api dataaaaa", apiData)
+    // console.log("check api dataaaaa", apiData)
     actions.likePost(apiData).then((res) => {
-      console.log("check response for like api", res)
-      let newArray=cloneDeep(post)
-      newArray=newArray.map((i,index)=>{
-        console.log("check i>>>>>>>>>>>>",i)
+      // console.log("check response for like api", res)
+      let newArray = cloneDeep(post)
+      newArray = newArray.map((i, index) => {
+        // console.log("check i>>>>>>>>>>>>", i)
+        if (i?.id == id) {
+          i.like_status = likeStatus,
+            i.like_count = likeStatus ? Number(i?.like_count) + 1 : Number(i?.like_count) - 1
+          return i
+        } else {
+          return i
+        }
       })
+      setPost(newArray);
+      console.log("new Array is :",newArray)
     }).catch((err) => {
       console.log("error occurred", err)
     })
@@ -111,7 +133,7 @@ const Home = ({ navigation, route }) => {
 
   const Post = userData => {
     // console.log(userData, 'userrrrr in post');
-    // console.log(userData, 'item in postsssssss');
+    console.log(userData?.userData, 'item in postsssssss');
     return (
       <View>
         <View style={styles.postContainer}>
@@ -136,7 +158,7 @@ const Home = ({ navigation, route }) => {
                         <TouchableOpacity
 
                           // activeOpacity={1} 
-                          onPress={() => postNav}>
+                          onPress={() => postNav(userData,i.item)}>
                           <Image
                             source={{ uri: i.item }}
                             style={styles.postImage}
@@ -221,15 +243,16 @@ const Home = ({ navigation, route }) => {
   const PostContent = (userData) => {
 
     return (
-      <TouchableOpacity
-        onPress={() => navigation.navigate(navigationStrings.POST_DETAIL,
-          { userData: userData })}
+      <View
+        // onPress={() => navigation.navigate(navigationStrings.POST_DETAIL,
+        //   { userData: userData }
+        //   )}
         style={styles.wrapper}>
 
         <PostHeader userData={userData} />
         <Post userData={userData} />
 
-      </TouchableOpacity>
+      </View>
     );
   };
   return (
@@ -241,18 +264,21 @@ const Home = ({ navigation, route }) => {
         <FlatList
           data={post}
           renderItem={PostContent}
+          extraData={post}
           onEndReachedThreshold={0.5}
-          onEndReached={({ }) => {
-            console.log("check count>>>>>>>>>", count)
-            // alert("check on reached threshold")
-            setIsLoading(true)
+          onEndReached={({ }) => {         
             setCount(count + 8)
+            setIsLoading(true)
           }}
-          // ListFooterComponent={() => (
-          //   <View style={{ height: moderateScaleVertical(32) }} />
-          // )}
-          refreshing={refresh}
-          onRefresh={onRefresh}
+          refreshControl={
+            <RefreshControl
+              refreshing={refresh}
+              onRefresh={onRefresh}
+              title="Refreshing"
+              tintColor={colors.redB}
+              titleColor={colors.white}
+            />
+          }
         />
       </View>
     </WrapperContainer>

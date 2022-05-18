@@ -15,20 +15,25 @@ const PostDetail = ({ route }) => {
         navigation.goBack();
     }
 
-    const { userData } = route?.params;
-    const item = userData?.userData?.item?.images
-    console.log("checkkkkkk items",item)
+    // console.log(route?.params?.item)
+    // const { userData } = route?.params
+    const item=( route?.params)
+    const items=item?.item?.userData?.item
+    console.log("checkkkkkk items",items)
+    const pic=route?.params?.image
+
 
    
 
 
     return (
+        
         // <WrapperContainer>
        
             <View style={{ flex: 1}} >
                
                 <ImageBackground style={styles.backgroundstyle}
-                    source={{ uri:item?.file[0]}}
+                    source={{ uri:pic}}
                     >
                           <SafeAreaView style={{flex:1}}>
                     <View>
@@ -37,13 +42,13 @@ const PostDetail = ({ route }) => {
                     <View style={styles.profilestyle}>
                      <View style={{flexDirection:'row', }}>
                          <View  > 
-                        <Image source={{uri:userData?.item?.user?.profile}}   style={styles.iconstyle}/>
+                        <Image source={{uri:items?.user?.profile}}   style={styles.iconstyle}/>
                         </View>
 
                         <View style={styles.headingtextstyle}>
-                            <Text style={styles.textstyle1}>{userData?.item?.user?.first_name} {userData?.item?.user?.last_name}
+                            <Text style={styles.textstyle1}>{items?.user?.first_name} {items?.user?.last_name}
                             </Text>
-                            <Text style={styles.textstyle2}>{userData?.item?.location_name}</Text>
+                            <Text style={styles.textstyle2}>{items?.location_name}</Text>
                         </View>
                         </View>
 
@@ -53,8 +58,8 @@ const PostDetail = ({ route }) => {
                     </View>
                     
                     <View style={styles.descriptionstyle}>
-                        <Text style={styles.desctext}>{userData?.item?.description}</Text>
-                        <Text style={styles.timestyle}>{userData?.item?.time_ago}</Text>
+                        <Text style={styles.desctext}>{items?.description}</Text>
+                        <Text style={styles.timestyle}>{items?.time_ago}</Text>
                     </View>
                     <View style={{ marginBottom: 10 }}>
                         <ButtonComp ButtonText={strings.View_Map}/>
