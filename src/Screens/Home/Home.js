@@ -33,48 +33,49 @@ const Home = ({ navigation, route }) => {
 
   useEffect(() => {
     console.log("check posts", post)
-    if (isLoading) {
+    if (isLoading || refresh) {
       let apidata = `?skip=${count}`
       setIsLoading(true)
       actions.getPost(apidata).then((res) => {
         console.log("GET POST DATA+++++++++++++++++", res)
         setIsLoading(false)
-        setPost([...post, ...res?.data])
+        setRefresh(false)
+        if(refresh){
+          setPost(res?.data)
+        }
+        else{
+          setPost([...post, ...res?.data])
+        }
+        
       })
     }
-  }, [isLoading])
+  }, [isLoading,refresh])
 
-  const fetch = () => {
-    setCount(count);
-    setRefresh(false)
-  }
   const onRefresh = () => {
-    fetch();
-    setCount(count - 8);
-    setRefresh(false);
-    console.log("check refresh", count)
+
+    setCount(count = 0);
+    setRefresh(true);
+
   }
-
+  const postNav = () => {
+    alert("hey")
+  }
   const likePost = (userData) => {
-    const id = userData?.userData?.item?.id;
-    const status = userData?.userData?.item?.status;
-    console.log("check status", status)
-    if (like === 0) {
-      setLike(like + 1)
-    }
-    else {
-      setLike(like - 1)
-    }
-    const apiData = {
-      post_id: id,
-      status: like
-    }
 
+    const id = userData?.userData?.item?.id;
+    console.log("check userdataaaaaaa", id)
+    const likeStatus = Number(userData?.userData?.item?.status) ? 0 : 1
+    console.log(likeStatus, "Like status")
+
+    let apiData = `?post_id=${id}&status=${likeStatus}`;
 
     console.log("check api dataaaaa", apiData)
     actions.likePost(apiData).then((res) => {
       console.log("check response for like api", res)
-      // setIsLoading(true)
+      let newArray=cloneDeep(post)
+      newArray=newArray.map((i,index)=>{
+        console.log("check i>>>>>>>>>>>>",i)
+      })
     }).catch((err) => {
       console.log("error occurred", err)
     })
@@ -109,8 +110,8 @@ const Home = ({ navigation, route }) => {
   );
 
   const Post = userData => {
-    console.log(userData, 'userrrrr in post');
-    // console.log(userData.userData.item?.id, 'item in postsssssss');
+    // console.log(userData, 'userrrrr in post');
+    // console.log(userData, 'item in postsssssss');
     return (
       <View>
         <View style={styles.postContainer}>
@@ -127,17 +128,19 @@ const Home = ({ navigation, route }) => {
                   itemWidth={moderateScale(width - 0)}
                   scrollEnabled={userData?.userData?.item?.images?.file.length > 1 ? true : false}
                   horizontal
+                  autoplay={true}
                   onSnapToItem={index => setSnapState(index)}
                   renderItem={i => {
                     if (i.item != null && typeof i.item != 'object') {
                       return (
-                        <TouchableOpacity 
-                        
-                        activeOpacity={1} onPress={() => postNav(i.item)}>
+                        <TouchableOpacity
+
+                          // activeOpacity={1} 
+                          onPress={() => postNav}>
                           <Image
                             source={{ uri: i.item }}
                             style={styles.postImage}
-                              />
+                          />
                         </TouchableOpacity>
                       );
                     }
@@ -146,7 +149,7 @@ const Home = ({ navigation, route }) => {
               </>
             ) : null}
 
-            {/* Pagination dots */}
+
             <Pagination
               dotsLength={
                 !!(
@@ -159,13 +162,13 @@ const Home = ({ navigation, route }) => {
               }
               activeDotIndex={snapState}
               containerStyle={{ paddingVertical: 0, marginTop: 0 }}
-              dotColor={'white'}
+              dotColor={colors.white}
               dotStyle={{ width: 12, height: 12, borderRadius: 12 / 2 }}
               inactiveDotStyle={{ width: 20, height: 20, borderRadius: 20 / 2 }}
-              inactiveDotColor={'black'}
+              inactiveDotColor={colors.black}
               inactiveDotOpacity={0.4}
               activeOpacity={0.8}
-              dotContainerStyle={{ marginHorizontal: 2, paddingTop: 8 }}
+              dotContainerStyle={{ marginHorizontal: 2, paddingTop: 5 }}
             />
           </View>
 
@@ -216,11 +219,11 @@ const Home = ({ navigation, route }) => {
   };
 
   const PostContent = (userData) => {
-    // console.log("check>>>>>>>> userdataaaaaaaaaa",userData)
-    // console.log(userData, 'userData in postContent');
+
     return (
-      <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.POST_DETAIL,
-        { userData: userData })}
+      <TouchableOpacity
+        onPress={() => navigation.navigate(navigationStrings.POST_DETAIL,
+          { userData: userData })}
         style={styles.wrapper}>
 
         <PostHeader userData={userData} />

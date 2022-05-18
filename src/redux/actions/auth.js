@@ -95,8 +95,8 @@ export function getPost(query = "") {
     return apiGet(GET_POST + query)
 }
 
-export function likePost(data) {
-    return apiPost(LIKE_POST, data)
+export function likePost(query = "",header ={}) {
+    return apiPost(LIKE_POST+query, header)
 
 }
 

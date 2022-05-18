@@ -16,7 +16,7 @@ const PostDetail = ({ route }) => {
     }
 
     const { userData } = route?.params;
-    const item = userData?.item?.images
+    const item = userData?.userData?.item?.images
     console.log("checkkkkkk items",item)
 
    
