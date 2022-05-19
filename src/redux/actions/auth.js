@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API, IMG_UPLOAD, POST_UPLOAD, GET_POST, LIKE_POST, COMMENT_POST } from "../../config/urls";
+import { LOGIN, SIGNUP, CHANGE_PASSWORD, EDIT_PROFILE_API, IMG_UPLOAD, POST_UPLOAD, GET_POST, LIKE_POST, COMMENT_POST, GET_COMMENT } from "../../config/urls";
 import types from '../types'
 import store from "../store";
 import { apiGet, apiPost, } from "../../utils/utils";
@@ -105,6 +105,9 @@ export function commentPost(query='') {
     // console.log("data for the comment post", data)
     return apiPost(COMMENT_POST+query)
 
+}
+export function getComment (query= ''){
+    return apiGet (GET_COMMENT+query)
 }
 
 

@@ -26,29 +26,29 @@ const CommentScreen = ({ route }) => {
     const email = (item?.user?.email)
     const time = (item?.time_ago)
     const id = (item?.user?.id)
-    const commets = (item?.commets)
-    console.log("coment show", commets)
+    const comments = (item?.commets?.comment)
+    console.log("coment show", comments)
     //  console.log("check id",id)
     console.log("check profile>>>", item)
 
 
-    useEffect(() => {
-        console.warn("welcome")
-        let apiData=`?post_id= ${id}`;
-        actions.commentPost(apiData).then((res)=>{
-            console.log("checkk response",res)
-        })
+    // useEffect(() => {
+    //     console.warn("welcome")
+    //     let apiData=`?post_id= ${id}`;
+    //     actions.commentPost(apiData).then((res)=>{
+    //         console.log("checkk response",res)
+    //     })
 
-    }, [])
+    // }, [])
 
     const commentPost = () => {
-        // let apiData = `?post_id= ${id} &commet=${commets}`;
-        // console.log(apiData, "apidata")
-        // actions.commentPost(apiData).then((res) => {
-        //     console.log("checkk response", res)
-        // }).catch((error) => {
-        //     console.log(error, "errorr occurred")
-        // })
+        let apiData = `?post_id= ${id} &comment=${comments}`;
+        console.log(apiData, "apidata")
+        actions.commentPost(apiData).then((res) => {
+            console.log("checkk response", res)
+        }).catch((error) => {
+            console.log(error, "errorr occurred")
+        })
     }
 
     return (
@@ -102,7 +102,7 @@ const CommentScreen = ({ route }) => {
                             width: moderateScale(46),
                             marginLeft: 11,
                             marginRight: 50,
-                            // paddingLeft: 14,
+                            
 
                         }} />
                 </TouchableOpacity>
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
         , marginRight: moderateScaleVertical(24),
         // backgroundColor: 'white',
         // height:50,
-        marginBottom: moderateScaleVertical(10)
+        marginBottom: moderateScaleVertical(18)
     },
     inputview: {
         width: "40%",

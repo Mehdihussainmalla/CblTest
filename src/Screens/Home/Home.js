@@ -59,7 +59,7 @@ const Home = ({ navigation, route }) => {
 
   const onRefresh = () => {
     setCount(0)
-    setRefresh(true);
+    setRefresh(false);
 
   }
   const postNav = (userData, image) => {
@@ -72,7 +72,9 @@ const Home = ({ navigation, route }) => {
     })
   }
   const commentPost =(userData)=>{
-    console.log(userData,"check for comment")
+alert("heyy")
+    let apiData= 
+    // console.log(userData,"check for comment")
     navigation.navigate(navigationStrings.COMMENT_SCREEN,
       {userData})
     
@@ -107,6 +109,7 @@ const Home = ({ navigation, route }) => {
 
   },[post])
 
+  
 
 
   const PostHeader = userData => (
@@ -197,13 +200,6 @@ const Home = ({ navigation, route }) => {
               dotContainerStyle={{ marginHorizontal: 2, paddingTop: 5 }}
             />
           </View>
-
-          {/* <Image
-            style={styles.postImage}
-            source={{
-              uri: userData.userData.item.images.file[0],
-            }}
-          /> */}
 
 
           <View style={styles.postFooter}>
