@@ -28,7 +28,20 @@ const CommentScreen = ({ route }) => {
     // const commentStatus=(item?.commets?.comments)
     // const description = (item?.description)
     const id = (item?.id)
-    console.log("check profile>>>", item)
+    // console.log("check idddd>>>>>>>>",id)
+    // console.log("check profile>>>", item)
+
+    const commentPost = (item) => {
+      
+        console.log("check items>>>>>",item)
+        let apiData = `?post_id=${id}&comment=${comment}`
+        console.log(apiData, "apidata")
+        actions.commentPost(apiData).then((res) => {
+            console.log("checkk response", res)
+        }).catch((error) => {
+            console.log(error, "errorr occurred")
+        })
+    }
 
     useEffect(() => {
         if (isLoading || refresh) {
@@ -54,17 +67,7 @@ const CommentScreen = ({ route }) => {
     }, [isLoading, refresh])
 
 
-    const commentPost = () => {
-        const id = id;
-        // const commentStatus=Number()
-        let apiData = `?post_id=${id}&comment=${comment}`;
-        console.log(apiData, "apidata")
-        actions.commentPost(apiData).then((res) => {
-            console.log("checkk response", res)
-        }).catch((error) => {
-            console.log(error, "errorr occurred")
-        })
-    }
+   
     const onRefresh = () => {
         setCount(0)
         setRefresh(false);
@@ -80,7 +83,7 @@ const CommentScreen = ({ route }) => {
                     isBackIcon={true}
                     title={"Comments"} />
                 <FlatList
-                showsVerticalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}
                     data={getAllComments}
                     onEndReachedThreshold={0.5}
                     onEndReached={() => {
@@ -101,8 +104,8 @@ const CommentScreen = ({ route }) => {
                     renderItem={(element) => {
                         console.log("element", element)
 
-                        return (<View >
-                            <View style={{ flex: 1, flexDirection: 'row', marginTop: 5 }}>
+                        return (<View>
+                            <View style={{ flex: 1, flexDirection: 'row', marginTop: 5, }}>
                                 <Image
                                     style={styles.iconstyle}
                                     source={{ uri: element.item.user.profile }}
@@ -151,7 +154,7 @@ const CommentScreen = ({ route }) => {
                     flex: 0.3, borderRadius: 8
                 }}>
                     <ButtonComp
-                        onPress={() => commentPost()}
+                        onPress={() => commentPost(item)}
                         ButtonText='Post'
                         buttonTxt={{
                             width: moderateScale(46),
@@ -183,7 +186,8 @@ const styles = StyleSheet.create({
         marginLeft: moderateVerticalScale(24),
         marginRight: moderateVerticalScale(23),
         //  backgroundColor: 'grey'
-        flex: 1
+        flex: 1,
+
     },
     profile: {
         marginTop: moderateScale(10),
@@ -230,7 +234,7 @@ const styles = StyleSheet.create({
     divider: {
         marginTop: moderateScaleVertical(18),
         color: colors.WHITE,
-        width: moderateScaleVertical(350)
+        width: moderateScaleVertical(460)
 
     },
     commentview:

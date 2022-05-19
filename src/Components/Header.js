@@ -8,25 +8,25 @@ import fontFamily from '../styles/fontFamily'
 import { textScale } from '../styles/responsiveSize'
 
 
-const Header = ({ title, onPressBack, isBackIcon,container='' }) => {
+const Header = ({ title, onPressBack, isBackIcon, container = '' }) => {
   const navigation = useNavigation();
   const goBack = () => {
     navigation.goBack();
   }
   return (
-    <View style={{...styles.container,container}}>
+    <View style={{ ...styles.container, container }}>
       <View>
         {!!isBackIcon && (
           <TouchableOpacity style={styles.iconstyle}
-          onPress={!!onPressBack ? onPressBack : () => goBack()}>
-          <Image source={imagePath.BACK_ARROW} />
-        </TouchableOpacity>
+            onPress={!!onPressBack ? onPressBack : () => goBack()}>
+            <Image source={imagePath.BACK_ARROW} />
+          </TouchableOpacity>
         )}
-       
+
       </View>
-      <View style={{marginRight:!!isBackIcon? moderateScale(10) : null }}  >
-          <Text style={styles.headertext}>{title}</Text>
-        </View>
+      <View style={{ marginRight: !!isBackIcon ? moderateScale(10) : null }}  >
+        <Text style={styles.headertext}>{title}</Text>
+      </View>
     </View>
   )
 }
@@ -34,7 +34,7 @@ const Header = ({ title, onPressBack, isBackIcon,container='' }) => {
 export default Header
 const styles = StyleSheet.create({
   container: {
-flexDirection:'row',
+    flexDirection: 'row',
     // backgroundColor:'red',
     marginLeft: moderateVerticalScale(24),
     marginRight: moderateScale(23),
@@ -44,18 +44,18 @@ flexDirection:'row',
 
 
   },
-  headertext:{
-    color:colors.white,
-    fontFamily:fontFamily.BarlowSemiBold,
-    fontSize:textScale(16),
-    paddingLeft:moderateScale(20)
+  headertext: {
+    color: colors.white,
+    fontFamily: fontFamily.BarlowSemiBold,
+    fontSize: textScale(16),
+    paddingLeft: moderateScale(20)
   },
   iconstyle:
   {
-    marginTop:moderateScale(7),
-    paddingLeft:moderateScale(4)
+    marginTop: moderateScale(7),
+    paddingLeft: moderateScale(4)
 
-   },
- 
+  },
+
 
 })

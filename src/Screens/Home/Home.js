@@ -52,10 +52,6 @@ const Home = ({ navigation, route }) => {
     }
   }, [isLoading, refresh])
 
-  // const fetch = () => {
-  //   setRefresh(true)
-  //   setCount(count - 0)
-  // }
 
   const onRefresh = () => {
     setCount(0)
@@ -71,10 +67,10 @@ const Home = ({ navigation, route }) => {
 
     })
   }
-  const commentPost =(userData)=>{
+  const commentPost = (userData) => {
     navigation.navigate(navigationStrings.COMMENT_SCREEN,
-      {userData})
-    
+      { userData })
+
   }
 
 
@@ -101,12 +97,12 @@ const Home = ({ navigation, route }) => {
       console.log("error occurred", err)
     })
   }
-  useEffect(()=>{
-    console.log(post,"updated state");
+  useEffect(() => {
+    console.log(post, "updated state");
 
-  },[post])
+  }, [post])
 
-  
+
 
 
   const PostHeader = userData => (
@@ -212,10 +208,10 @@ const Home = ({ navigation, route }) => {
             </Text>
             <View style={styles.postFooterTxt}>
 
-              <TouchableOpacity onPress={()=>commentPost(userData)}
+              <TouchableOpacity onPress={() => commentPost(userData)}
               // onPress={()=>navigation.navigate(navigationStrings.COMMENT_SCREEN,
-                // {item:userData})}
-                >
+              // {item:userData})}
+              >
                 <Text style={styles.textCommon}>
                   {userData?.userData?.item?.comment_count}
                   {strings.COMMENTS}
