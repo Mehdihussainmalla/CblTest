@@ -85,6 +85,7 @@ const Home = ({ navigation, route }) => {
     const likeStatus = Number(userData?.userData?.item?.like_status) ? 0 : 1
     let apiData = `?post_id=${id}&status=${likeStatus}`;
     actions.likePost(apiData).then((res) => {
+      console.log(res)
       let newArray = cloneDeep(post)
       newArray = newArray.map((i, index) => {
         if (i?.id == id) {
@@ -101,6 +102,10 @@ const Home = ({ navigation, route }) => {
       console.log("error occurred", err)
     })
   }
+  useEffect(()=>{
+    console.log(post,"updated state");
+
+  },[post])
 
 
 
