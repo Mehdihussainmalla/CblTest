@@ -14,35 +14,42 @@ import fontFamily from '../../styles/fontFamily';
 import ButtonComp from '../../Components/ButtonComp';
 import TextInputComponent from '../../Components/TextInputComponent';
 import actions from '../../redux/actions';
+import { FlatList } from 'react-native-gesture-handler';
 
 
 
 const CommentScreen = ({ route }) => {
-    const [comment, setComment] = useState();
+    const [comment, setComment] = useState('');
+    const [getAllComments, setGetAllComments] = useState([])
     const item = (route?.params?.userData?.userData?.item)
     const pic = (item?.user?.profile)
     const profileName = (item?.user?.first_name)
     const lastName = (item?.user?.last_name)
     const email = (item?.user?.email)
     const time = (item?.time_ago)
-    const id = (item?.user?.id)
+    const id = (item?.id)
     const comments = (item?.commets?.comment)
     console.log("coment show", comments)
     //  console.log("check id",id)
     console.log("check profile>>>", item)
 
 
-    // useEffect(() => {
-    //     console.warn("welcome")
-    //     let apiData=`?post_id= ${id}`;
-    //     actions.commentPost(apiData).then((res)=>{
-    //         console.log("checkk response",res)
-    //     })
+    useEffect(() => {
+        // console.log("id------------", id)
+        let apiData = `?post_id=${id}`;
+        console.log('apidata------------', apiData)
+        actions.getComment(apiData).then((res) => {
+            console.log("checkk response", res)
+            setGetAllComments(res?.data)
+        })
+            .catch(() => {
+                alert(err?.message)
+            })
 
-    // }, [])
+    }, [])
 
     const commentPost = () => {
-        let apiData = `?post_id= ${id} &comment=${comments}`;
+        let apiData = `?post_id=${id}&comment=${comment}`;
         console.log(apiData, "apidata")
         actions.commentPost(apiData).then((res) => {
             console.log("checkk response", res)
@@ -59,30 +66,42 @@ const CommentScreen = ({ route }) => {
                     <Header
                         isBackIcon={true}
                         title={"Comments"} />
-                    <View style={styles.container}>
-                        <Image
-                            style={styles.iconstyle}
-                            source={{ uri: pic }}
-                        />
-                        <View style={{ flexDirection: 'column' }}>
-                            <Text style={styles.profile}>{profileName} <Text>{lastName}</Text></Text>
-                            <Text style={styles.email}>{email}</Text>
+                    <FlatList
+                        data={getAllComments}
+                        renderItem={(element) => {
+                            console.log("element", element)
+                            return (<View >
+                                <View style={{flex:1,flexDirection:'row'}}>
+                                <Image
+                                    style={styles.iconstyle}
+                                    source={{ uri: element.item.user.profile }}
+                                />
+                                <View style={{ flexDirection: 'column' }}>
+                                    <Text style={styles.profile}>{element.item.user.first_name} <Text>{element.item.user.last_name}</Text></Text>
+                                    <Text style={styles.email}>{element.item.user.email}</Text>
+                                </View>
+                                </View>
+                                <View style={styles.timeview}>
+                                    <Text style={styles.timestyle}>
+                                        {element.item.time_ago}
+                                    </Text>
+                                </View>
+                                    <View style={{backgroundColor:'red',marginLeft:80}}>
+                                <Text>{element.item.comment}</Text>
+                            </View>
                         </View>
-
-                    </View>
-                    <View style={styles.timeview}>
-                        <Text style={styles.timestyle}>
-                            {time}
-                        </Text>
-                    </View>
+                            )
+                        }}
+                    />
+                   
                 </ScrollView>
             </View>
             <View style={styles.bottomview}>
                 <View style={styles.inputview}>
 
                     <TextInputComponent
-                        // onChangeText={(comment) => setComment(comment)}
-                        // value={comment}
+                        onChangeText={(comment) => setComment(comment)}
+                        value={comment}
                         input={{
                             width: "138%",
                             fontSize: textScale(15),
@@ -102,7 +121,7 @@ const CommentScreen = ({ route }) => {
                             width: moderateScale(46),
                             marginLeft: 11,
                             marginRight: 50,
-                            
+
 
                         }} />
                 </TouchableOpacity>
@@ -114,7 +133,7 @@ const CommentScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
+        // flexDirection: 'row',
     },
     iconstyle: {
         marginTop: moderateVerticalScale(8),
