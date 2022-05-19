@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import {
     View, Text, StyleSheet,
-    Image, ScrollView, TouchableOpacity, FlatList
+    Image, ScrollView, TouchableOpacity, FlatList, RefreshControl
 } from 'react-native';
 import Header from '../../Components/Header';
 import WrapperContainer from '../../Components/WrapperContainer';
@@ -21,29 +21,42 @@ import { Divider } from 'react-native-elements/dist/divider/Divider'
 const CommentScreen = ({ route }) => {
     const [comment, setComment] = useState('');
     const [getAllComments, setGetAllComments] = useState([])
+    const [count, setCount] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const [refresh, setRefresh] = useState(false);
     const item = (route?.params?.userData?.userData?.item)
-    const description = (item?.description)
+    // const commentStatus=(item?.commets?.comments)
+    // const description = (item?.description)
     const id = (item?.id)
     console.log("check profile>>>", item)
 
-    // const [isScrollViewEnabled, setScrollViewEnabled]=useState(false)
-
     useEffect(() => {
+        if (isLoading || refresh) {
 
-        // console.log("id------------", id)
-        let apiData = `?post_id=${id}`;
-        console.log('apidata------------', apiData)
-        actions.getComment(apiData).then((res) => {
-            console.log("checkk responses", res)
-            setGetAllComments(res?.data)
-        })
-            .catch(() => {
-                alert(err?.message)
+            let apiData = `?post_id=${id}&skip=${count}`;
+            setIsLoading(true)
+            console.log('apidata------------', apiData)
+            actions.getComment(apiData).then((res) => {
+                console.log("checkk responses", res)
+                setIsLoading(false)
+                setRefresh(false)
+                if (refresh) {
+                    setGetAllComments(res?.data)
+                }
+                else {
+                    setGetAllComments([...getAllComments, ...res?.data])
+                }
             })
+                .catch(() => {
+                    alert(err?.message)
+                })
+        }
+    }, [isLoading, refresh])
 
-    }, [])
 
     const commentPost = () => {
+        const id = id;
+        // const commentStatus=Number()
         let apiData = `?post_id=${id}&comment=${comment}`;
         console.log(apiData, "apidata")
         actions.commentPost(apiData).then((res) => {
@@ -52,52 +65,72 @@ const CommentScreen = ({ route }) => {
             console.log(error, "errorr occurred")
         })
     }
+    const onRefresh = () => {
+        setCount(0)
+        setRefresh(false);
+
+    }
 
     return (
-        <WrapperContainer>
+        <WrapperContainer isLoading={isLoading} withModal={isLoading}>
 
             <View style={styles.mainview}>
-                <ScrollView showsVerticalScrollIndicator={false} >
+                <Header
 
-                    <Header
-                        isBackIcon={true}
-                        title={"Comments"} />
-                    <FlatList
+                    isBackIcon={true}
+                    title={"Comments"} />
+                <FlatList
+                showsVerticalScrollIndicator={false}
+                    data={getAllComments}
+                    onEndReachedThreshold={0.5}
+                    onEndReached={() => {
+                        setCount(count + 15)
+                        setIsLoading(true)
+                    }}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refresh}
+                            onRefresh={onRefresh}
+                            title="Refreshing"
+                            tintColor={colors.redB}
+                            titleColor={colors.white}
+                        />
 
-                        data={getAllComments}
-                        renderItem={(element) => {
-                            console.log("element", element)
+                    }
 
-                            return (<View >
-                                <View style={{ flex: 1, flexDirection: 'row', marginTop: 5 }}>
-                                    <Image
-                                        style={styles.iconstyle}
-                                        source={{ uri: element.item.user.profile }}
-                                    />
-                                    <View style={{ flexDirection: 'column' }}>
-                                        <Text style={styles.profile}>{element.item.user.first_name} <Text>{element.item.user.last_name}</Text></Text>
+                    renderItem={(element) => {
+                        console.log("element", element)
 
-                                        <Text style={styles.email}>{element.item.user.email}</Text>
-                                    </View>
-                                </View>
-                                <View style={styles.commentview}>
-                                    <Text style={styles.commentstyle}> <Text style={{ fontSize: 12 }}>comment:  </Text> {element.item.comment}</Text>
-                                </View>
+                        return (<View >
+                            <View style={{ flex: 1, flexDirection: 'row', marginTop: 5 }}>
+                                <Image
+                                    style={styles.iconstyle}
+                                    source={{ uri: element.item.user.profile }}
+                                />
+                                <View style={{ flexDirection: 'column' }}>
+                                    <Text style={styles.profile}>{element.item.user.first_name} <Text>{element.item.user.last_name}</Text></Text>
 
-                                <View style={styles.timeview}>
-                                    <Text style={styles.timestyle}>
-                                        {element.item.time_ago}
-                                    </Text>
-                                </View>
-                                <View>
-                                    <Divider style={styles.divider} />
+                                    <Text style={styles.email}>{element.item.user.email}</Text>
                                 </View>
                             </View>
-                            )
-                        }}
-                    />
+                            <View style={styles.commentview}>
+                                <Text style={styles.commentstyle}> <Text style={{ fontSize: 12 }}>comment:  </Text> {element.item.comment}</Text>
+                            </View>
 
-                </ScrollView>
+                            <View style={styles.timeview}>
+                                <Text style={styles.timestyle}>
+                                    {element.item.time_ago}
+                                </Text>
+                            </View>
+                            <View>
+                                <Divider style={styles.divider} />
+                            </View>
+                        </View>
+                        )
+                    }}
+
+                />
+
             </View>
             <View style={styles.bottomview}>
                 <View style={styles.inputview}>

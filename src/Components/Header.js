@@ -8,13 +8,13 @@ import fontFamily from '../styles/fontFamily'
 import { textScale } from '../styles/responsiveSize'
 
 
-const Header = ({ title, onPressBack, isBackIcon }) => {
+const Header = ({ title, onPressBack, isBackIcon,container='' }) => {
   const navigation = useNavigation();
   const goBack = () => {
     navigation.goBack();
   }
   return (
-    <View style={styles.container}>
+    <View style={{...styles.container,container}}>
       <View>
         {!!isBackIcon && (
           <TouchableOpacity style={styles.iconstyle}
@@ -55,6 +55,7 @@ flexDirection:'row',
     marginTop:moderateScale(7),
     paddingLeft:moderateScale(4)
 
-   }
+   },
+ 
 
 })

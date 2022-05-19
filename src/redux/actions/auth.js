@@ -95,19 +95,18 @@ export function getPost(query = "") {
     return apiGet(GET_POST + query)
 }
 
-export function likePost(query = "",header ={}) {
-    return apiPost(LIKE_POST+query, header)
+export function likePost(query = "", header = {}) {
+    return apiPost(LIKE_POST + query, header)
 
 }
 
 
-export function commentPost(query='') {
-    // console.log("data for the comment post", data)
-    return apiPost(COMMENT_POST+query)
+export function commentPost(query = '') {
+    return apiPost(COMMENT_POST + query)
 
 }
-export function getComment (query= ''){
-    return apiGet (GET_COMMENT+query)
+export function getComment(query = '') {
+    return apiGet(GET_COMMENT + query)
 }
 
 

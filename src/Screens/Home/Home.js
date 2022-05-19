@@ -137,7 +137,7 @@ const Home = ({ navigation, route }) => {
 
   const Post = userData => {
     // console.log(userData, 'userrrrr in post');
-    console.log(userData?.userData, 'item in postsssssss');
+    // console.log(userData?.userData, 'item in postsssssss');
     return (
       <View>
         <View style={styles.postContainer}>
