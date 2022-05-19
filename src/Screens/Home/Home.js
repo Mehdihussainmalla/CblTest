@@ -72,9 +72,6 @@ const Home = ({ navigation, route }) => {
     })
   }
   const commentPost =(userData)=>{
-alert("heyy")
-    let apiData= 
-    // console.log(userData,"check for comment")
     navigation.navigate(navigationStrings.COMMENT_SCREEN,
       {userData})
     

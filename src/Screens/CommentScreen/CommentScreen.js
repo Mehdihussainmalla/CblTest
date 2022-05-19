@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import {
     View, Text, StyleSheet,
-    Image, ScrollView, TouchableOpacity
+    Image, ScrollView, TouchableOpacity, FlatList
 } from 'react-native';
 import Header from '../../Components/Header';
 import WrapperContainer from '../../Components/WrapperContainer';
@@ -14,7 +14,7 @@ import fontFamily from '../../styles/fontFamily';
 import ButtonComp from '../../Components/ButtonComp';
 import TextInputComponent from '../../Components/TextInputComponent';
 import actions from '../../redux/actions';
-import { FlatList } from 'react-native-gesture-handler';
+import { Divider } from 'react-native-elements/dist/divider/Divider'
 
 
 
@@ -22,24 +22,19 @@ const CommentScreen = ({ route }) => {
     const [comment, setComment] = useState('');
     const [getAllComments, setGetAllComments] = useState([])
     const item = (route?.params?.userData?.userData?.item)
-    const pic = (item?.user?.profile)
-    const profileName = (item?.user?.first_name)
-    const lastName = (item?.user?.last_name)
-    const email = (item?.user?.email)
-    const time = (item?.time_ago)
+    const description = (item?.description)
     const id = (item?.id)
-    const comments = (item?.commets?.comment)
-    console.log("coment show", comments)
-    //  console.log("check id",id)
     console.log("check profile>>>", item)
 
+    // const [isScrollViewEnabled, setScrollViewEnabled]=useState(false)
 
     useEffect(() => {
+
         // console.log("id------------", id)
         let apiData = `?post_id=${id}`;
         console.log('apidata------------', apiData)
         actions.getComment(apiData).then((res) => {
-            console.log("checkk response", res)
+            console.log("checkk responses", res)
             setGetAllComments(res?.data)
         })
             .catch(() => {
@@ -62,38 +57,46 @@ const CommentScreen = ({ route }) => {
         <WrapperContainer>
 
             <View style={styles.mainview}>
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false} >
+
                     <Header
                         isBackIcon={true}
                         title={"Comments"} />
                     <FlatList
+
                         data={getAllComments}
                         renderItem={(element) => {
                             console.log("element", element)
+
                             return (<View >
-                                <View style={{flex:1,flexDirection:'row'}}>
-                                <Image
-                                    style={styles.iconstyle}
-                                    source={{ uri: element.item.user.profile }}
-                                />
-                                <View style={{ flexDirection: 'column' }}>
-                                    <Text style={styles.profile}>{element.item.user.first_name} <Text>{element.item.user.last_name}</Text></Text>
-                                    <Text style={styles.email}>{element.item.user.email}</Text>
+                                <View style={{ flex: 1, flexDirection: 'row', marginTop: 5 }}>
+                                    <Image
+                                        style={styles.iconstyle}
+                                        source={{ uri: element.item.user.profile }}
+                                    />
+                                    <View style={{ flexDirection: 'column' }}>
+                                        <Text style={styles.profile}>{element.item.user.first_name} <Text>{element.item.user.last_name}</Text></Text>
+
+                                        <Text style={styles.email}>{element.item.user.email}</Text>
+                                    </View>
                                 </View>
+                                <View style={styles.commentview}>
+                                    <Text style={styles.commentstyle}> <Text style={{ fontSize: 12 }}>comment:  </Text> {element.item.comment}</Text>
                                 </View>
+
                                 <View style={styles.timeview}>
                                     <Text style={styles.timestyle}>
                                         {element.item.time_ago}
                                     </Text>
                                 </View>
-                                    <View style={{backgroundColor:'red',marginLeft:80}}>
-                                <Text>{element.item.comment}</Text>
+                                <View>
+                                    <Divider style={styles.divider} />
+                                </View>
                             </View>
-                        </View>
                             )
                         }}
                     />
-                   
+
                 </ScrollView>
             </View>
             <View style={styles.bottomview}>
@@ -103,7 +106,7 @@ const CommentScreen = ({ route }) => {
                         onChangeText={(comment) => setComment(comment)}
                         value={comment}
                         input={{
-                            width: "138%",
+                            width: "135%",
                             fontSize: textScale(15),
                             fontFamily: fontFamily.BarlowMedium,
 
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
         // flexDirection: 'row',
     },
     iconstyle: {
-        marginTop: moderateVerticalScale(8),
+        marginTop: moderateVerticalScale(10),
         height: moderateScale(width / 10),
         width: moderateScale(width / 10),
         borderRadius: moderateScale(width / 20),
@@ -153,27 +156,29 @@ const styles = StyleSheet.create({
         marginTop: moderateScale(10),
         fontSize: textScale(13),
         color: colors.white,
-        fontFamily: fontFamily.BarlowMedium
+        fontFamily: fontFamily.BarlowBold
     },
     email: {
         fontSize: textScale(13),
         color: colors.white,
-        fontFamily: fontFamily.BarlowMedium
+        fontFamily: fontFamily.BarlowBold
 
     },
     timeview: {
-        marginTop: moderateScale(4),
+        marginTop: moderateScale(2),
         marginHorizontal: moderateScale(55),
-        // backgroundColor:'red'
+        //  backgroundColor:'red'
 
 
 
     },
     timestyle: {
-        fontSize: textScale(13),
-        color: colors.white,
-        fontFamily: fontFamily.BarlowMedium,
-        paddingLeft: moderateScaleVertical(17)
+        fontSize: textScale(10),
+        color: colors.LIGHTGREYTEXT,
+        fontFamily: fontFamily.BarlowRegular,
+        paddingLeft: moderateScaleVertical(17),
+        // marginTop: moderateScale(2),
+        paddingTop: 10
     },
     bottomview: {
         flexDirection: 'row',
@@ -182,12 +187,30 @@ const styles = StyleSheet.create({
         , marginRight: moderateScaleVertical(24),
         // backgroundColor: 'white',
         // height:50,
-        marginBottom: moderateScaleVertical(18)
+        marginBottom: moderateScaleVertical(2)
     },
     inputview: {
         width: "40%",
         flex: 0.5,
         borderRadius: moderateScaleVertical(8)
+    },
+    divider: {
+        marginTop: moderateScaleVertical(18),
+        color: colors.WHITE,
+        width: moderateScaleVertical(350)
+
+    },
+    commentview:
+    {
+        marginLeft: moderateScaleVertical(75),
+        marginTop: 5
+    },
+
+    commentstyle: {
+        fontSize: textScale(14),
+        fontFamily: fontFamily.BarlowRegular,
+        color: colors.white,
+        paddingTop: moderateScaleVertical(5)
     }
 });
 
