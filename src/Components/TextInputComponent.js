@@ -14,18 +14,18 @@ const TextInputComponent = ({
     onChangeText,
     input,
     value
-   
+
 }) => {
 
     return (
         <SafeAreaView>
-            <TextInput  onChangeText={onChangeText}
+            <TextInput onChangeText={onChangeText}
                 placeholderTextColor={colors.white}
                 placeholder={placeholder}
                 // keyboardType={keyboardType}
-                style={{...styles.input, ...input}}
+                style={{ ...styles.input, ...input }}
                 value={value}
-                
+
 
 
             />
@@ -42,20 +42,20 @@ const styles = StyleSheet.create({
         backgroundColor: colors.matterhorn,
         // marginRight: moderateScale(2),
         // marginLeft: moderateScale(2),
-        paddingHorizontal:moderateScale(16),
+        paddingHorizontal: moderateScale(16),
         borderRadius: verticalScale(5),
         // paddingLeft: moderateScale(8),
         // paddingVertical: verticalScale(10),
-        color:colors.white,
-        fontFamily:fontFamily.BarlowRegular
+        color: colors.white,
+        fontFamily: fontFamily.BarlowRegular
 
 
 
     },
     text: {
 
-color:colors.redB,
-fontSize:textScale(15)
+        color: colors.redB,
+        fontSize: textScale(17)
 
 
     }

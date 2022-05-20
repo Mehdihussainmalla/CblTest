@@ -51,6 +51,7 @@ const EditProfileScreen = () => {
     const updateState = data => setState(state => ({ ...state, ...data }))
 
     useEffect(() => {
+       
         updateState({
             first_name: userData?.first_name,
             last_name: userData?.last_name,
@@ -59,6 +60,7 @@ const EditProfileScreen = () => {
             image: userData.profile,
         }
         )
+        console.log(image,"checkkkk image")
         //   setCountryCode(userData?.phone_code)
         //   setCountryFlag(userData?.country_code)
 

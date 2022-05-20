@@ -61,7 +61,6 @@ const Home = ({ navigation, route }) => {
   }
   const postNav = (userData, image) => {
     console.log("check userdataaaaaaaaaaaa", userData)
-    // alert('hey')
     navigation.navigate(navigationStrings.POST_DETAIL, {
       item: userData,
       image: image
@@ -134,7 +133,7 @@ const Home = ({ navigation, route }) => {
 
   const Post = userData => {
 const profile=    userData?.userData?.item?.user?.profile
-    console.log(profile, 'userrrrr in post');
+    // console.log(profile, 'userrrrr in post');
        return (
       <View>
         <View style={styles.postContainer}>

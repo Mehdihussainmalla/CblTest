@@ -32,7 +32,7 @@ const App = () => {
     });
 
     setTimeout(() => {
-      SplashScreen.hide();
+      SplashScreen.hide();    
 
     }, 2000);
 

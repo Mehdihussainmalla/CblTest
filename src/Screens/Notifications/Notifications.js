@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, FlatList, Text,  Image, ScrollView } from 'react-native';
+import { SafeAreaView, View, FlatList, Text,  Image, ScrollView , TouchableOpacity} from 'react-native';
 import WrapperContainer from '../../Components/WrapperContainer';
 import imagePath from '../../constants/imagePath';
 import Header from '../../Components/Header';
@@ -43,7 +43,8 @@ const Notification = () => {
 
   const renderItem = ({ item }) => (
     <ScrollView>
-    <View style={styles.view}>
+    <TouchableOpacity       activeOpacity={0.4} 
+     style={styles.view}>
 
       <View>
           <Image style={styles.imageview} source={item.image} />
@@ -59,7 +60,7 @@ const Notification = () => {
       
        
      
-    </View>
+    </TouchableOpacity>
     <Divider style={styles.divider}/>
 
     </ScrollView>
@@ -78,6 +79,7 @@ const Notification = () => {
           data={DATA}
           renderItem={renderItem}
           keyExtractor={item => item.id}
+          extraData={DATA}
         />
       </View>
     </WrapperContainer>

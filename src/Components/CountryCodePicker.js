@@ -37,7 +37,6 @@ function CountryCodePicker({
           marginLeft: moderateScale(15),
         }}>
         <CountryPicker
-          // onSelect={onSelect}
           onSelect={onSelect}
           visible={false}
           countryCode={countryFlag}

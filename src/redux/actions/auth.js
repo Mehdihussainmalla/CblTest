@@ -55,7 +55,7 @@ export function changePassword(data) {
 }
 
 export function editProfile(data) {
-    console.log(data, 'the given data for login')
+    console.log(data, 'the given data for edit profile')
     return new Promise((resolve, reject) => {
         apiPost(EDIT_PROFILE_API, data)
             .then((res) => {

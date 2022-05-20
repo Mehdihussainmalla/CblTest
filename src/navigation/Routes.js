@@ -13,15 +13,15 @@ import { Intro } from '../redux/actions/auth';
 const Stack = createNativeStackNavigator();
 
 const Routes = () => {
-    const userData = useSelector((state)=>state?.auth?.userData);
-    const {intro} = useSelector((state) => state);
-     const appIntro = intro?.appIntroData
-console.log('user data from redux xxxxxxxxxxx', appIntro)
+    const userData = useSelector((state) => state?.auth?.userData);
+    const { intro } = useSelector((state) => state);
+    const appIntro = intro?.appIntroData
+    console.log('user data from redux xxxxxxxxxxx', appIntro)
 
     return (
         <NavigationContainer>
- {  !!appIntro ? IntroStack(Stack) : !!(userData || userData?.access_token)? MainStack(Stack)
-            : AuthStack(Stack)}
+            {!!appIntro ? IntroStack(Stack) : !!(userData || userData?.access_token) ? MainStack(Stack)
+                : AuthStack(Stack)}
         </NavigationContainer>
     );
 };

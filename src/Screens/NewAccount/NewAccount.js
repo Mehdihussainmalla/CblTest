@@ -26,6 +26,7 @@ const NewAccount = ({ navigation }) => {
         email: '',
         phone: '',
         password: '',
+        confirmPassword:'',
         countryCode: 'IN',
         deviceToken: 'androidffff',
         deviceType: '',
@@ -96,10 +97,12 @@ const NewAccount = ({ navigation }) => {
                     <View style={styles.namesview}>
                         <View style={styles.firstname}>
                             <TextInputComponent placeholder={strings.FIRST_NAME}
+                            value={firstName}
                                 onChangeText={(firstName) => updateState({ firstName })} />
                         </View>
                         <View style={styles.lastname}>
                             <TextInputComponent placeholder={strings.LAST_NAME}
+                            value={lastName}
                                 onChangeText={(lastName) => updateState({ lastName })} />
                         </View>
                     </View>
@@ -107,6 +110,7 @@ const NewAccount = ({ navigation }) => {
 
                     <View style={styles.emailview}>
                         <TextInputComponent
+                        value={email}
                             onChangeText={(email) => updateState({ email })}
                             placeholder={strings.EMAIL} />
                     </View>
@@ -123,6 +127,7 @@ const NewAccount = ({ navigation }) => {
                         </View>
                         <View style={{ flex: 0.6, }}>
                             <TextInputComponent
+                            value={phone}
                                 onChangeText={(phone) => updateState({ phone })}
                                 placeholder={strings.PHONE_NUMBER} />
                         </View>
@@ -130,11 +135,13 @@ const NewAccount = ({ navigation }) => {
 
                     <View style={styles.passwordview}>
                         <TextInputComponent placeholder={strings.PASSWORD}
+                        value={password}
                             onChangeText={(password) => updateState({ password })} />
                     </View>
 
                     <View style={styles.confirmpasswordview}>
                         <TextInputComponent placeholder={strings.CONFIRM_PASSWORD}
+                        value={confirmPassword}
                             onChangeText={(confirmPassword) => updateState({ confirmPassword })} />
                     </View>
 

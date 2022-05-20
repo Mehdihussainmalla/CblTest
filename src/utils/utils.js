@@ -6,7 +6,7 @@ import store from '../redux/store';
 
 import types from '../redux/types';
 
-const { dispatch, getState } = store;
+const { dispatch } = store;
 
 
 export async function getHeaders() {
@@ -237,7 +237,6 @@ export async function clearLoginUser() {
 
 // //................................set user login.................
 export async function setLogin(data) {
-
     data = JSON.stringify(data);
     return AsyncStorage.setItem('userData', data);
 }
