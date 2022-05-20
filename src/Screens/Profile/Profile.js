@@ -18,8 +18,8 @@ const Profile = ({ navigation }) => {
       alert("logout sucessfully!!!")
       Logout();
     } catch (error) {
-      alert ('logout failure!!!')
-      console.log("logout failure",error)
+      alert('logout failure!!!')
+      console.log("logout failure", error)
 
     }
   }
@@ -31,28 +31,34 @@ const Profile = ({ navigation }) => {
       />
 
       <TouchableOpacity
-      
+
         onPress={() => navigation.navigate(navigationStrings.EDIT_PROFILE_SCREEN)}
-        activeOpacity={0.7} style={styles.container}>
+        activeOpacity={0.7}
+        style={styles.container}>
         <View style={styles.profileimage}>
-          <Image style={{ marginTop: 5 }} source={imagePath.profile_icon} />
+          <Image style={{ marginTop: 5 }}
+            source={imagePath.profile_icon} />
         </View>
         <Text style={styles.profiletext}>{strings.EDIT_PROFILE}</Text>
       </TouchableOpacity>
 
 
       <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.CHANGE_PASSWORD)}
-        activeOpacity={0.7} style={styles.container}>
+        activeOpacity={0.7}
+        style={styles.container}>
         <View style={styles.profileimage}>
-          <Image style={{ marginTop: 5 }} source={imagePath.ic_key} />
+          <Image style={{ marginTop: 5 }}
+            source={imagePath.ic_key} />
         </View>
         <Text style={styles.profiletext}>{strings.CHANGE_PASSWORD}</Text>
       </TouchableOpacity>
 
 
-      <TouchableOpacity onPress={signOut} activeOpacity={0.7} style={styles.container}>
+      <TouchableOpacity onPress={signOut}
+        activeOpacity={0.7} style={styles.container}>
         <View style={styles.profileimage}>
-          <Image style={{ marginTop: 4 }} source={imagePath.ic_logout} />
+          <Image style={{ marginTop: 4 }}
+            source={imagePath.ic_logout} />
         </View>
         <Text style={styles.profiletext1}>{strings.SIGN_OUT}</Text>
       </TouchableOpacity>

@@ -14,13 +14,13 @@ const PostDetail = ({ route }) => {
     const goBack = () => {
         navigation.goBack();
     }
-
     // console.log(route?.params?.item)
     // const { userData } = route?.params
     const item=( route?.params)
     const items=item?.item?.userData?.item
     console.log("checkkkkkk items",items)
-    const pic=route?.params?.image
+    const pic =item?.image
+    // const pic=route?.params?.image
 
 
    
@@ -40,7 +40,7 @@ const PostDetail = ({ route }) => {
                     </View>
 
                     <View style={styles.profilestyle}>
-                     <View style={{flexDirection:'row', }}>
+                     <View style={{flexDirection:'row',}}>
                          <View  > 
                         <Image source={{uri:items?.user?.profile}}   style={styles.iconstyle}/>
                         </View>

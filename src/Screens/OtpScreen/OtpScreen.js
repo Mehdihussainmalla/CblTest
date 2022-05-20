@@ -24,10 +24,10 @@ const OtpScreen = ({ navigation, route }) => {
     console.log("phone and code are ", phonecode + " " + phone)
 
     const apiData = route?.params?.data;
-    console.log("c", apiData);
+    console.log("check new data", apiData);
 
     const otp = apiData?.otp;
-    console.log("check otp", otp);
+    console.warn("check otp", otp);
 
     const [code, setCode] = useState();
 
@@ -81,9 +81,6 @@ const OtpScreen = ({ navigation, route }) => {
                 </View>
                 <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
                     <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}>
-
-                        {/* <ButtonComp onPress={() => navigation.navigate(navigationStrings.HOME)} ButtonText='VERIFY' /> */}
-
                     </View>
                 </KeyboardAvoidingView>
             </ScrollView>

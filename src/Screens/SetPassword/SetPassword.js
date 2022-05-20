@@ -14,7 +14,7 @@ const SetPassword = () => {
 
     <WrapperContainer>
       <View style={{ flex: 1 }}>
-        <Header />
+        <Header isBackIcon={true}/>
         <View style={styles.setpasswordstyle}>
           <View style={styles.passwordview}>
             <Text style={styles.passwordtext}>{strings.SET_PASSWORD}</Text>

@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
         fontSize: textScale(15)
     },
     iconstyle: {
-        marginTop: moderateVerticalScale(8),
+        marginTop: moderateVerticalScale(2),
         height: moderateScale(width / 10),
         width: moderateScale(width / 10),
         borderRadius: moderateScale(width / 20),
