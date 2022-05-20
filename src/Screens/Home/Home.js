@@ -25,6 +25,7 @@ import { isArray, isEmpty, cloneDeep } from 'lodash';
 
 
 const Home = ({ navigation, route }) => {
+  
   const [post, setPost] = useState([]);
   const [count, setCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -75,7 +76,6 @@ const Home = ({ navigation, route }) => {
 
 
   const likePost = (userData) => {
-
     const id = userData?.userData?.item?.id;
     const likeStatus = Number(userData?.userData?.item?.like_status) ? 0 : 1
     let apiData = `?post_id=${id}&status=${likeStatus}`;
@@ -106,15 +106,16 @@ const Home = ({ navigation, route }) => {
 
 
   const PostHeader = userData => (
+    
+    
     <View style={styles.postHeaderContainer}>
       <View style={styles.posterName}>
         <View>
-
+         
           <Image
             style={styles.profilePicture}
             source={{
-              uri: userData.userData.item.user.profile,
-            }}
+                uri:userData?.userData?.item?.user?.profile}}
 
           />
         </View>
@@ -132,9 +133,9 @@ const Home = ({ navigation, route }) => {
   );
 
   const Post = userData => {
-    // console.log(userData, 'userrrrr in post');
-    // console.log(userData?.userData, 'item in postsssssss');
-    return (
+const profile=    userData?.userData?.item?.user?.profile
+    console.log(profile, 'userrrrr in post');
+       return (
       <View>
         <View style={styles.postContainer}>
           <View style={styles.imageview} >

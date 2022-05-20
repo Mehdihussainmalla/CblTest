@@ -1,5 +1,5 @@
 import React from "react";
-import { moderateScale, moderateVerticalScale, verticalScale } from 'react-native-size-matters'
+import { moderateScale, moderateVerticalScale} from 'react-native-size-matters'
 import { width } from '../../styles/responsiveSize'
 import { StyleSheet } from 'react-native'
 export const styles = StyleSheet.create({

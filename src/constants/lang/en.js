@@ -50,7 +50,11 @@ ADD_LOCATION:'Add Location',
 POST:'Post',
 OR:'or',
 COMMENTS:' Comments',
-LIKES:'Likes'
+LIKES:'Likes',
+REFRESHING:'Refreshing',
+COMMENT:'comment:',
+POST:'Post',
+ADD_A_COMMENT:'Add a Comment'
 
 
 

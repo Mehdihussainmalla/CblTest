@@ -14,30 +14,31 @@ import fontFamily from '../../styles/fontFamily';
 import ButtonComp from '../../Components/ButtonComp';
 import TextInputComponent from '../../Components/TextInputComponent';
 import actions from '../../redux/actions';
+import { styles } from './styles';
 import { Divider } from 'react-native-elements/dist/divider/Divider'
-
-
+import strings from '../../constants/lang';
+import { useNavigation } from '@react-navigation/native';
 
 const CommentScreen = ({ route }) => {
+    const navigation = useNavigation(true)
     const [comment, setComment] = useState('');
     const [getAllComments, setGetAllComments] = useState([])
     const [count, setCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [refresh, setRefresh] = useState(false);
     const item = (route?.params?.userData?.userData?.item)
-    // const commentStatus=(item?.commets?.comments)
-    // const description = (item?.description)
     const id = (item?.id)
-    // console.log("check idddd>>>>>>>>",id)
     // console.log("check profile>>>", item)
 
     const commentPost = (item) => {
-      
-        console.log("check items>>>>>",item)
+
+        console.log("check items>>>>>", item)
         let apiData = `?post_id=${id}&comment=${comment}`
         console.log(apiData, "apidata")
         actions.commentPost(apiData).then((res) => {
             console.log("checkk response", res)
+            
+            navigation.goBack()
         }).catch((error) => {
             console.log(error, "errorr occurred")
         })
@@ -67,7 +68,7 @@ const CommentScreen = ({ route }) => {
     }, [isLoading, refresh])
 
 
-   
+
     const onRefresh = () => {
         setCount(0)
         setRefresh(false);
@@ -81,10 +82,11 @@ const CommentScreen = ({ route }) => {
                 <Header
 
                     isBackIcon={true}
-                    title={"Comments"} />
+                    title={strings.COMMENTS} />
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={getAllComments}
+                    data={getAllComments.reverse(true)}
+                    
                     onEndReachedThreshold={0.5}
                     onEndReached={() => {
                         setCount(count + 15)
@@ -94,7 +96,7 @@ const CommentScreen = ({ route }) => {
                         <RefreshControl
                             refreshing={refresh}
                             onRefresh={onRefresh}
-                            title="Refreshing"
+                            title={strings.REFRESHING}
                             tintColor={colors.redB}
                             titleColor={colors.white}
                         />
@@ -117,7 +119,7 @@ const CommentScreen = ({ route }) => {
                                 </View>
                             </View>
                             <View style={styles.commentview}>
-                                <Text style={styles.commentstyle}> <Text style={{ fontSize: 12 }}>comment:  </Text> {element.item.comment}</Text>
+                                <Text style={styles.commentstyle}> <Text style={{ fontSize: 12 }}>{strings.COMMENT}  </Text> {element.item.comment}</Text>
                             </View>
 
                             <View style={styles.timeview}>
@@ -147,7 +149,7 @@ const CommentScreen = ({ route }) => {
                             fontFamily: fontFamily.BarlowMedium,
 
                         }}
-                        placeholder='Add a Comment' />
+                        placeholder={strings.ADD_A_COMMENT} />
                 </View>
                 <TouchableOpacity activeOpacity={0.1} style={{
                     backgroundColor: colors.redB,
@@ -155,7 +157,7 @@ const CommentScreen = ({ route }) => {
                 }}>
                     <ButtonComp
                         onPress={() => commentPost(item)}
-                        ButtonText='Post'
+                        ButtonText={strings.POST}
                         buttonTxt={{
                             width: moderateScale(46),
                             marginLeft: 11,
@@ -168,88 +170,4 @@ const CommentScreen = ({ route }) => {
         </WrapperContainer>
     );
 };
-
-
-const styles = StyleSheet.create({
-    container: {
-        // flexDirection: 'row',
-    },
-    iconstyle: {
-        marginTop: moderateVerticalScale(10),
-        height: moderateScale(width / 10),
-        width: moderateScale(width / 10),
-        borderRadius: moderateScale(width / 20),
-        marginHorizontal: moderateScale(15)
-
-    },
-    mainview: {
-        marginLeft: moderateVerticalScale(24),
-        marginRight: moderateVerticalScale(23),
-        //  backgroundColor: 'grey'
-        flex: 1,
-
-    },
-    profile: {
-        marginTop: moderateScale(10),
-        fontSize: textScale(13),
-        color: colors.white,
-        fontFamily: fontFamily.BarlowBold
-    },
-    email: {
-        fontSize: textScale(13),
-        color: colors.white,
-        fontFamily: fontFamily.BarlowBold
-
-    },
-    timeview: {
-        marginTop: moderateScale(2),
-        marginHorizontal: moderateScale(55),
-        //  backgroundColor:'red'
-
-
-
-    },
-    timestyle: {
-        fontSize: textScale(10),
-        color: colors.LIGHTGREYTEXT,
-        fontFamily: fontFamily.BarlowRegular,
-        paddingLeft: moderateScaleVertical(17),
-        // marginTop: moderateScale(2),
-        paddingTop: 10
-    },
-    bottomview: {
-        flexDirection: 'row',
-        justifyContent: "space-between",
-        marginLeft: moderateScaleVertical(23)
-        , marginRight: moderateScaleVertical(24),
-        // backgroundColor: 'white',
-        // height:50,
-        marginBottom: moderateScaleVertical(2)
-    },
-    inputview: {
-        width: "40%",
-        flex: 0.5,
-        borderRadius: moderateScaleVertical(8)
-    },
-    divider: {
-        marginTop: moderateScaleVertical(18),
-        color: colors.WHITE,
-        width: moderateScaleVertical(460)
-
-    },
-    commentview:
-    {
-        marginLeft: moderateScaleVertical(75),
-        marginTop: 5
-    },
-
-    commentstyle: {
-        fontSize: textScale(14),
-        fontFamily: fontFamily.BarlowRegular,
-        color: colors.white,
-        paddingTop: moderateScaleVertical(5)
-    }
-});
-
-
 export default CommentScreen;
