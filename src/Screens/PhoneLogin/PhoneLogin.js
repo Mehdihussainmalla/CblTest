@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component, useState } from 'react';
-import { View, Text, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { View, Text, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from 'react-native';
 import Header from '../../Components/Header';
 import WrapperContainer from '../../Components/WrapperContainer';
 import { styles } from './styles';
@@ -18,7 +18,9 @@ import { showError } from '../../utils/helperfunctions';
 
 
 
+
 const PhoneLogin = ({ navigation }) => {
+  
 
     const [countryCode, setCountryCode] = useState('91');
     const [countryFlag, setCountryFlag] = useState('IN');
@@ -56,8 +58,9 @@ const PhoneLogin = ({ navigation }) => {
         let apiData = {
 
             phone: phone,
-            phone_code: '91',
-            country_code: 'IN',
+            countryFlag: countryFlag,
+            phone_code: "91",
+            country_code: countryCode,
             device_token: 'androidffff',
             device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
             password: password,
@@ -92,19 +95,20 @@ const PhoneLogin = ({ navigation }) => {
 
                     <View style={styles.codeview}>
                         <View style={{ flex: 0.4 }}>
-                            <CountryCodePicker 
-                             countryCode={countryCode}
-                             countryFlag={countryFlag}
-                             setCountryCode={setCountryCode}
-                             setCountryFlag={setCountryFlag}
-                            
+                            <CountryCodePicker
+                                countryCode={countryCode}
+                                countryFlag={countryFlag}
+                                setCountryCode={setCountryCode}
+                                setCountryFlag={setCountryFlag}
+
                             />
                         </View>
                         <View style={{ flex: 0.6 }}>
-                            <TextInputComponent placeholder={strings.PHONE_NUMBER}
+                            <TextInputComponent 
+                            placeholder={strings.PHONE_NUMBER}
                                 onChangeText={(phone) => updateState({ phone })}
                                 value={phone}
-                                
+
                             />
                         </View>
                     </View>
@@ -122,14 +126,19 @@ const PhoneLogin = ({ navigation }) => {
                     </View>
 
                     <View style={styles.mainview}>
-                        <View style={styles.optview}>
+                        <TouchableOpacity
+                        activeOpacity={0.5}
+                        onPress={()=>navigation.navigate(navigationStrings.OTP_SCREEN,{route:route})}
+                         style={styles.optview}>
                             <Text style={styles.otp}>{strings.OTP}</Text>
-                        </View>
+                        </TouchableOpacity>
 
 
-                        <View style={styles.passwordview}>
+                        <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.FORGET_PASSWORD)}
+                            activeOpacity={0.5}
+                            style={styles.passwordview}>
                             <Text style={styles.password}>{strings.FORGOT_PASSWORD}</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
 
 

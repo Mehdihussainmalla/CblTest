@@ -61,7 +61,7 @@ const EditProfileScreen = () => {
         }
         )
         console.log(image,"checkkkk image")
-        //   setCountryCode(userData?.phone_code)
+        //    setCountryCode(userData?.phone_code)
         //   setCountryFlag(userData?.country_code)
 
     }, [userData])

@@ -11,5 +11,5 @@ export const GET_POST = getApiUrl("/posts");
 export const LIKE_POST = getApiUrl("/like-post");
 export const COMMENT_POST = getApiUrl("/comment-post")
 export const GET_COMMENT = getApiUrl("/comment-get")
-
+export const FORGET_PASSWORD=getApiUrl("/forgot_password")
 

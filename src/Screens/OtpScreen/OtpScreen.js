@@ -19,15 +19,17 @@ import { styles } from './styles';
 const OtpScreen = ({ navigation, route }) => {
 
 
-    const phone = route?.params?.phone;
-    const phonecode = route?.params?.code;
+    const phone = route?.params?.data?.phone;
+    console.log(phone, "phone is>>>>>")
+    const phonecode = route?.params?.data?.phone_code;
+    // console.log("phone-code is: ",phonecode)
     console.log("phone and code are ", phonecode + " " + phone)
 
     const apiData = route?.params?.data;
-    console.log("check new data", apiData);
+    console.l/og("check new data", apiData);
 
     const otp = apiData?.otp;
-    console.warn("check otp", otp);
+
 
     const [code, setCode] = useState();
 
@@ -35,9 +37,8 @@ const OtpScreen = ({ navigation, route }) => {
     const signupWithOtp = () => {
 
         if (otp == code) {
-            // navigation.navigate(navigationStrings.PHONE_LOGIN)
+
             actions.saveUserData(apiData);
-            alert("Login successfully")
         } else {
             alert("wrong OTP")
         }
@@ -52,7 +53,7 @@ const OtpScreen = ({ navigation, route }) => {
 
                 <View style={styles.otpmainstyle}>
                     <View >
-                        <Text style={styles.codetext}>{strings.OTP_2}</Text>
+                        <Text style={styles.codetext}>{strings.OTP_2}{phone}</Text>
                     </View>
                     <View style={{ marginTop: 10 }}>
                         <Text style={styles.eitview}>{strings.EDIT_NUMBER}</Text>

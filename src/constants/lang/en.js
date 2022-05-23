@@ -29,7 +29,7 @@ export default {
  DONE:'Done',
  SET_PASSWORD:'Set Password',
  NEW_PASS:'Create secure and unique password.',
- OTP_2:'Enter the 4-digit code sent to you at 875 364 8947',
+ OTP_2:'Enter the 4-digit code sent to you at ',
  EDIT_NUMBER:'Edit my mobile number',
 RESEND_CODE:' Resend code in 0:14',
 SAVE_CHANGES:'Save Changes',
@@ -54,7 +54,11 @@ LIKES:'Likes',
 REFRESHING:'Refreshing',
 COMMENT:'comment:',
 POST:'Post',
-ADD_A_COMMENT:'Add a Comment'
+ADD_A_COMMENT:'Add a Comment',
+FORGET_BTN:'Forget Password',
+FORGET_PASS:'Forget Password !',
+FORGET_DESC:'You can reset the password here'
+
 
 
 

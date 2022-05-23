@@ -16,5 +16,6 @@ export default {
     POST_ADD_SCREEN:'Post Add Screen',
     POST_DETAIL:'Post Detail',
     ADD_INFO :'Add Info',
-    COMMENT_SCREEN:'Comment Screen'
+    COMMENT_SCREEN:'Comment Screen',
+    FORGET_PASSWORD:'Forget Password'
 }
