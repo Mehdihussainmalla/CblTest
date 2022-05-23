@@ -25,10 +25,10 @@ import { moderateScaleVertical, textScale } from "../../styles/responsiveSize";
     },
     codeinputstyle:{
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginRight: moderateScale(23),
+        justifycontent:'space-between',
+        // marginRight: moderateScale(23),
         height: moderateScale(48),
-        marginVertical: moderateScale(16)
+        marginVertical: moderateScale(20)
 
     }
 });

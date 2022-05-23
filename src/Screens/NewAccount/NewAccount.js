@@ -72,7 +72,7 @@ const NewAccount = ({ navigation }) => {
             navigation.navigate(navigationStrings.OTP_SCREEN, {
                 data: res?.data
             })
-            alert("User signup successfully....!!!")
+            // alert("User signup successfully....!!!")
         } catch (error) {
             console.log("error raised", error)
             alert(error?.message)

@@ -34,7 +34,9 @@ function CountryCodePicker({
           borderRadius:5,
           height: moderateScaleVertical(50),
           marginTop: moderateScaleVertical(1),
-          marginLeft: moderateScale(15),
+          marginLeft: moderateScale(16),
+          
+          
         }}>
         <CountryPicker
           onSelect={onSelect}

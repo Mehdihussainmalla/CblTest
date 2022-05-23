@@ -10,11 +10,12 @@ import ButtonComp from '../../Components/ButtonComp';
 import navigationStrings from '../../navigation/navigationStrings';
 import CountryCodePicker from '../../Components/CountryCodePicker';
 import actions from '../../redux/actions';
-import { moderateScaleVertical } from '../../styles/responsiveSize';
+import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import { moderateScale } from 'react-native-size-matters';
 import colors from '../../styles/colors';
 import validator from '../../utils/validations'
 import { showError } from '../../utils/helperfunctions';
+import DeviceInfo from 'react-native-device-info';
 
 
 
@@ -61,7 +62,7 @@ const PhoneLogin = ({ navigation }) => {
             countryFlag: countryFlag,
             phone_code: "91",
             country_code: countryCode,
-            device_token: 'androidffff',
+            device_token: DeviceInfo.getUniqueId(),
             device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
             password: password,
             loginType: loginType,
@@ -72,7 +73,7 @@ const PhoneLogin = ({ navigation }) => {
             const res = await actions.login(apiData)
             console.log("signup api is......", res)
             navigation.navigate(navigationStrings.LOGINSCREEN)
-            alert("User login sucessfully !")
+            // alert("User login sucessfully !")
         }
         catch (error) {
             console.log("error raised", error)
@@ -105,6 +106,7 @@ const PhoneLogin = ({ navigation }) => {
                         </View>
                         <View style={{ flex: 0.6 }}>
                             <TextInputComponent 
+                             input={{ fontSize: textScale(14) }}
                             placeholder={strings.PHONE_NUMBER}
                                 onChangeText={(phone) => updateState({ phone })}
                                 value={phone}
@@ -115,7 +117,9 @@ const PhoneLogin = ({ navigation }) => {
 
                     <View style={styles.passview}>
                         <View style={styles.btncomp}>
-                            <TextInputComponent placeholder={strings.PASSWORD}
+                            <TextInputComponent
+                            input={{ fontSize: textScale(14) }}
+                            placeholder={strings.PASSWORD}
                                 onChangeText={(password) => updateState({ password })}
                                 value={password}
                             // keyboardType={strings.NUMERIC}

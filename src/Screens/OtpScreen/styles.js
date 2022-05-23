@@ -33,7 +33,12 @@ export const styles = StyleSheet.create({
         lineHeight: moderateScale(32),
         color: colors.white
     },
-    eitview: {
+    otpstyle:{
+        marginTop:moderateScale(10),
+        color:colors.white,
+        fontSize:textScale(14)
+    },
+    editview: {
         color: colors.bluelightclr,
         fontSize: textScale(15),
         fontFamily: fontFamily.Barlow,

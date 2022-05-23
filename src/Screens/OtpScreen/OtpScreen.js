@@ -10,6 +10,7 @@ import WrapperContainer from '../../Components/WrapperContainer';
 import strings from '../../constants/lang';
 import navigationStrings from '../../navigation/navigationStrings';
 import actions from '../../redux/actions';
+import { saveUserData } from '../../redux/actions/auth';
 import colors from '../../styles/colors';
 import { height, moderateScaleVertical } from '../../styles/responsiveSize';
 import { styles } from './styles';
@@ -17,31 +18,30 @@ import { styles } from './styles';
 
 
 const OtpScreen = ({ navigation, route }) => {
+    // -------------------------------- Signup data ----------------------------//
+    //................data from sign up screen.................//
+    const data = route?.params.data;
+    console.log(data, ">>>>>>>>");
 
-
-    const phone = route?.params?.data?.phone;
-    console.log(phone, "phone is>>>>>")
-    const phonecode = route?.params?.data?.phone_code;
-    // console.log("phone-code is: ",phonecode)
-    console.log("phone and code are ", phonecode + " " + phone)
-
-    const apiData = route?.params?.data;
-    console.l/og("check new data", apiData);
-
-    const otp = apiData?.otp;
-
+    //--------------------------------forget data-------------//
+    //.................data from login screen...............//
+    const forgetPasswordData = route?.params?.forgetPasswordData;
+    console.log(forgetPasswordData, "@@@@@@@@@")
 
     const [code, setCode] = useState();
-
-
     const signupWithOtp = () => {
 
-        if (otp == code) {
-
-            actions.saveUserData(apiData);
-        } else {
-            alert("wrong OTP")
+        {
+            data ? saveUserData(data)
+                : navigation.navigate(navigationStrings.CHANGE_PASSWORD, { data: data })
         }
+
+        // if (otp == code) {
+
+        //     actions.saveUserData(apiData);
+        // } else {
+        //     alert("wrong OTP")
+        // }
     }
 
     return (
@@ -49,19 +49,22 @@ const OtpScreen = ({ navigation, route }) => {
             <ScrollView style={{ flex: 1 }}>
 
 
-                <Header />
+                <Header isBackIcon={true} />
 
                 <View style={styles.otpmainstyle}>
                     <View >
-                        <Text style={styles.codetext}>{strings.OTP_2}{phone}</Text>
+                        <Text style={styles.codetext}>{strings.OTP_2}{"+"}{data ? data.phone_code : forgetPasswordData?.phone_code}  {data ? data?.phone : forgetPasswordData?.phoneNumber}</Text>
+                    </View>
+                    <View >
+                        <Text style={styles.otpstyle}>Otp is : {data ? data?.otp : forgetPasswordData?.data.otp}</Text>
                     </View>
                     <View style={{ marginTop: 10 }}>
-                        <Text style={styles.eitview}>{strings.EDIT_NUMBER}</Text>
+                        <Text style={styles.editview}>{strings.EDIT_NUMBER}</Text>
                     </View>
 
 
                 </View>
-                <View style={{ marginHorizontal: moderateScale(40), flex: 0.9, marginTop: 50 }}>
+                <View style={{ marginHorizontal: moderateScale(40), flex: 0.9, marginTop: 100 }}>
                     <SmoothPinCodeInput
                         value={code}
                         onTextChange={code => setCode(code)}
