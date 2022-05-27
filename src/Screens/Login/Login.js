@@ -95,7 +95,9 @@ const Login = ({ navigation }) => {
 
   return (
     <WrapperContainer style={{ alignItems: 'center' }}>
-      <ScrollView style={{ flex: 1, }}>
+      <ScrollView style={{ flex: 1, }}
+      showsVerticalScrollIndicator={false}
+      >
         <View style={styles.phoneview}>
           <Image style={styles.logoview} source={imagePath.AWARD} />
         </View>
